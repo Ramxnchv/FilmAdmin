@@ -39,13 +39,4 @@ public class RootController {
         return "atencionCliente";
     }
 
-    @GetMapping("/gestion-entradas")
-    public String gestionEntradas(Model model) {
-        return "gestionentradas";
-    }
-
-    @GetMapping("/atencion-cliente-admin")
-    public String atencionClienteAdmin(Model model) {
-        return "atencionCliente";
-    }
 }

@@ -25,10 +25,10 @@ public class AdminController {
 
     @GetMapping("/gestion-entradas")
     public String gestionEntradas(Model model) {
-        return "gestionEntradas";
+        return "gestionentradas";
     }
 
-    @GetMapping("/atencion-cliente-admin")
+    @GetMapping("/atencion-cliente")
     public String atencionCliente(Model model) {
         return "atencionCliente";
     }

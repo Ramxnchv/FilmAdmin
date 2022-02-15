@@ -39,11 +39,11 @@
 
                             <li class="nav-item mx-3">
                                 <a class="nav-link" th:if="${session.u.hasRole('ADMIN')}"
-                                    th:href="@{/gestion-entradas/}">Gestión de Entradas</a>
+                                    th:href="@{/admin/gestion-entradas/}">Gestión de Entradas</a>
                             </li>
                             <li class="nav-item mx-3">
                                 <a class="nav-link" th:if="${session.u.hasRole('ADMIN')}"
-                                    th:href="@{/atencion-cliente-admin/}">Atención al Cliente</a>
+                                    th:href="@{/admin/atencion-cliente}">Atención al Cliente</a>
                             </li>
                             <li class="nav-item mx-3">
                                 <a class="nav-link" th:if="${session.u.hasRole('ADMIN')}" th:href="@{/admin/}">Panel de
