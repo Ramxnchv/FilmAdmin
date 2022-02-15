@@ -23,4 +23,29 @@ public class RootController {
     public String index(Model model) {
         return "index";
     }
+
+    @GetMapping("/peliculas")
+    public String peliculas(Model model) {
+        return "peliculas";
+    }
+
+    @GetMapping("/cines")
+    public String cines(Model model) {
+        return "cines";
+    }
+
+    @GetMapping("/atencion-cliente")
+    public String atencionCliente(Model model) {
+        return "atencionCliente";
+    }
+
+    @GetMapping("/gestion-entradas")
+    public String gestionEntradas(Model model) {
+        return "gestionentradas";
+    }
+
+    @GetMapping("/atencion-cliente-admin")
+    public String atencionClienteAdmin(Model model) {
+        return "atencionCliente";
+    }
 }

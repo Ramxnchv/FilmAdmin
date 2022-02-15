@@ -22,4 +22,14 @@ public class AdminController {
     public String index(Model model) {
         return "admin";
     }
+
+    @GetMapping("/gestion-entradas")
+    public String gestionEntradas(Model model) {
+        return "gestionEntradas";
+    }
+
+    @GetMapping("/atencion-cliente-admin")
+    public String atencionCliente(Model model) {
+        return "atencionCliente";
+    }
 }

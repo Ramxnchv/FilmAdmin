@@ -74,6 +74,7 @@
                         </ul>
                     </th:block>
                     <th:block th:unless="${session.u}">
+                    <ul class="navbar-nav ms-auto me-5">
                         <li class="nav-item mx-2">
                             <a class="nav-link" th:href="@{/login}" href="/login">Login</a>
                         </li>
@@ -97,6 +98,7 @@
                                 <button type="submit" class="btn btn-outline-danger btn-sm">b</button>
                             </form>
                         </li>
+                    </ul>
                     </th:block>
 
                 </div>
