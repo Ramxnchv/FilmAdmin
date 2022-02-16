@@ -23,4 +23,9 @@
     font-weight:bold;
 }
 
-
+.tabla{
+    max-height: 550px;
+    width: 100%;
+    overflow: auto;
+    display:inline-block; 
+}
