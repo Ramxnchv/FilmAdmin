@@ -13,15 +13,15 @@
         <div class="container">
             <div class="content">
 
-                <h1 class="mt-5">Listado de Peliculas</h1> 
-                
+                <h1 class="mt-5">Listado de Peliculas</h1>
+
                 <div class="d-flex flex-row align-items-center mt-5">
                     <select class="form-select w-50" aria-label="Seleccion de Cine">
                         <option selected>Seleccione un cine</option>
                         <option value="1">Madrid - La Gavia</option>
                         <option value="2">Madrid - Plaza Rio 2</option>
-                        <option value="3">Barcelona -  Barnasud</option>
-                        <option value="4">Barcelona -  Diagonal</option>
+                        <option value="3">Barcelona - Barnasud</option>
+                        <option value="4">Barcelona - Diagonal</option>
                         <option value="5">Valencia - Bonaire</option>
                     </select>
                     <form class="d-flex w-75 ms-5">
@@ -32,61 +32,103 @@
                 </div>
                 <div class="table-responsive tabla mt-3">
                     <table class="table align-middle">
-                      <thead></thead>
-                      <tbody>
-                        <tr>
-                            <td class="d-flex align-items-center"><a th:href="@{/peliculas/1}"><img th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula" height="120px" width="84px" class="d-inline-block"></a></td>
-                            <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
-                            <td>120 min</td>
-                            <td>Comedia</td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-3">12:00</button><p class="mt-2">10 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">15:00</button><p class="mt-2">7 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2" disabled>18:00</button><p class="mt-2 text-danger bold">AGOTADO</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">21:00</button><p class="mt-2 text-danger bold">2 butacas</p></td>
-                        </tr>
-                        <tr>
-                            <td class="d-flex align-items-center"><img th:src="@{/img/Delicioso-886756010-mmed.jpg}" src="/img/Delicioso-886756010-mmed.jpg" alt="imagen pelicula" height="120px" width="84px" class="d-inline-block"></td>
-                            <td><a th:href="@{/peliculas/2}" class="text-dark bold">Delicioso</a></td>
-                            <td>112 min</td>
-                            <td>Comedia-Historia</td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-3">15:00</button><p class="mt-2">6 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">18:00</button><p class="mt-2 text-danger bold">1 butaca</p></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="d-flex align-items-center"><img th:src="@{/img/Belfast-622346571-large.jpg}" src="/img/Belfast-622346571-large.jpg" alt="imagen pelicula" height="120px" width="84px" class="d-inline-block"></td>
-                            <td><a th:href="@{/peliculas/3}" class="text-dark bold">Belfast</a></td>
-                            <td>97 min</td>
-                            <td>Drama</td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-3">14:00</button><p class="mt-2">5 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">19:00</button><p class="mt-2">4 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2" disabled>22:00</button><p class="mt-2 text-danger bold">AGOTADO</p></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="d-flex align-items-center"><img th:src="@{/img/Encanto-153413687-large.jpg}" src="/img/Encanto-153413687-large.jpg" alt="imagen pelicula" height="120px" width="84px" class="d-inline-block"></td>
-                            <td><a th:href="@{/peliculas/4}" class="text-dark bold">Encanto</a></td>
-                            <td>110 min</td>
-                            <td>Animación-Aventura</td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-3">11:00</button><p class="mt-2">15 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">14:00</button><p class="mt-2">9 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">17:00</button><p class="mt-2 text-danger bold">2 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">20:00</button><p class="mt-2">5 butacas</p></td>
-                        </tr>
-                        <tr>
-                            <td class="d-flex align-items-center"><img th:src="@{/img/Moonfall-138176660-large.jpg}" src="/img/Moonfall-138176660-large.jpg" alt="imagen pelicula" height="120px" width="84px" class="d-inline-block"></td>
-                            <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
-                            <td>120 min</td>
-                            <td>Ciencia-ficción</td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">12:00</button><p class="mt-2">3 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">15:00</button><p class="mt-2">6 butacas</p></td>
-                            <td><button type="button" class="btn btn-dark btn-sm ms-2">21:00</button><p class="mt-2">9 butacas</p></td>
-                            <td></td>
-                        </tr>
-                      </tbody>
+                        <thead></thead>
+                        <tbody>
+                            <tr>
+                                <td class="d-flex align-items-center"><a th:href="@{/peliculas/1}"><img
+                                            th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula"
+                                            height="120px" width="84px" class="d-inline-block"></a></td>
+                                <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
+                                <td>120 min</td>
+                                <td>Comedia</td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-3">12:00</button>
+                                    <p class="mt-2">10 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">15:00</button>
+                                    <p class="mt-2">7 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2" disabled>18:00</button>
+                                    <p class="mt-2 text-danger bold">AGOTADO</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">21:00</button>
+                                    <p class="mt-2 text-danger bold">2 butacas</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex align-items-center"><img th:src="@{/img/Delicioso-886756010-mmed.jpg}"
+                                        src="/img/Delicioso-886756010-mmed.jpg" alt="imagen pelicula" height="120px"
+                                        width="84px" class="d-inline-block"></td>
+                                <td><a th:href="@{/peliculas/2}" class="text-dark bold">Delicioso</a></td>
+                                <td>112 min</td>
+                                <td>Comedia-Historia</td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-3">15:00</button>
+                                    <p class="mt-2">6 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">18:00</button>
+                                    <p class="mt-2 text-danger bold">1 butaca</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex align-items-center"><img th:src="@{/img/Belfast-622346571-large.jpg}"
+                                        src="/img/Belfast-622346571-large.jpg" alt="imagen pelicula" height="120px"
+                                        width="84px" class="d-inline-block"></td>
+                                <td><a th:href="@{/peliculas/3}" class="text-dark bold">Belfast</a></td>
+                                <td>97 min</td>
+                                <td>Drama</td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-3">14:00</button>
+                                    <p class="mt-2">5 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">19:00</button>
+                                    <p class="mt-2">4 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2" disabled>22:00</button>
+                                    <p class="mt-2 text-danger bold">AGOTADO</p>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex align-items-center"><img th:src="@{/img/Encanto-153413687-large.jpg}"
+                                        src="/img/Encanto-153413687-large.jpg" alt="imagen pelicula" height="120px"
+                                        width="84px" class="d-inline-block"></td>
+                                <td><a th:href="@{/peliculas/4}" class="text-dark bold">Encanto</a></td>
+                                <td>110 min</td>
+                                <td>Animación-Aventura</td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-3">11:00</button>
+                                    <p class="mt-2">15 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">14:00</button>
+                                    <p class="mt-2">9 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">17:00</button>
+                                    <p class="mt-2 text-danger bold">2 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">20:00</button>
+                                    <p class="mt-2">5 butacas</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex align-items-center"><img th:src="@{/img/Moonfall-138176660-large.jpg}"
+                                        src="/img/Moonfall-138176660-large.jpg" alt="imagen pelicula" height="120px"
+                                        width="84px" class="d-inline-block"></td>
+                                <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
+                                <td>120 min</td>
+                                <td>Ciencia-ficción</td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">12:00</button>
+                                    <p class="mt-2">3 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">15:00</button>
+                                    <p class="mt-2">6 butacas</p>
+                                </td>
+                                <td><button type="button" class="btn btn-dark btn-sm ms-2">21:00</button>
+                                    <p class="mt-2">9 butacas</p>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>
-                  </div>
+                </div>
             </div>
         </div>
 

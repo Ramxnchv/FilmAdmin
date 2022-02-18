@@ -11,7 +11,63 @@
 
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5">Gestion de Entradas</h1>
+            <h1 class="mt-5">Gestión de Entradas</h1>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-column mt-3">
+                    <h2>Sesiones</h2>
+                    <div class="table-responsive tabla mt-3">
+                        <table class="table align-middle">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/1}"><img
+                                                th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula"
+                                                height="120px" width="84px" class="d-inline-block"></a></td>
+                                    <td>21:00</td>
+                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
+                                    <td>La Gavia</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver asientos</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/2}"><img
+                                                th:src="@{/img/Delicioso-886756010-mmed.jpg}" src="/img/Delicioso-886756010-mmed.jpg" alt="imagen pelicula"
+                                                height="120px" width="84px" class="d-inline-block"></a></td>
+                                    <td>18:00</td>
+                                    <td><a th:href="@{/peliculas/2}" class="text-dark bold">Delicioso</a></td>
+                                    <td>Plaza Río 2</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver asientos</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/3}"><img
+                                                th:src="@{/img/Belfast-622346571-large.jpg}" src="/img/Belfast-622346571-large.jpg" alt="imagen pelicula"
+                                                height="120px" width="84px" class="d-inline-block"></a></td>
+                                    <td>14:00</td>
+                                    <td><a th:href="@{/peliculas/3}" class="text-dark bold">Belfast</a></td>
+                                    <td>La Gavia</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver asientos</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/5}"><img
+                                                th:src="@{/img/Moonfall-138176660-large.jpg}" src="/img/Moonfall-138176660-large.jpg" alt="imagen pelicula"
+                                                height="120px" width="84px" class="d-inline-block"></a></td>
+                                    <td>22:00</td>
+                                    <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
+                                    <td>Diagonal</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver asientos</button></td>
+                                </tr>      
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center me-5 ">
+                    <h2>Comprobar entradas</h2>
+                    <form class="d-flex flex-column align-items-center">
+                        <input type="text" class="form-control w-50 mt-3">
+                        <button type="button" class="btn btn-dark mt-3">Comprobar código</button>
+                        <h6 class="mt-4 text-danger">ESTE CÓDIGO NO CORRESPONDE A NINGUNA ENTRADA</h6>
+                    </form>
+                </div>          
+            </div>
         </div>
     </main>
 

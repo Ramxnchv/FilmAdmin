@@ -3,7 +3,7 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
-    <title>IW: Perfil</title>
+    <title>FilmAdmin</title>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -11,14 +11,94 @@
 
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5">Perfil de <span th:text="${user.username}">Paco</span></h1>
-            <!-- para enviar mensajes; algo feo -->
+            <h1 class="mt-5">Mi perfil</h1>
+            <div class="d-flex justify-content-between">
+                <div class="d-flex flex-column">
+                    <h2 class="mt-5 mb-5">Información de <span th:text="${user.username}">Paco</span></h2>
+                    <div class="d-flex align-items-center">
+                        <img width="240px" height="326px" th:src="@{/user/{id}/pic(id=${session.u.id})}">
+                        <form class="d-flex flex-column ms-5">
+                            <input type="text" class="form-control mb-2" placeholder="Nombre" name="nombre">
+                            <input type="text" class="form-control mb-2" placeholder="Apellidos" name="apellidos">
+                            <input type="email" class="form-control mb-2" id="email" placeholder="correo@filmadmin.es" name="email">
+                            <input type="date" class="form-control mb-2" name="fecha">
+                            <input class="form-control" type="file" id="userimg" name="imagen" accept="image/*">
+                            <button type="submit" class="btn btn-dark mt-3">Editar Información</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <h2 class="mt-5">Mis entradas</h2>
+                    <div class="table-responsive tablaentradas mt-3">
+                        <table class="table align-middle">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td>10 entradas</td>
+                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
+                                    <td>21:00</td>
+                                    <td>La Gavia</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2 entradas</td>
+                                    <td><a th:href="@{/peliculas/2}" class="text-dark bold">Belfast</a></td>
+                                    <td>19:00</td>
+                                    <td>La Gavia</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
+                                </tr>
+                                <tr>
+                                    <td>1 entrada</td>
+                                    <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
+                                    <td>16:00</td>
+                                    <td>Plaza Río 2</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
+                                </tr>
+                                <tr>
+                                    <td>7 entradas</td>
+                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
+                                    <td>18:00</td>
+                                    <td>Barnasud</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
+                                </tr>
+                                <tr>
+                                    <td>9 entradas</td>
+                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
+                                    <td>18:00</td>
+                                    <td>Diagonal</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
+                                </tr>
+                                <tr>
+                                    <td>3 entradas</td>
+                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
+                                    <td>18:00</td>
+                                    <td>Bonaire</td>
+                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h2 class="mt-5">Cambiar contraseña</h2>
+                    <form class="d-flex flex-column align-items-center">
+                        <div class="d-flex mt-3">
+                            <input type="text" class="form-control mb-2" placeholder="Nueva contraseña" name="password">
+                            <input type="text" class="form-control ms-2 mb-2" id="passwordconfirm" placeholder="Repetir contraseña" name="passwordconfirm">   
+                        </div>
+                        
+                        <button type="submit" class="btn btn-dark mt-3">Cambiar contraseña</button>
+                    </form>
+                </div>
+            </div>
+            
+            
+            <!-- para enviar mensajes; algo feo 
             <div class="py-5 position-absolute bottom-0 row ">
                 <form th:action="@{/user/__${user.id}__/msg}" method="POST">
                     <input type="text" id="message" placeholder="escribe a este usuario" />
                     <button id="sendmsg" class="btn btn-secondary" type="submit">Enviar</button>
                 </form>
             </div>
+            -->
         </div>
     </main>
 
@@ -33,6 +113,12 @@
                 })
                 .then(d => console.log("happy", d))
                 .catch(e => console.log("sad", e))
+        }
+    </script>
+    <script>
+        window.onload = () => {
+            const myInput = document.getElementById('passwordconfirm');
+            myInput.onpaste = e => e.preventDefault();
         }
     </script>
 </body>

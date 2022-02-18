@@ -30,6 +30,13 @@
     display:inline-block; 
 }
 
+.tablaentradas{
+    max-height: 250px;
+    width: 100%;
+    overflow: auto;
+    display:inline-block; 
+}
+
 body{
     background-color: #92bcea;
 }
