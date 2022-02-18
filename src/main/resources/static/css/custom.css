@@ -39,3 +39,6 @@ body{
     height: 283px;
 }
 
+a:link, a:visited, a:active {
+    text-decoration:none;
+}

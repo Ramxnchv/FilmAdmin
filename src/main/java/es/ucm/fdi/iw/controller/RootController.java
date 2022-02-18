@@ -24,11 +24,6 @@ public class RootController {
         return "index";
     }
 
-    @GetMapping("/peliculas")
-    public String peliculas(Model model) {
-        return "peliculas";
-    }
-
     @GetMapping("/cines")
     public String cines(Model model) {
         return "cines";

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/head :: header" />
+    <title>FilmAdmin</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="flex-shrink-0">
+        <div class="container">
+            <div class="d-flex align-items-center mt-5">
+                <h1>El buen patrón</h1>
+                <select class="form-select w-50 h-50 ms-auto" aria-label="Seleccion de Cine">
+                    <option selected>Seleccione un cine</option>
+                    <option value="1">Madrid - La Gavia</option>
+                    <option value="2">Madrid - Plaza Rio 2</option>
+                    <option value="3">Barcelona -  Barnasud</option>
+                    <option value="4">Barcelona -  Diagonal</option>
+                    <option value="5">Valencia - Bonaire</option>
+                </select>
+            </div>
+            <div class="d-flex mt-5 align-items-center">
+                <img th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula" width="210px" height="300px" class="d-inline-block">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/o0iZkyB7c0I" title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="ms-5" allowfullscreen></iframe>
+                <div class="d-flex flex-column ms-5">
+                    <p><span class="bold">Duración:</span> 120min</p>
+                    <p><span class="bold">País:</span> España</p>
+                    <p><span class="bold">Género:</span> Comedia</span>
+                    <p><span class="bold">Directores:</span> Fernando de León Aranoa</p>
+                    <p><span class="bold">Guionistas:</span> Fernando de León Aranoa</p>
+                    <p><span class="bold">Productores:</span> Tripictures</p>
+                    <p><span class="bold">Actores:</span> Almudena Amor, Javier Bardem</p>
+                </div>
+            </div>
+            <h2 class="mt-5">Sesiones</h2>
+            <div class="d-flex mt-5">
+                <div class="d-flex flex-column me-5"><button type="button" class="btn btn-dark">12:00</button><p class="mt-2">10 butacas</p></div>
+                <div class="d-flex flex-column me-5"><button type="button" class="btn btn-dark">15:00</button><p class="mt-2">7 butacas</p></div>
+                <div class="d-flex flex-column me-5"><button type="button" class="btn btn-dark" disabled>18:00</button><p class="mt-2 text-danger bold">AGOTADO</p></div>
+                <div class="d-flex flex-column me-5"><button type="button" class="btn btn-dark">21:00</button><p class="mt-2 text-danger bold">2 butacas</p></div>
+            </div>   
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+</body>
+
+</html>
