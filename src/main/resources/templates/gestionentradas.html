@@ -11,10 +11,9 @@
 
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5">Gestión de Entradas</h1>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex mt-5 justify-content-between align-items-center">
                 <div class="d-flex flex-column mt-3">
-                    <h2>Sesiones</h2>
+                    <div class="d-flex justify-content-center"><h2>Sesiones</h2></div>
                     <div class="table-responsive tabla mt-3">
                         <table class="table align-middle">
                             <thead></thead>
@@ -26,7 +25,7 @@
                                     <td>21:00</td>
                                     <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
                                     <td>La Gavia</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Ver asientos</button></td>
+                                    <td><button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalButacas">Ver asientos</button></td>
                                 </tr>
                                 <tr>
                                     <td class="d-flex align-items-center"><a th:href="@{/peliculas/2}"><img
@@ -63,7 +62,7 @@
                     <h2>Comprobar entradas</h2>
                     <form class="d-flex flex-column align-items-center">
                         <input type="text" class="form-control w-50 mt-3">
-                        <button type="button" class="btn btn-dark mt-3">Comprobar código</button>
+                        <button type="button" class="btn btn-dark mt-3" data-bs-toggle="modal" data-bs-target="#modalButacas">Comprobar código</button>
                         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                             <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
@@ -83,6 +82,90 @@
                         </div>
                     </form>
                 </div>          
+            </div>
+        </div>
+        <div class="modal fade" id="modalButacas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Asientos para El buen patrón - La Gavia - 21:00</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex flex-column seat-selector-modal">
+                        <svg width="640" height="360">
+                            <circle id="1" cx="50" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="2" cx="100" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="3" cx="150" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="4" cx="200" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="5" cx="250" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="6" cx="300" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="7" cx="350" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="8" cx="400" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="9" cx="450" cy="50" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="10" cx="500" cy="50" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="11" cx="550" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="12" cx="600" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="13" cx="50" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="14" cx="100" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="15" cx="150" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="16" cx="200" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="17" cx="250" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="18" cx="300" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="19" cx="350" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="20" cx="400" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="21" cx="450" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="22" cx="500" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="23" cx="550" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="24" cx="600" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                            <circle id="25" cx="50" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="26" cx="100" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="27" cx="150" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="28" cx="200" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="29" cx="250" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="30" cx="300" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="31" cx="350" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="32" cx="400" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="33" cx="450" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="34" cx="500" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="35" cx="550" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="36" cx="600" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="37" cx="50" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="38" cx="100" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="39" cx="150" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="40" cx="200" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="41" cx="250" cy="200" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="42" cx="300" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="43" cx="350" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="44" cx="400" cy="200" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            <circle id="45" cx="450" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="46" cx="500" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="47" cx="550" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                            <circle id="48" cx="600" cy="200" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                        </svg>
+                        <div class="d-flex justify-content-center align-items-center screen">
+                            <h5 class="text-light">PANTALLA</h5>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center mt-2">
+                            <div class="d-flex libre me-3">
+                                <div class="muestra me-1"></div>
+                                <h6>LIBRE</h6>
+                            </div>
+                            <div class="d-flex seleccionado me-3">
+                                <div class="muestraselec me-1"></div>
+                                <h6>SELECCIONADO</h6>
+                            </div>
+                            <div class="d-flex ocupado me-3">
+                                <div class="muestraocup me-1"></div>
+                                <h6>OCUPADO</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver a Gestión Entradas</button>
+                </div>
+              </div>
             </div>
         </div>
     </main>

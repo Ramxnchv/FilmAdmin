@@ -119,6 +119,14 @@ a:link, a:visited, a:active {
     margin-left: 20%;
 }
 
+.seat-selector-modal{
+    width: 640px;
+    height: 360px;
+    background-color: #7A93AC;
+    border-radius: 5%;
+    margin-left: 7.5%;
+}
+
 .screen{
     background-color: #617073;
 }
