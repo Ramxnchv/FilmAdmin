@@ -110,3 +110,44 @@ a:link, a:visited, a:active {
 #inputpromociones{
     width: 130%;
 }
+
+.seat-selector{
+    width: 640px;
+    height: 360px;
+    background-color: #7A93AC;
+    border-radius: 5%;
+    margin-left: 20%;
+}
+
+.screen{
+    background-color: #617073;
+}
+
+circle:hover{
+    cursor: pointer;
+}
+
+.muestra{
+    background-color: #92bcea;
+    border: 1px solid black;
+    width: 16px;
+    height: 16px;
+}
+
+.muestraselec{
+    background-color: yellow;
+    border: 1px solid black;
+    width: 16px;
+    height: 16px;
+}
+
+.muestraocup{
+    background-color: red;
+    border: 1px solid black;
+    width: 16px;
+    height: 16px;
+}
+
+.enlacepel{
+    margin-left: 15%;
+}

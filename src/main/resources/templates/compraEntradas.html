@@ -13,8 +13,8 @@
         <div class="container">
             <form action="/compra-entradas">
                 <h1 class="mt-5">El buen patrón - Sesión de las 21:00</h1>
-                <div class="d-flex mt-5">
-                    <div class="d-flex flex-column">
+                <div class="d-flex align-items-center mt-5">
+                    <div class="d-flex flex-column ">
                         <select class="form-select mb-4" aria-label="Seleccion de Cine">
                             <option selected>Seleccione un cine</option>
                             <option value="1">Madrid - La Gavia</option>
@@ -37,10 +37,78 @@
                         <h5 class="bold">Precio final: 115,00€</h5>
                     </div>
                     <div class="d-flex flex-column">
-
+                        <div class="d-flex flex-column seat-selector">
+                            <svg width="640" height="360">
+                                <circle id="1" cx="50" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="2" cx="100" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="3" cx="150" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="4" cx="200" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="5" cx="250" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="6" cx="300" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="7" cx="350" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="8" cx="400" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="9" cx="450" cy="50" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="10" cx="500" cy="50" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="11" cx="550" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="12" cx="600" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="13" cx="50" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="14" cx="100" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="15" cx="150" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="16" cx="200" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="17" cx="250" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="18" cx="300" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="19" cx="350" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="20" cx="400" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="21" cx="450" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="22" cx="500" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="23" cx="550" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="24" cx="600" cy="100" r="20" stroke="black" stroke-width="3" fill="yellow" />
+                                <circle id="25" cx="50" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="26" cx="100" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="27" cx="150" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="28" cx="200" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="29" cx="250" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="30" cx="300" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="31" cx="350" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="32" cx="400" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="33" cx="450" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="34" cx="500" cy="150" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="35" cx="550" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="36" cx="600" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="37" cx="50" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="38" cx="100" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="39" cx="150" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="40" cx="200" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="41" cx="250" cy="200" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="42" cx="300" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="43" cx="350" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="44" cx="400" cy="200" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                                <circle id="45" cx="450" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="46" cx="500" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="47" cx="550" cy="200" r="20" stroke="black" stroke-width="3" fill="red" />
+                                <circle id="48" cx="600" cy="200" r="20" stroke="black" stroke-width="3" fill="#92bcea" />
+                            </svg>
+                            <div class="d-flex justify-content-center align-items-center screen">
+                                <h5 class="text-light">PANTALLA</h5>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-2">
+                                <div class="d-flex libre me-3">
+                                    <div class="muestra me-1"></div>
+                                    <h6>LIBRE</h6>
+                                </div>
+                                <div class="d-flex seleccionado me-3">
+                                    <div class="muestraselec me-1"></div>
+                                    <h6>SELECCIONADO</h6>
+                                </div>
+                                <div class="d-flex ocupado me-3">
+                                    <div class="muestraocup me-1"></div>
+                                    <h6>OCUPADO</h6>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center"> <button type="submit" class="btn btn-dark mt-3">Comprar</button> </div>
+                <div class="d-flex justify-content-center"><a th:href="@{/entradas/67G5HJ4F}" ><button type="button" class="btn btn-dark btn-lg mt-5">Comprar</button></a> </div>
             </form>
         </div>
     </main>
