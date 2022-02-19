@@ -98,3 +98,15 @@ a:link, a:visited, a:active {
 .chat-selector{
     width: 120%;
 }
+
+.botoncantidad{
+    width: 36px;
+}
+
+.inputcantidad{
+    width: 45px;
+}
+
+#inputpromociones{
+    width: 130%;
+}

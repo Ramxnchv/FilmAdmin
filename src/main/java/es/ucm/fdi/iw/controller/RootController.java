@@ -34,4 +34,14 @@ public class RootController {
         return "atencionClienteUser";
     }
 
+    @GetMapping("/compra-entradas")
+    public String compraEntradas(Model model) {
+        return "compraEntradas";
+    }
+
+    @GetMapping("/entradas/67G5HJ4F")
+    public String resumenEntradas(Model model) {
+        return "resumenEntrada";
+    }
+
 }
