@@ -151,3 +151,9 @@ circle:hover{
 .enlacepel{
     margin-left: 15%;
 }
+
+.comprobarentradas{
+    background-color: #7a93ac;
+    border-radius: 5%;
+    padding: 5%;
+}
