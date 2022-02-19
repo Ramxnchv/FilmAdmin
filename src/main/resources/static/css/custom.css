@@ -30,6 +30,10 @@
     display:inline-block; 
 }
 
+.tablaadmin{
+    min-height: 550px;
+}
+
 .tablaentradas{
     max-height: 250px;
     width: 100%;
