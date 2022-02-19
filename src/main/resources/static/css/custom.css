@@ -49,3 +49,17 @@ body{
 a:link, a:visited, a:active {
     text-decoration:none;
 }
+
+.mensajes{
+    max-height: 100px;
+    background-color: #7a93ac;
+    border-radius: 2%;
+    padding: 2%;
+    overflow: auto;
+    display:inline-block;
+}
+
+.mensajes::-webkit-scrollbar{
+    width: 8px;
+    background-color: #F5F5F5;
+}

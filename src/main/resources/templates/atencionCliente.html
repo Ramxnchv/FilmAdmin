@@ -11,7 +11,31 @@
 
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5">Atencion al Cliente</h1>
+            <h1 class="mt-5">Atención al Cliente</h1>
+              <div class="d-flex align-items-start mt-5">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Cliente 1</button>
+                  <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Cliente 2</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Cliente 3</button>
+                  <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Cliente 4</button>
+                </div>
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="mensajes mb-3">
+                      <div class="mb-2"><span class="bold">user:</span> hola buenas quería saber el horario del cine plaza rio 2</div>
+                      <div class="mb-2"><span class="bold">Filmadmin:</span> El horario es de 10:00 a 22:00 todos los días de la semana</div>
+                      <div class="mb-2"><span class="bold">user:</span> perfecto, muchas gracias</div>
+                    </div>
+                    <form class="d-flex flex-column">
+                      <textarea></textarea>
+                      <button type="button" class="btn btn-dark mt-3">Enviar</button>
+                    </form>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+                  <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+                  <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+                </div>
+              </div>
         </div>
     </main>
 
