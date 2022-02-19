@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/head :: header" />
+    <title>FilmAdmin</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+    
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="flex-shrink-0">
+        <div class="container">
+            <h1 class="mt-5 mb-5">Atención al Cliente</h1>
+            <div class="d-flex align-items-center top-chat">
+                <span class="p-1 bold ms-auto me-auto">Chat de Atención al Cliente</span>
+            </div>
+            <div class="w-100 mensajes mb-3">
+                <div class="mb-2"><span class="bold">user:</span> hola buenas quería saber el horario del cine plaza rio 2 </div>
+                <div class="d-flex justify-content-end"><div class="mb-2"><span class="bold">Filmadmin:</span> El horario es de 10:00 a 22:00 todos los días de la semana</div></div>
+                <div class="mb-2"><span class="bold">user:</span> perfecto, muchas gracias</div>
+                <div class="d-flex justify-content-end"><div class="mb-2"><span class="bold">Filmadmin:</span> ¿Desea algo más?</div></div>
+                <div class="mb-2"><span class="bold">user:</span> el centro comercial cuenta con parking?</div>
+                <div class="d-flex justify-content-end"><div class=""><span class="bold">Filmadmin:</span> Así es. Funciona en el mismo horario que el resto de servicios.</div></div>
+                <div class="d-flex justify-content-center mt-4"><div>Filmadmin está escribiendo...</div></div>
+            </div>
+            <form class="d-flex flex-column">
+                <textarea></textarea>
+                <button type="button" class="btn btn-dark mt-3">Enviar</button>
+            </form>
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+
+</body>
+
+</html>

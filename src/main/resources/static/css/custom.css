@@ -52,6 +52,7 @@ a:link, a:visited, a:active {
 
 .mensajes{
     max-height: 300px;
+    width: 100%;
     background-color: #7a93ac;
     border-radius: 2%;
     padding: 2%;
@@ -85,4 +86,11 @@ a:link, a:visited, a:active {
 .top-chat{
     background-color: #617073;
     border-radius: 2%;
+}
+.chat{
+    width: 200%;
+}
+
+.chat-selector{
+    width: 120%;
 }

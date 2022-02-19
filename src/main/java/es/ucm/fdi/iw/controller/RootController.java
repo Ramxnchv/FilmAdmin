@@ -31,7 +31,7 @@ public class RootController {
 
     @GetMapping("/atencion-cliente")
     public String atencionCliente(Model model) {
-        return "atencionCliente";
+        return "atencionClienteUser";
     }
 
 }
