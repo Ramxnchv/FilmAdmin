@@ -6,7 +6,7 @@
     <title>FilmAdmin</title>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100" onload="crearAsientos();">
     <header th:replace="fragments/nav.html :: nav"></header>
 
     <main class="flex-shrink-0">
@@ -25,84 +25,45 @@
                         </select>
                         <h6 class="mb-3">Precio entrada: <span id="precioentrada">11.50</span>€</h6>
                         <div class="d-flex mb-4">
-                            <button type="button" class="btn btn-dark botoncantidad me-2" id="botonmas">+</button>
-                            <button type="button" class="btn btn-dark botoncantidad me-2" id="botonmenos">-</button>
+                            <button type="button" class="btn btn-dark botoncantidad me-2" id="botonmas" onclick="botonmass()">+</button>
+                            <button type="button" class="btn btn-dark botoncantidad me-2" id="botonmenos" onclick="botonmenoss()">-</button>
                             <input id="inputcantidad" class="form-control inputcantidad" type="text" value="0"
                                 aria-label="readonly input example">
                         </div>
                         <input type="text" class="form-control mb-4" id="inputpromociones"
                             placeholder="Códigos y cupones promocionales">
-                        <h6 class="">Subtotal: <span id="subtotal">115.00</span>€</h6>
+                        <h6 class="">Subtotal: <span id="subtotal">0.00</span>€</h6>
                         <h6 class="">Descuentos: -0,00€</h6>
-                        <h5 class="bold">Precio final: <span id="preciofinal">115.00</span>€</h5>
+                        <h5 class="bold">Precio final: <span id="preciofinal">0.00</span>€</h5>
                     </div>
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-column seat-selector">
-                            <svg width="640" height="360">
-                                <circle id="1" cx="50" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)" value="selected"/>
-                                <circle id="2" cx="100" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="3" cx="150" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="4" cx="200" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="5" cx="250" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="6" cx="300" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="7" cx="350" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="8" cx="400" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="9" cx="450" cy="50" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="10" cx="500" cy="50" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="11" cx="550" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="12" cx="600" cy="50" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="13" cx="50" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="14" cx="100" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="15" cx="150" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="16" cx="200" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="17" cx="250" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="18" cx="300" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="19" cx="350" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="20" cx="400" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="21" cx="450" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="22" cx="500" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="23" cx="550" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="24" cx="600" cy="100" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="25" cx="50" cy="150" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="26" cx="100" cy="150" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="27" cx="150" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="28" cx="200" cy="150" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="29" cx="250" cy="150" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="30" cx="300" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)" />
-                                <circle id="31" cx="350" cy="150" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="32" cx="400" cy="150" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="33" cx="450" cy="150" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="34" cx="500" cy="150" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="35" cx="550" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="36" cx="600" cy="150" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="37" cx="50" cy="200" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="38" cx="100" cy="200" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="39" cx="150" cy="200" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="40" cx="200" cy="200" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="41" cx="250" cy="200" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="42" cx="300" cy="200" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="43" cx="350" cy="200" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="44" cx="400" cy="200" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
-                                <circle id="45" cx="450" cy="200" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="46" cx="500" cy="200" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="47" cx="550" cy="200" r="20" stroke="black" stroke-width="3" fill="red" onclick="asientoOcupado()" />
-                                <circle id="48" cx="600" cy="200" r="20" stroke="black" stroke-width="3" fill="#92bcea" onclick="actualizarAsiento(event.target.id)" oncontextmenu="eliminarAsiento(event,event.target.id)"/>
+                            <svg id="asientos" width="640" height="360">
+                                <!-- Aqui se crean las butacas en crearAsientos() en funciones.js -->
                             </svg>
                             <div class="d-flex justify-content-center align-items-center screen">
                                 <h5 class="text-light">PANTALLA</h5>
                             </div>
                             <div class="d-flex justify-content-center align-items-center mt-2">
                                 <div class="d-flex libre me-3">
-                                    <div class="muestra me-1"></div>
+                                    <div class="muestra ms-3 me-1"></div>
                                     <h6>LIBRE</h6>
                                 </div>
                                 <div class="d-flex seleccionado me-3">
                                     <div class="muestraselec me-1"></div>
                                     <h6>SELECCIONADO</h6>
                                 </div>
-                                <div class="d-flex ocupado me-3">
+                                <div class="d-flex ocupado me-2">
                                     <div class="muestraocup me-1"></div>
                                     <h6>OCUPADO</h6>
+                                </div>
+                                <div class="d-flex clickizq me-3">
+                                    <div class="me-1 d-flex align-items-center"><img th:src="@{/img/clickizq.png}" src="/img/clickizq.png" alt="Click Izquierdo" width="16" height="16"></div>
+                                    <h6>SELECCIONAR</h6>
+                                </div>
+                                <div class="d-flex clickder me-3">
+                                    <div class="me-1 d-flex align-items-center"><img th:src="@{/img/clickder.png}" src="/img/clickder.png" alt="Click Derecho" width="16" height="16"></div>
+                                    <h6>DESELECCIONAR</h6>
                                 </div>
                             </div>
                         </div>
