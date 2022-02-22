@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/head :: header" />
+    <title>FilmAdmin</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="flex-shrink-0">
+        <div class="container">
+            <form class="form-signin login d-flex flex-column align-items-center" method="post" th:action="@{/user/-1}">
+                <img th:src="@{/img/filmadminlogowhite.png}" src="/img/filmadminlogowhite.png" alt="logo IW" width="269" height="88"
+                        class="d-inline-block align-text-top">
+                <div class="d-flex justify-content-between mt-5">
+                    <p>
+                        <label for="username" class="visually-hidden">Username</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="required">
+                    </p>
+                    <p class="ms-4">
+                        <label for="email" class="visually-hidden">Correo</label>
+                        <input type="text" class="form-control" placeholder="correo@filmadmin.es" id="email" name="email" required="required">
+                    </p>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <p>
+                        <label for="password" class="visually-hidden">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required="required">
+                    </p>
+                    <p class="ms-4">
+                        <label for="confirm_password" class="visually-hidden">Confirmar Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirmar contraseña" required="required">
+                    </p>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <p>
+                        <label for="nombre" class="visually-hidden">Nombre</label>
+                        <input type="text" class="form-control" placeholder="Nombre" id="nombre" name="nombre" required="required">
+                    </p>
+                    <p class="ms-4">
+                        <label for="apellidos" class="visually-hidden">Apellidos</label>
+                        <input type="text" class="form-control" placeholder="Apellidos" id="apellidos" name="apellidos" required="required">
+                    </p>
+                </div>
+                <div class="d-flex justify-content-between mt-2 ms-3">
+                    <p>
+                        <label for="fecha" class="visually-hidden">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control mb-2" value="1998-01-01" id="fecha" name="fecha" required="required">
+                    </p>
+                    <p class="ms-4">
+                        <label for="userimg" class="visually-hidden">Imagen</label>
+                        <input class="form-control fileinput" type="file" id="userimg" name="userimg" accept="image/*">
+                    </p>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                <div class="d-flex">
+                    <button class="btn btn-lg btn-dark btn-block mt-3 ms-2" type="submit">Registrarse</button>
+                </div>
+                
+            </form>
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+</body>
+
+</html>
