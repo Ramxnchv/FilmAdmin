@@ -1,4 +1,3 @@
-
 public class Entrada {
     private long idAsiento;
     private long idSesion;

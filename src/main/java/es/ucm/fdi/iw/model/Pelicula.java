@@ -1,4 +1,3 @@
-
 public class Pelicula {
     private long id;
     private long titulo;

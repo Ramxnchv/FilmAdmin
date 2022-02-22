@@ -1,5 +1,3 @@
-@Entity
-
 public class SesionAsiento {
 
     private long idasiento;

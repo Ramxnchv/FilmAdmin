@@ -1,5 +1,3 @@
-
-
 public class Sesion {
     private long id;
     private long idSala;

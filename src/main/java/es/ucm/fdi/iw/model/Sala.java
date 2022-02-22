@@ -1,5 +1,3 @@
-
-
 public class Sala {
 
     private long id;

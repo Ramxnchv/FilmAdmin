@@ -1,5 +1,3 @@
-@Entity
-
 public class CineSala {
 
     private long idsala;
