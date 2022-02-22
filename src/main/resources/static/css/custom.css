@@ -165,3 +165,12 @@ circle:hover{
     border-radius: 5%;
     padding: 5%;
 }
+
+.login{
+    margin-top: 10%;
+    margin-left: 30%;
+    background-color: rgb(122, 147, 172,0.5);
+    border-radius: 5%;
+    padding: 2%;
+    width: 40%;
+}
