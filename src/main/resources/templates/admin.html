@@ -14,9 +14,16 @@
         <div class="container">
             <h1 class="mt-5">Panel de Administración</h1>
             <div class="container">
-                <div class="row mt-5 mb-5">
-                  <div class="col-3">
-                    <div class="d-flex justify-content-center"><h2>Usuarios</h2></div>
+                <div class="d-flex mt-5">
+                    <div class="nav flex-column nav-pills me-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                      <button class="nav-link chat-selector active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Usuarios</button>
+                      <button class="nav-link chat-selector" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Películas</button>
+                      <button class="nav-link chat-selector" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Cines</button>
+                      <button class="nav-link chat-selector" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Sesiones</button>
+                    </div>
+                    <div class="tab-content chat" id="v-pills-tabContent">
+                      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="d-flex justify-content-center"><h2>Usuarios</h2></div>
                     <div class="table-responsive tabla tablaadmin mt-3">
                         <table class="table align-middle">
                             <thead></thead>
@@ -42,61 +49,61 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-dark mt-3">Añadir usuario</button></div>
-                  </div>
-                  <div class="col-3">
-                    <div class="d-flex justify-content-center"><h2>Películas</h2></div>
-                    <div class="table-responsive tabla tablaadmin mt-3">
-                        <table class="table align-middle">
-                            <thead></thead>
-                            <tbody>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/1}"><img
-                                                th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/2}"><img
-                                                th:src="@{/img/Delicioso-886756010-mmed.jpg}" src="/img/Delicioso-886756010-mmed.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td><a th:href="@{/peliculas/2}" class="text-dark bold">Delicioso</a></td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/3}"><img
-                                                th:src="@{/img/Belfast-622346571-large.jpg}" src="/img/Belfast-622346571-large.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td><a th:href="@{/peliculas/3}" class="text-dark bold">Belfast</a></td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/4}"><img
-                                                th:src="@{/img/Encanto-153413687-large.jpg}" src="/img/Encanto-153413687-large.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td><a th:href="@{/peliculas/4}" class="text-dark bold">Encanto</a></td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/5}"><img
-                                                th:src="@{/img/Moonfall-138176660-large.jpg}" src="/img/Moonfall-138176660-large.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                </tr>      
-                            </tbody>
-                        </table>
+                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-dark mb-3">Añadir usuario</button></div>
                     </div>
-                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-dark mt-3">Añadir película</button></div>
-                  </div>
-                  <div class="col-3">
-                    <div class="d-flex justify-content-center"><h2>Cines</h2></div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="d-flex justify-content-center"><h2>Películas</h2></div>
+                        <div class="table-responsive tabla tablaadmin mt-3">
+                            <table class="table align-middle">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="d-flex align-items-center"><a th:href="@{/peliculas/1}"><img
+                                                    th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula"
+                                                    height="120px" width="84px" class="d-inline-block"></a></td>
+                                        <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
+                                        <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-flex align-items-center"><a th:href="@{/peliculas/2}"><img
+                                                    th:src="@{/img/Delicioso-886756010-mmed.jpg}" src="/img/Delicioso-886756010-mmed.jpg" alt="imagen pelicula"
+                                                    height="120px" width="84px" class="d-inline-block"></a></td>
+                                        <td><a th:href="@{/peliculas/2}" class="text-dark bold">Delicioso</a></td>
+                                        <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-flex align-items-center"><a th:href="@{/peliculas/3}"><img
+                                                    th:src="@{/img/Belfast-622346571-large.jpg}" src="/img/Belfast-622346571-large.jpg" alt="imagen pelicula"
+                                                    height="120px" width="84px" class="d-inline-block"></a></td>
+                                        <td><a th:href="@{/peliculas/3}" class="text-dark bold">Belfast</a></td>
+                                        <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-flex align-items-center"><a th:href="@{/peliculas/4}"><img
+                                                    th:src="@{/img/Encanto-153413687-large.jpg}" src="/img/Encanto-153413687-large.jpg" alt="imagen pelicula"
+                                                    height="120px" width="84px" class="d-inline-block"></a></td>
+                                        <td><a th:href="@{/peliculas/4}" class="text-dark bold">Encanto</a></td>
+                                        <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-flex align-items-center"><a th:href="@{/peliculas/5}"><img
+                                                    th:src="@{/img/Moonfall-138176660-large.jpg}" src="/img/Moonfall-138176660-large.jpg" alt="imagen pelicula"
+                                                    height="120px" width="84px" class="d-inline-block"></a></td>
+                                        <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
+                                        <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>      
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-center"><button type="button" class="btn btn-dark mb-3">Añadir película</button></div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <div class="d-flex justify-content-center"><h2>Cines</h2></div>
                     <div class="table-responsive tabla tablaadmin mt-3">
                         <table class="table align-middle">
                             <thead></thead>
@@ -144,62 +151,64 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-dark mt-3">Añadir cine</button></div>
+                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-dark mb-3">Añadir cine</button></div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                        <div class="d-flex justify-content-center">
+                            <h2>Sesiones</h2>
+                        </div>
+                        <div class="table-responsive tabla tablaadmin mt-3">
+                            <table class="table align-middle">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="d-flex align-items-center"><a th:href="@{/peliculas/1}"><img
+                                                    th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula"
+                                                    height="120px" width="84px" class="d-inline-block"></a></td>
+                                        <td>21:00</td>
+                                        <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
+                                        <td>La Gavia</td>
+                                        <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-flex align-items-center"><a th:href="@{/peliculas/2}"><img
+                                                    th:src="@{/img/Delicioso-886756010-mmed.jpg}" src="/img/Delicioso-886756010-mmed.jpg" alt="imagen pelicula"
+                                                    height="120px" width="84px" class="d-inline-block"></a></td>
+                                        <td>18:00</td>
+                                        <td><a th:href="@{/peliculas/2}" class="text-dark bold">Delicioso</a></td>
+                                        <td>Plaza Río 2</td>
+                                        <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-flex align-items-center"><a th:href="@{/peliculas/3}"><img
+                                                    th:src="@{/img/Belfast-622346571-large.jpg}" src="/img/Belfast-622346571-large.jpg" alt="imagen pelicula"
+                                                    height="120px" width="84px" class="d-inline-block"></a></td>
+                                        <td>14:00</td>
+                                        <td><a th:href="@{/peliculas/3}" class="text-dark bold">Belfast</a></td>
+                                        <td>La Gavia</td>
+                                        <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-flex align-items-center"><a th:href="@{/peliculas/5}"><img
+                                                    th:src="@{/img/Moonfall-138176660-large.jpg}" src="/img/Moonfall-138176660-large.jpg" alt="imagen pelicula"
+                                                    height="120px" width="84px" class="d-inline-block"></a></td>
+                                        <td>22:00</td>
+                                        <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
+                                        <td>Diagonal</td>
+                                        <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>      
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-center"><button type="button" class="btn btn-dark mb-3">Añadir sesión</button></div>
+                    </div>
+                    </div>
                   </div>
-                  <div class="col-3">
-                    <div class="d-flex justify-content-center">
-                        <h2>Sesiones</h2>
-                    </div>
-                    <div class="table-responsive tabla tablaadmin mt-3">
-                        <table class="table align-middle">
-                            <thead></thead>
-                            <tbody>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/1}"><img
-                                                th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td>21:00</td>
-                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
-                                    <td>La Gavia</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/2}"><img
-                                                th:src="@{/img/Delicioso-886756010-mmed.jpg}" src="/img/Delicioso-886756010-mmed.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td>18:00</td>
-                                    <td><a th:href="@{/peliculas/2}" class="text-dark bold">Delicioso</a></td>
-                                    <td>Plaza Río 2</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/3}"><img
-                                                th:src="@{/img/Belfast-622346571-large.jpg}" src="/img/Belfast-622346571-large.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td>14:00</td>
-                                    <td><a th:href="@{/peliculas/3}" class="text-dark bold">Belfast</a></td>
-                                    <td>La Gavia</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/5}"><img
-                                                th:src="@{/img/Moonfall-138176660-large.jpg}" src="/img/Moonfall-138176660-large.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td>22:00</td>
-                                    <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
-                                    <td>Diagonal</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                </tr>      
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-dark mt-3">Añadir sesión</button></div>
-                </div>
-            </div>
+                
         </div>
     </main>
 

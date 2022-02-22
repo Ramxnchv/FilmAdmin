@@ -1,4 +1,3 @@
-@Entity
 
 public class Pelicula {
     private long id;
