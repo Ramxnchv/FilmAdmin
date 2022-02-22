@@ -1,4 +1,4 @@
-@Entity
+
 
 public class Sesion {
     private long id;

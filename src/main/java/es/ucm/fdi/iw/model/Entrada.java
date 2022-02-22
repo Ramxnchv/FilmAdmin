@@ -1,4 +1,3 @@
-@Entity
 
 public class Entrada {
     private long idAsiento;

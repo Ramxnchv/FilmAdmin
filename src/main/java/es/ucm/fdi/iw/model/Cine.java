@@ -1,4 +1,4 @@
-@Entity
+
 
 public class Cine {
 

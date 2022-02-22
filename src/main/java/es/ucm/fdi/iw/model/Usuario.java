@@ -1,4 +1,3 @@
-@Entity
 
 public class Usuario {
     private String nombre;
