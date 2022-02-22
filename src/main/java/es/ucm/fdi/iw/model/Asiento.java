@@ -5,7 +5,7 @@ public class Asiento {
     private long idSala;
     private int fila;
     private int column;
-    private boolean ocupado;
+
 
 
 
@@ -21,12 +21,12 @@ public class Asiento {
         return idSala;
     }
 
-    public Asiento(long id, long idSala, int fila, int column, boolean ocupado) {
+    public Asiento(long id, long idSala, int fila, int column) {
         this.id = id;
         this.idSala = idSala;
         this.fila = fila;
         this.column = column;
-        this.ocupado = ocupado;
+
     }
 
     public void setIdSala(long idSala) {
@@ -49,11 +49,5 @@ public class Asiento {
         this.column = column;
     }
 
-    public boolean isOcupado() {
-        return ocupado;
-    }
 
-    public void setOcupado(boolean ocupado) {
-        this.ocupado = ocupado;
-    }
 }
