@@ -53,4 +53,4 @@ Vista en la que poder ver los asientos ocupados y disponibles en cada sesión y 
 ## Admin - Panel de Administración
 [Panel de administración](http://localhost:8080/admin/).
 
-Vista de administración en la que poder añadir, editar o eliminar cualquier usuario, película, cine o sesión.
+Vista de administración en la que poder añadir, editar o eliminar cualquier usuario, película, cine o sesión. (Funciona con tabs para cada entidad y dentro de cada entidad encontramos una tabla con los elementos, un buscador y un boton añadir que abre un modal para crear un elemento de esta entidad).
