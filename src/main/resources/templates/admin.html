@@ -36,7 +36,7 @@
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Usuarios</h2>
                                 <input type="text" placeholder="Buscar usuario" class="w-50 buscador ms-5">
-                                <button type="button" class="btn btn-dark">Añadir usuario</button>
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalUsuario">Añadir usuario</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
                                 <table class="table align-middle">
@@ -74,7 +74,7 @@
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Películas</h2>
                                 <input type="text" placeholder="Buscar película" class="w-50 buscador ms-5">
-                                <button type="button" class="btn btn-dark">Añadir película</button>
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalPelicula">Añadir película</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
                                 <table class="table align-middle">
@@ -140,7 +140,7 @@
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Cines</h2>
                                 <input type="text" placeholder="Buscar cine" class="w-50 buscador ms-5">
-                                <button type="button" class="btn btn-dark">Añadir Cine</button>
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCine">Añadir Cine</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
                                 <table class="table align-middle">
@@ -206,7 +206,7 @@
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Sesiones</h2>
                                 <input type="text" placeholder="Buscar sesion por pelicula, hora o cine" class="w-50 buscador ms-5">
-                                <button type="button" class="btn btn-dark">Añadir sesión</button>
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalSesion">Añadir sesión</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
                                 <table class="table align-middle">
@@ -268,6 +268,197 @@
                     </div>
                 </div>
 
+            </div>
+            <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header modheader">
+                      <h5 class="modal-title text-light" id="exampleModalLabel">Gestionar Usuario</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modbody">
+                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/user/-1}">
+                            <div class="d-flex justify-content-between mt-5">
+                                <p>
+                                    <label for="username" class="visually-hidden">Username</label>
+                                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="required">
+                                </p>
+                                <p class="ms-4">
+                                    <label for="email" class="visually-hidden">Correo</label>
+                                    <input type="email" class="form-control" placeholder="correo@filmadmin.es" id="email" name="email" required="required">
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <p>
+                                    <label for="password" class="visually-hidden">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required="required">
+                                </p>
+                                <p class="ms-4">
+                                    <label for="confirm_password" class="visually-hidden">Confirmar Password</label>
+                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirmar contraseña" required="required">
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <p>
+                                    <label for="nombre" class="visually-hidden">Nombre</label>
+                                    <input type="text" class="form-control" placeholder="Nombre" id="nombre" name="nombre" required="required">
+                                </p>
+                                <p class="ms-4">
+                                    <label for="apellidos" class="visually-hidden">Apellidos</label>
+                                    <input type="text" class="form-control" placeholder="Apellidos" id="apellidos" name="apellidos" required="required">
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2 ms-3">
+                                <p>
+                                    <label for="fecha" class="visually-hidden">Fecha de Nacimiento</label>
+                                    <input type="date" class="form-control mb-2" value="1998-01-01" id="fecha" name="fecha" required="required">
+                                </p>
+                                <p class="ms-4">
+                                    <label for="userimg" class="visually-hidden">Imagen</label>
+                                    <input class="form-control fileinput" type="file" id="userimg" name="userimg" accept="image/*">
+                                </p>
+                            </div>       
+                        </form>
+                    </div>
+                    <div class="modal-footer modfooter">
+                        <button type="submit" class="btn btn-dark">Validar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalPelicula" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header modheader">
+                      <h5 class="modal-title text-light" id="exampleModalLabel">Gestionar Pelicula</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modbody">
+                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/pelicula/-1}">
+                            <div class="d-flex justify-content-between mt-5">
+                                <p>
+                                    <label for="username" class="visually-hidden">Titulo</label>
+                                    <input type="text" id="username" name="titulo" class="form-control" placeholder="Título" required="required">
+                                </p>
+                                <p class="ms-4">
+                                    <label for="email" class="visually-hidden">Duracion</label>
+                                    <input type="text" class="form-control" placeholder="Duración (minutos)" id="email" name="duracion" required="required">
+                                </p>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mt-2 ms-3">
+                                <p>
+                                    <label for="genero" class="visually-hidden">Genero</label>
+                                    <input type="text" id="genero" name="genero" class="form-control" placeholder="Género" required="required">
+                                </p>
+                                <p class="ms-4">
+                                    <label for="userimg" class="visually-hidden">Imagen</label>
+                                    <input class="form-control fileinput" type="file" id="userimg" name="imagen" accept="image/*">
+                                </p>
+                            </div>       
+                        </form>
+                    </div>
+                    <div class="modal-footer modfooter">
+                        <button type="submit" class="btn btn-dark">Validar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalCine" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header modheader">
+                      <h5 class="modal-title text-light" id="exampleModalLabel">Gestionar Cine</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modbody">
+                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/cine/-1}">
+                            <div class="d-flex justify-content-between mt-5">
+                                <p>
+                                    <label for="username" class="visually-hidden">Nombre</label>
+                                    <input type="text" id="username" name="nombre" class="form-control" placeholder="Nombre" required="required">
+                                </p>
+                                <p class="ms-4">
+                                    <label for="email" class="visually-hidden">Direccion</label>
+                                    <input type="text" class="form-control" placeholder="Dirección" id="email" name="direccion" required="required">
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <p>
+                                    <label for="appt" class="">Hora Apertura:</label>
+                                    <input type="time" id="appt" name="appt" min="09:00" max="23:00" required>
+                                </p>
+                                <p class="ms-4">
+                                    <label for="appt2" class="">Hora Cierre:</label>
+                                    <input type="time" id="appt2" name="appt" min="09:00" max="23:00" required>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2 ms-3">
+                                <p>
+                                    <label for="nombre" class="visually-hidden">URL Google Maps</label>
+                                    <input type="text" class="form-control" placeholder="URL Google Maps" id="nombre" name="maps" required="required">
+                                </p>
+                                <p class="ms-4">
+                                    <label for="formFileMultiple" class="visually-hidden">Imagenes</label>
+                                    <input class="form-control" type="file" name="imagenes" id="formFileMultiple" multiple>
+                                </p>
+                            </div>       
+                        </form>
+                    </div>
+                    <div class="modal-footer modfooter">
+                        <button type="submit" class="btn btn-dark">Validar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalSesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header modheader">
+                      <h5 class="modal-title text-light" id="exampleModalLabel">Gestionar Sesion</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modbody">
+                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/sesion/-1}">
+                            <div class="d-flex justify-content-between mt-5">
+                                <select class="form-select w-50" aria-label="Seleccion de Cine" name="cine">
+                                    <option selected>Selecciona un cine</option>
+                                    <option value="1">Madrid - La Gavia</option>
+                                    <option value="2">Madrid - Plaza Rio 2</option>
+                                    <option value="3">Barcelona - Barnasud</option>
+                                    <option value="4">Barcelona - Diagonal</option>
+                                    <option value="5">Valencia - Bonaire</option>
+                                </select>
+                                <select class="form-select w-50" aria-label="Seleccion de Cine" name="pelicula">
+                                    <option selected>Seleccione una pelicula</option>
+                                    <option value="1">El buen patrón</option>
+                                    <option value="2">Delicioso</option>
+                                    <option value="3">Belfast</option>
+                                    <option value="4">Encanto</option>
+                                    <option value="5">Moonfall</option>
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <p>
+                                    <label for="appt" class="">Selecciona una hora:</label>
+                                    <input type="time" id="appt" class="form-control" name="hora" min="09:00" max="23:00" required>
+                                </p>
+                                <p class=" ms-3">
+                                    <label for="asientos" class="">Número de Asientos</label>
+                                    <input type="number" class="form-control" id="asientos" name="asientos" min="12" max="48">
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer modfooter">
+                        <button type="submit" class="btn btn-dark">Validar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
             </div>
     </main>
 

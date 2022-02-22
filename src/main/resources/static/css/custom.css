@@ -182,3 +182,15 @@ circle:hover{
 .buscador{
     padding: 2.5px;
 }
+
+.modheader{
+    background-color: #617073;
+}
+
+.modbody{
+    background-color:rgb(122, 147, 172,0.5) ;
+}
+
+.modfooter{
+    background-color: #617073;
+}
