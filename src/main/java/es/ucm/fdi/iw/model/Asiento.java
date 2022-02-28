@@ -1,53 +1,45 @@
+package es.ucm.fdi.iw.model;
 
+import javax.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-public class Asiento {
+@Entity
+@Data
+@NoArgsConstructor
+public class Asiento implements Transferable<Asiento.Transfer> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "gen")
     private long id;
-    private long idSala;
+
+    @ManyToOne(targetEntity = Cine.class)
+    @JoinColumn(name="cine_id")
+    private Cine cine;
+
     private int fila;
-    private int column;
+    private int columna;
 
-
-
-
-    public long getId() {
-        return id;
+    @Getter
+    @AllArgsConstructor
+    public static class Transfer {
+        private long id;
+        private Cine cine;
+        private int fila;
+        private int columna;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getIdSala() {
-        return idSala;
-    }
-
-    public Asiento(long id, long idSala, int fila, int column) {
-        this.id = id;
-        this.idSala = idSala;
-        this.fila = fila;
-        this.column = column;
-
-    }
-
-    public void setIdSala(long idSala) {
-        this.idSala = idSala;
-    }
-
-    public int getFila() {
-        return fila;
-    }
-
-    public void setFila(int fila) {
-        this.fila = fila;
-    }
-
-    public int getColumn() {
-        return column;
-    }
-
-    public void setColumn(int column) {
-        this.column = column;
-    }
-
+    @Override
+    public Transfer toTransfer() {
+		return new Transfer(id,	cine, fila, columna);
+	}
+	
+	@Override
+	public String toString() {
+		return toTransfer().toString();
+	}
 
 }

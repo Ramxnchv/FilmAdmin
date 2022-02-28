@@ -1,39 +1,55 @@
-public class Entrada {
-    private long idAsiento;
-    private long idSesion;
-    private long idUsuario;
-    private long codigo;
+package es.ucm.fdi.iw.model;
 
+import java.util.ArrayList;
+import java.util.List;
 
-    public long getIdAsiento() {
-        return idAsiento;
+import javax.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+public class Entrada implements Transferable<Entrada.Transfer>{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "gen")
+    private long id;
+
+    @ManyToOne(targetEntity = Sesion.class)
+    @JoinColumn(name="sesion_id")
+    private Sesion sesion;
+
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name="user_id")
+    private User user;
+
+    @OneToMany(targetEntity = Asiento.class)
+    private List<Asiento> asientos = new ArrayList<>();
+
+    private String codigo;
+
+    
+    @Getter
+    @AllArgsConstructor
+    public static class Transfer {
+        private long id;
+        private Sesion sesion;
+        private User user;
+        private List<Asiento> asientos;
     }
 
-    public void setIdAsiento(long idAsiento) {
-        this.idAsiento = idAsiento;
-    }
+    @Override
+    public Transfer toTransfer() {
+		return new Transfer(id,	sesion, user, asientos);
+	}
+	
+	@Override
+	public String toString() {
+		return toTransfer().toString();
+	}
 
-    public long getIdSesion() {
-        return idSesion;
-    }
-
-    public void setIdSesion(long idSesion) {
-        this.idSesion = idSesion;
-    }
-
-    public long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
-    }
 }

@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,7 +47,9 @@ public class User implements Transferable<User.Transfer> {
 
     private String firstName;
     private String lastName;
-
+    private String email;
+    private Date birthDate;
+   
     private boolean enabled;
     private String roles; // split by ',' to separate roles
 
@@ -72,13 +75,17 @@ public class User implements Transferable<User.Transfer> {
     public static class Transfer {
 		private long id;
         private String username;
+        private String firstName;
+        private String lastName;
+        private String email;
+        private Date birthDate;
 		private int totalReceived;
 		private int totalSent;
     }
 
 	@Override
     public Transfer toTransfer() {
-		return new Transfer(id,	username, received.size(), sent.size());
+		return new Transfer(id,	username, firstName, lastName, email, birthDate, received.size(), sent.size());
 	}
 	
 	@Override

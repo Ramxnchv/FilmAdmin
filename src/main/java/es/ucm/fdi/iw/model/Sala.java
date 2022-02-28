@@ -1,36 +1,38 @@
-public class Sala {
+// package es.ucm.fdi.iw.model;
 
-    private long id;
-    private long fila;
-    private long columna;
+// public class Sala {
 
-    public Sala(long id, long fila, long columna) {
-        this.id = id;
-        this.fila = fila;
-        this.columna = columna;
-    }
+//     private long id;
+//     private long fila;
+//     private long columna;
 
-    public long getId() {
-        return id;
-    }
+//     public Sala(long id, long fila, long columna) {
+//         this.id = id;
+//         this.fila = fila;
+//         this.columna = columna;
+//     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+//     public long getId() {
+//         return id;
+//     }
 
-    public long getFila() {
-        return fila;
-    }
+//     public void setId(long id) {
+//         this.id = id;
+//     }
 
-    public void setFila(long fila) {
-        this.fila = fila;
-    }
+//     public long getFila() {
+//         return fila;
+//     }
 
-    public long getColumna() {
-        return columna;
-    }
+//     public void setFila(long fila) {
+//         this.fila = fila;
+//     }
 
-    public void setColumna(long columna) {
-        this.columna = columna;
-    }
-}
+//     public long getColumna() {
+//         return columna;
+//     }
+
+//     public void setColumna(long columna) {
+//         this.columna = columna;
+//     }
+// }

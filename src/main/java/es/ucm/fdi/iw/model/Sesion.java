@@ -1,56 +1,50 @@
-public class Sesion {
+package es.ucm.fdi.iw.model;
+
+import javax.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+public class Sesion implements Transferable<Sesion.Transfer>{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "gen")
     private long id;
-    private long idSala;
+
+    @ManyToOne(targetEntity = Pelicula.class)
+    @JoinColumn(name="pelicula_id")
+    private Pelicula pelicula;
+
+    @ManyToOne(targetEntity = Cine.class)
+    @JoinColumn(name="cine_id")
+    private Cine cine;
+
     private String hora;
-    private long numeroEntradas;
-    private long idPelicula;
-
-    public Sesion(long id, long idSala, String hora, long numeroEntradas, long idPelicula) {
-        this.id = id;
-        this.idSala = idSala;
-        this.hora = hora;
-        this.numeroEntradas = numeroEntradas;
-        this.idPelicula = idPelicula;
+    private int numeroEntradas;
+    
+    @Getter
+    @AllArgsConstructor
+    public static class Transfer {
+        private long id;
+        private Pelicula pelicula;
+        private Cine cine;
+        private String hora;
+        private int numeroEntradas;
     }
 
+    @Override
+    public Transfer toTransfer() {
+		return new Transfer(id,	pelicula, cine, hora, numeroEntradas);
+	}
+	
+	@Override
+	public String toString() {
+		return toTransfer().toString();
+	}
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getIdSala() {
-        return idSala;
-    }
-
-    public void setIdSala(long idSala) {
-        this.idSala = idSala;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public long getNumeroEntradas() {
-        return numeroEntradas;
-    }
-
-    public void setNumeroEntradas(long numeroEntradas) {
-        this.numeroEntradas = numeroEntradas;
-    }
-
-    public long getIdPelicula() {
-        return idPelicula;
-    }
-
-    public void setIdPelicula(long idPelicula) {
-        this.idPelicula = idPelicula;
-    }
 }

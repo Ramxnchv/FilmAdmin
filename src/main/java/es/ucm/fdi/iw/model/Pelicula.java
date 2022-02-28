@@ -1,61 +1,53 @@
-public class Pelicula {
+package es.ucm.fdi.iw.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+public class Pelicula implements Transferable<Pelicula.Transfer> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "gen")
     private long id;
+
+    @OneToMany(targetEntity = Sesion.class)
+    private List<Sesion> sesiones = new ArrayList<>();
+
     private long titulo;
     private String duraccion;
     private String genero;
     private String img;
 
-    public Pelicula(long id, long titulo, String duraccion, String genero, String img) {
-        this.id = id;
-        this.titulo = titulo;
-        this.duraccion = duraccion;
-        this.genero = genero;
-        this.img = img;
+
+    @Getter
+    @AllArgsConstructor
+    public static class Transfer {
+		private long id;
+        private long titulo;
+        private List<Sesion> sesiones;
+        private String duraccion;
+        private String genero;
+        private String img;
     }
 
-    public long getId() {
-
-        return id;
-    }
-
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public long getTitulo(){
-        return titulo;
-    }
-    public void setTitulo(long titulo){
-        this.titulo = titulo;
-    }
-
-    public String getDuraccion(){
-        return duraccion;
-    }
-    public void setDuraccion(String duraccion){
-        this.duraccion = duraccion;
-    }
-
-    public String getGenero(){
-        return genero;
-    }
-    public void setGenero(String genero){
-        this.genero = genero;
-    }
-
-
-
-
-
-
+    @Override
+    public Transfer toTransfer() {
+		return new Transfer(id,	titulo, sesiones, duraccion, genero, img);
+	}
+	
+	@Override
+	public String toString() {
+		return toTransfer().toString();
+	}
 
 }
+
