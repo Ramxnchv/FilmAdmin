@@ -1,5 +1,7 @@
 package es.ucm.fdi.iw.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -24,8 +26,11 @@ public class Sesion implements Transferable<Sesion.Transfer>{
     @JoinColumn(name="cine_id")
     private Cine cine;
 
+    @OneToMany(targetEntity = Entrada.class)
+    private List<Entrada> entradas = new ArrayList<>();
+
     private String hora;
-    private int numeroEntradas;
+    private int asientosLibres;
     
     @Getter
     @AllArgsConstructor
@@ -33,13 +38,14 @@ public class Sesion implements Transferable<Sesion.Transfer>{
         private long id;
         private Pelicula pelicula;
         private Cine cine;
+        private List<Entrada> entradas;
         private String hora;
-        private int numeroEntradas;
+        private int asientosLibres;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	pelicula, cine, hora, numeroEntradas);
+		return new Transfer(id,	pelicula, cine, entradas, hora, asientosLibres);
 	}
 	
 	@Override

@@ -22,7 +22,7 @@ public class Pelicula implements Transferable<Pelicula.Transfer> {
     @OneToMany(targetEntity = Sesion.class)
     private List<Sesion> sesiones = new ArrayList<>();
 
-    private long titulo;
+    private String titulo;
     private String duraccion;
     private String genero;
     private String img;
@@ -31,8 +31,8 @@ public class Pelicula implements Transferable<Pelicula.Transfer> {
     @Getter
     @AllArgsConstructor
     public static class Transfer {
-		private long id;
-        private long titulo;
+		    private long id;
+        private String titulo;
         private List<Sesion> sesiones;
         private String duraccion;
         private String genero;

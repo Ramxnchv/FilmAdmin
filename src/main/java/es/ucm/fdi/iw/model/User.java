@@ -49,6 +49,9 @@ public class User implements Transferable<User.Transfer> {
     private String lastName;
     private String email;
     private Date birthDate;
+
+    @OneToMany(targetEntity = Entrada.class)
+    private List<Entrada> entradas = new ArrayList<>();
    
     private boolean enabled;
     private String roles; // split by ',' to separate roles
@@ -79,13 +82,14 @@ public class User implements Transferable<User.Transfer> {
         private String lastName;
         private String email;
         private Date birthDate;
+        private List<Entrada> entradas;
 		private int totalReceived;
 		private int totalSent;
     }
 
 	@Override
     public Transfer toTransfer() {
-		return new Transfer(id,	username, firstName, lastName, email, birthDate, received.size(), sent.size());
+		return new Transfer(id,	username, firstName, lastName, email, birthDate, entradas, received.size(), sent.size());
 	}
 	
 	@Override

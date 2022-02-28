@@ -31,7 +31,7 @@ public class Entrada implements Transferable<Entrada.Transfer>{
     private List<Asiento> asientos = new ArrayList<>();
 
     private String codigo;
-
+    private double preciofinal;
     
     @Getter
     @AllArgsConstructor
@@ -40,11 +40,12 @@ public class Entrada implements Transferable<Entrada.Transfer>{
         private Sesion sesion;
         private User user;
         private List<Asiento> asientos;
+        private double preciofinal;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	sesion, user, asientos);
+		return new Transfer(id,	sesion, user, asientos, preciofinal);
 	}
 	
 	@Override
