@@ -34,11 +34,15 @@
     min-height: 550px;
 }
 
-.tablaentradas{
+.tablaentradas{ 
     max-height: 250px;
-    width: 100%;
+    width: 105%;
     overflow: auto;
     display:inline-block; 
+}
+
+.panelder{
+    margin-left: 5%!important;
 }
 
 body{
