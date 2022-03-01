@@ -30,6 +30,13 @@
     display:inline-block; 
 }
 
+.tablagestion{
+    max-height: 550px;
+    width: 120%;
+    overflow: auto;
+    display:inline-block; 
+}
+
 .tablaadmin{
     min-height: 550px;
 }
@@ -168,6 +175,7 @@ circle:hover{
     background-color: #7a93ac;
     border-radius: 5%;
     padding: 5%;
+    margin-left: 15%!important;
 }
 
 .login{
@@ -205,4 +213,8 @@ circle:hover{
 
 .filtropelicula{
     width: 15%;
+}
+
+.gestionn{
+    width: 120%;
 }
