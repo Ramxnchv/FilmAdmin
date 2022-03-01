@@ -7,8 +7,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
-import org.hibernate.annotations.CollectionType;
-
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
