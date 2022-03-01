@@ -16,9 +16,9 @@ public class Asiento implements Transferable<Asiento.Transfer> {
     @SequenceGenerator(name = "gen", sequenceName = "gen")
     private long id;
 
-    @ManyToOne(targetEntity = Cine.class)
-    @JoinColumn(name="cine_id")
-    private Cine cine;
+    @ManyToOne(targetEntity = Sala.class)
+    @JoinColumn(name="sala_id")
+    private Sala sala;
 
     private int fila;
     private int columna;
@@ -27,14 +27,14 @@ public class Asiento implements Transferable<Asiento.Transfer> {
     @AllArgsConstructor
     public static class Transfer {
         private long id;
-        private Cine cine;
+        private Sala sala;
         private int fila;
         private int columna;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	cine, fila, columna);
+		return new Transfer(id,	sala, fila, columna);
 	}
 	
 	@Override

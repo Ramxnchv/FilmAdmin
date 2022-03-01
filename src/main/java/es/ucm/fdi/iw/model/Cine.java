@@ -1,5 +1,6 @@
 package es.ucm.fdi.iw.model;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -18,13 +19,13 @@ public class Cine implements Transferable<Cine.Transfer> {
     @SequenceGenerator(name = "gen", sequenceName = "gen")
     private long id;
 
-    @OneToMany(targetEntity = Asiento.class)
-    private List<Asiento> asientos = new ArrayList<>();
+    @OneToMany(targetEntity = Sala.class)
+    private List<Sala> salas = new ArrayList<>();
 
     @OneToMany(targetEntity = Sesion.class)
     private List<Sesion> sesiones = new ArrayList<>();
-
-    private String horario;
+    private LocalTime hora_apertura;
+    private LocalTime hora_cierre;
     private String telefono;
     private String direccion;
     private String ciudad;
@@ -34,10 +35,11 @@ public class Cine implements Transferable<Cine.Transfer> {
     @Getter
     @AllArgsConstructor
     public static class Transfer {
-		private long id;
-        private List<Asiento> asientos;
+		    private long id;
+        private List<Sala> salas;
         private List<Sesion> sesiones;
-        private String horario;
+        private LocalTime hora_apertura;
+        private LocalTime hora_cierre;
         private String telefono;
         private String direccion;
         private String ciudad;
@@ -47,7 +49,7 @@ public class Cine implements Transferable<Cine.Transfer> {
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	asientos, sesiones, horario, telefono, direccion, ciudad, urlmap);
+		return new Transfer(id,	salas, sesiones, hora_apertura, hora_cierre, telefono, direccion, ciudad, urlmap);
 	}
 	
 	@Override

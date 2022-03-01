@@ -1,5 +1,6 @@
 package es.ucm.fdi.iw.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -26,10 +27,14 @@ public class Sesion implements Transferable<Sesion.Transfer>{
     @JoinColumn(name="cine_id")
     private Cine cine;
 
+    @ManyToOne(targetEntity = Cine.class)
+    @JoinColumn(name="sala_id")
+    private Sala sala;
+
     @OneToMany(targetEntity = Entrada.class)
     private List<Entrada> entradas = new ArrayList<>();
 
-    private String hora;
+    private LocalDateTime dia_hora;
     private int asientosLibres;
     
     @Getter
@@ -38,14 +43,15 @@ public class Sesion implements Transferable<Sesion.Transfer>{
         private long id;
         private Pelicula pelicula;
         private Cine cine;
+        private Sala sala;
         private List<Entrada> entradas;
-        private String hora;
+        private LocalDateTime dia_hora;
         private int asientosLibres;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	pelicula, cine, entradas, hora, asientosLibres);
+		return new Transfer(id,	pelicula, cine, sala, entradas, dia_hora, asientosLibres);
 	}
 	
 	@Override

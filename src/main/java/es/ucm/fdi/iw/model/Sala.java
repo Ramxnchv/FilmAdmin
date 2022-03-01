@@ -1,38 +1,57 @@
-// package es.ucm.fdi.iw.model;
+package es.ucm.fdi.iw.model;
 
-// public class Sala {
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-//     private long id;
-//     private long fila;
-//     private long columna;
+@Entity
+@Data
+@NoArgsConstructor
+public class Sala implements Transferable<Sala.Transfer> {
 
-//     public Sala(long id, long fila, long columna) {
-//         this.id = id;
-//         this.fila = fila;
-//         this.columna = columna;
-//     }
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "gen")
+    private long id;
 
-//     public long getId() {
-//         return id;
-//     }
+    @ManyToOne(targetEntity = Cine.class)
+    @JoinColumn(name="cine_id")
+    private Cine cine;
 
-//     public void setId(long id) {
-//         this.id = id;
-//     }
+    @OneToMany(targetEntity = Asiento.class)
+    private List<Asiento> asientos = new ArrayList<>();
 
-//     public long getFila() {
-//         return fila;
-//     }
+    @OneToMany(targetEntity = Sesion.class)
+    private List<Sesion> sesiones = new ArrayList<>();
 
-//     public void setFila(long fila) {
-//         this.fila = fila;
-//     }
+    private String nombre;
+    private int filas;
+    private int columnas;
 
-//     public long getColumna() {
-//         return columna;
-//     }
+    @Getter
+    @AllArgsConstructor
+    public static class Transfer {
+        private long id;
+        private Cine cine;
+        private List<Asiento> asientos;
+        private List<Sesion> sesiones;
+        private String nombre;
+        private int filas;
+        private int columnas;
+    }
 
-//     public void setColumna(long columna) {
-//         this.columna = columna;
-//     }
-// }
+    @Override
+    public Transfer toTransfer() {
+		return new Transfer(id,	cine, asientos, sesiones, nombre, filas, columnas);
+	}
+	
+	@Override
+	public String toString() {
+		return toTransfer().toString();
+	}
+
+}
