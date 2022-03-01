@@ -24,8 +24,17 @@
                         <option value="4">Barcelona - Diagonal</option>
                         <option value="5">Valencia - Bonaire</option>
                     </select>
-                    <form class="d-flex w-75 ms-5">
-                        <input type="text" placeholder="Busca un título o una categoría" class="w-75">
+                    <select class="form-select w-25 ms-3" aria-label="Seleccion de Sala" disabled>
+                        <option selected>Seleccione una sala</option>
+                        <option value="1">Sala 1</option>
+                        <option value="2">Sala 2</option>
+                        <option value="3">Sala 3</option>
+                        <option value="4">Sala 4</option>
+                        <option value="5">Sala 5</option>
+                    </select>
+                    <input type="date" class="form-control w-25 ms-3" value="2022-03-01" id="fecha" name="fecha" required="required">
+                    <form class="d-flex w-75 ms-3">
+                        <input type="text" placeholder="Busca un título o una categoría" class="busctitulocat">
                         <button type="button" class="btn btn-dark ms-2">A-Z ↓</button>
                         <button type="button" class="btn btn-dark ms-2">Duración ↓</button>
                     </form>
