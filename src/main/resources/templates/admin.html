@@ -26,6 +26,9 @@
                         <button class="nav-link chat-selector" id="v-pills-messages-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
                             aria-selected="false">Cines</button>
+                        <button class="nav-link chat-selector" id="v-pills-salas-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-salas" type="button" role="tab" aria-controls="v-pills-salas"
+                            aria-selected="false">Salas</button>
                         <button class="nav-link chat-selector" id="v-pills-settings-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
                             aria-selected="false">Sesiones</button>
@@ -35,7 +38,7 @@
                             aria-labelledby="v-pills-home-tab">
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Usuarios</h2>
-                                <input type="text" placeholder="Buscar usuario" class="w-50 buscador ms-5">
+                                <input type="text" placeholder="Buscar usuario" class="w-50 buscador ms-5 form-control">
                                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalUsuario">Añadir usuario</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
@@ -73,7 +76,7 @@
                             aria-labelledby="v-pills-profile-tab">
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Películas</h2>
-                                <input type="text" placeholder="Buscar película" class="w-50 buscador ms-5">
+                                <input type="text" placeholder="Buscar película" class="w-50 buscador ms-5 form-control">
                                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalPelicula">Añadir película</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
@@ -139,7 +142,7 @@
                             aria-labelledby="v-pills-messages-tab">
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Cines</h2>
-                                <input type="text" placeholder="Buscar cine" class="w-50 buscador ms-5">
+                                <input type="text" placeholder="Buscar cine" class="w-50 buscador form-control ms-5">
                                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCine">Añadir Cine</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
@@ -201,11 +204,116 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="v-pills-salas" role="tabpanel"
+                            aria-labelledby="v-pills-salas-tab">
+                            <div class="d-flex justify-content-between">
+                                <h2 class="ms-5">Salas</h2>
+                                <select class="form-select w-25 h-50 ms-auto" aria-label="Seleccion de Cine">
+                                    <option selected>Seleccione un cine</option>
+                                    <option value="1">Madrid - La Gavia</option>
+                                    <option value="2">Madrid - Plaza Rio 2</option>
+                                    <option value="3">Barcelona -  Barnasud</option>
+                                    <option value="4">Barcelona -  Diagonal</option>
+                                    <option value="5">Valencia - Bonaire</option>
+                                </select>
+                                <input type="text" placeholder="Buscar sala por nombre" class="buscadorsala form-control ms-5 me-5">
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCine">Añadir Sala</button>
+                            </div>
+                            <div class="table-responsive tabla tablaadmin mt-3">
+                                <table class="table align-middle">
+                                    <thead></thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="d-flex align-items-center"><a th:href="@{/cines/la-gavia}"><img
+                                                        th:src="@{/img/lagavia.jpg}" src="/img/lagavia.jpg"
+                                                        alt="imagen cine" height="120px" width="84px"
+                                                        class="d-inline-block"></a></td>
+                                            <td><a th:href="@{/cines/la-gavia}" class="text-dark bold">La Gavia</a></td>
+                                            <td class="text-dark bold">Sala 2</td>
+                                            <td>4 filas</td>
+                                            <td>12 columnas</td>
+                                            <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                            <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="d-flex align-items-center"><a
+                                                    th:href="@{/cines/plaza-rio-2}"><img th:src="@{/img/plazario2.jpg}"
+                                                        src="/img/plazario2.jpg" alt="imagen cine" height="120px"
+                                                        width="84px" class="d-inline-block"></a></td>
+                                            <td><a th:href="@{/cines/plaza-rio-2}" class="text-dark bold">Plaza Rio 2</a></td>
+                                            <td class="text-dark bold">Sala 1</td>
+                                            <td>5 filas</td>
+                                            <td>10 columnas</td>
+                                            <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                            <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="d-flex align-items-center"><a th:href="@{/cines/barnasud}"><img
+                                                        th:src="@{/img/barnasud.jpg}" src="/img/barnasud.jpg"
+                                                        alt="imagen cine" height="120px" width="84px"
+                                                        class="d-inline-block"></a></td>
+                                            <td><a th:href="@{/cines/barnasud}" class="text-dark bold">Barnasud</a></td>
+                                            <td class="text-dark bold">Sala 3</td>
+                                            <td>3 filas</td>
+                                            <td>15 columnas</td>
+                                            <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                            <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="d-flex align-items-center"><a th:href="@{/cines/diagonal}"><img
+                                                        th:src="@{/img/diagonal.png}" src="/img/diagonal.png"
+                                                        alt="imagen cine" height="120px" width="84px"
+                                                        class="d-inline-block"></a></td>
+                                            <td><a th:href="@{/cines/diagonal}" class="text-dark bold">Diagonal</a></td>
+                                            <td class="text-dark bold">Sala 5</td>
+                                            <td>4 filas</td>
+                                            <td>10 columnas</td>
+                                            <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                            <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="d-flex align-items-center"><a th:href="@{/cines/bonaire}"><img
+                                                        th:src="@{/img/bonaire.jpg}" src="/img/bonaire.jpg"
+                                                        alt="imagen cine" height="120px" width="84px"
+                                                        class="d-inline-block"></a></td>
+                                            <td><a th:href="@{/cines/bonaire}" class="text-dark bold">Bonaire</a></td>
+                                            <td class="text-dark bold">Sala 7</td>
+                                            <td>3 filas</td>
+                                            <td>12 columnas</td>
+                                            <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
+                                            <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
                             aria-labelledby="v-pills-settings-tab">
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Sesiones</h2>
-                                <input type="text" placeholder="Buscar sesion por pelicula, hora o cine" class="w-50 buscador ms-5">
+                                <select class="form-select w-25 h-50 ms-5" aria-label="Seleccion de Cine">
+                                    <option selected>Seleccione un cine</option>
+                                    <option value="1">Madrid - La Gavia</option>
+                                    <option value="2">Madrid - Plaza Rio 2</option>
+                                    <option value="3">Barcelona -  Barnasud</option>
+                                    <option value="4">Barcelona -  Diagonal</option>
+                                    <option value="5">Valencia - Bonaire</option>
+                                </select>
+                                <select class="form-select w-25 h-50 ms-3" aria-label="Seleccion de Sala" disabled>
+                                    <option selected>Seleccione una sala</option>
+                                    <option value="1">Sala 1</option>
+                                    <option value="2">Sala 2</option>
+                                    <option value="3">Sala 3</option>
+                                    <option value="4">Sala 4</option>
+                                    <option value="5">Sala 5</option>
+                                </select>
+                                <input type="date" class="form-control w-25 h-50 ms-3" value="2022-03-01" id="fecha" name="fecha" required="required">
+                                <input type="text" class="form-control w-25 h-50 ms-3 me-3" placeholder="Busca un título" >
                                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalSesion">Añadir sesión</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
@@ -217,10 +325,11 @@
                                                         th:src="@{/img/img1.jpg}" src="/img/img1.jpg"
                                                         alt="imagen pelicula" height="120px" width="84px"
                                                         class="d-inline-block"></a></td>
+                                            <td>01/03/22</td>
                                             <td>21:00</td>
-                                            <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a>
-                                            </td>
+                                            <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
                                             <td>La Gavia</td>
+                                            <td>Sala 2</td>
                                             <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
@@ -230,9 +339,11 @@
                                                         th:src="@{/img/Delicioso-886756010-mmed.jpg}"
                                                         src="/img/Delicioso-886756010-mmed.jpg" alt="imagen pelicula"
                                                         height="120px" width="84px" class="d-inline-block"></a></td>
+                                            <td>01/03/22</td>
                                             <td>18:00</td>
                                             <td><a th:href="@{/peliculas/2}" class="text-dark bold">Delicioso</a></td>
                                             <td>Plaza Río 2</td>
+                                            <td>Sala 2</td>
                                             <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
@@ -242,9 +353,11 @@
                                                         th:src="@{/img/Belfast-622346571-large.jpg}"
                                                         src="/img/Belfast-622346571-large.jpg" alt="imagen pelicula"
                                                         height="120px" width="84px" class="d-inline-block"></a></td>
+                                            <td>01/03/22</td>
                                             <td>14:00</td>
                                             <td><a th:href="@{/peliculas/3}" class="text-dark bold">Belfast</a></td>
                                             <td>La Gavia</td>
+                                            <td>Sala 2</td>
                                             <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
@@ -254,9 +367,11 @@
                                                         th:src="@{/img/Moonfall-138176660-large.jpg}"
                                                         src="/img/Moonfall-138176660-large.jpg" alt="imagen pelicula"
                                                         height="120px" width="84px" class="d-inline-block"></a></td>
+                                            <td>01/03/22</td>
                                             <td>22:00</td>
                                             <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
                                             <td>Diagonal</td>
+                                            <td>Sala 2</td>
                                             <td><button type="button" class="btn btn-dark btn-sm">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
