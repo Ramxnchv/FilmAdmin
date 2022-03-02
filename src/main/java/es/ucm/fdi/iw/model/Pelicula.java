@@ -23,7 +23,7 @@ public class Pelicula implements Transferable<Pelicula.Transfer> {
     private List<Sesion> sesiones = new ArrayList<>();
 
     private String titulo;
-    private String duraccion;
+    private int duraccion;
     private String genero;
     private String img;
 
@@ -34,7 +34,7 @@ public class Pelicula implements Transferable<Pelicula.Transfer> {
 		    private long id;
         private String titulo;
         private List<Sesion> sesiones;
-        private String duraccion;
+        private int duraccion;
         private String genero;
         private String img;
     }

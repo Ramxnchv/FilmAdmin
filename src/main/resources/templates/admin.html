@@ -217,7 +217,7 @@
                                     <option value="5">Valencia - Bonaire</option>
                                 </select>
                                 <input type="text" placeholder="Buscar sala por nombre" class="buscadorsala form-control ms-5 me-5">
-                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCine">Añadir Sala</button>
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalSala">Añadir Sala</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
                                 <table class="table align-middle">
@@ -490,7 +490,10 @@
                     </div>
                     <div class="modal-body modbody">
                         <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/cine/-1}">
-                            <div class="d-flex justify-content-between mt-5">
+                            <div class="d-flex justify-content-center mt-3">
+                                <h6>Nombre y Dirección</h6>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
                                 <p>
                                     <label for="username" class="visually-hidden">Nombre</label>
                                     <input type="text" id="username" name="nombre" class="form-control" placeholder="Nombre" required="required">
@@ -500,7 +503,54 @@
                                     <input type="text" class="form-control" placeholder="Dirección" id="email" name="direccion" required="required">
                                 </p>
                             </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <h6>Días Apertura</h6>
+                            </div>
                             <div class="d-flex justify-content-between mt-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="LUNES">
+                                    <label class="form-check-label" for="LUNES">
+                                      LUNES
+                                    </label>
+                                </div>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="MARTES">
+                                    <label class="form-check-label" for="MARTES">
+                                      MARTES
+                                    </label>
+                                </div>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="MIERCOLES">
+                                    <label class="form-check-label" for="MIERCOLES">
+                                      MIERCOLES
+                                    </label>
+                                </div>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="JUEVES">
+                                    <label class="form-check-label" for="JUEVES">
+                                      JUEVES
+                                    </label>
+                                </div>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="VIERNES">
+                                    <label class="form-check-label" for="VIERNES">
+                                      VIERNES
+                                    </label>
+                                </div>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="SABADO">
+                                    <label class="form-check-label" for="SABADO">
+                                      SABADO
+                                    </label>
+                                </div>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="DOMINGO">
+                                    <label class="form-check-label" for="DOMINGO">
+                                      DOMINGO
+                                    </label>
+                                </div>    
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
                                 <p>
                                     <label for="appt" class="">Hora Apertura:</label>
                                     <input type="time" id="appt" name="appt" min="09:00" max="23:00" required>
@@ -509,6 +559,18 @@
                                     <label for="appt2" class="">Hora Cierre:</label>
                                     <input type="time" id="appt2" name="appt" min="09:00" max="23:00" required>
                                 </p>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <h6>Festivos Cierre</h6>
+                            </div>
+                            <div class="d-flex justify-content-start mt-2 fcierre">
+                                <p>
+                                    <label for="festivoscierre" class="visually-hidden">Festivos Cierre</label>
+                                    <input type="text" id="festivoscierre" name="festivoscierre" class="form-control" placeholder="Introduce los festivos separados por comas (Ejemplo: 01/01,12/10,25/12)" required="required">
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <h6>URL Maps y Imagen del Cine</h6>
                             </div>
                             <div class="d-flex justify-content-between mt-2 ms-3">
                                 <p>
@@ -529,6 +591,54 @@
                   </div>
                 </div>
             </div>
+            <div class="modal fade" id="modalSala" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header modheader">
+                      <h5 class="modal-title text-light" id="exampleModalLabel">Gestionar Sala</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modbody">
+                        <form class=" d-flex flex-column align-items-between" method="post" th:action="@{/sala/-1}">
+                            <div class="d-flex justify-content-center mt-3">
+                                <h6>Cine y Nombre</h6>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <select class="form-select w-50 h-50" aria-label="Seleccion de Cine" name="cine">
+                                    <option selected>Selecciona un cine</option>
+                                    <option value="1">Madrid - La Gavia</option>
+                                    <option value="2">Madrid - Plaza Rio 2</option>
+                                    <option value="3">Barcelona - Barnasud</option>
+                                    <option value="4">Barcelona - Diagonal</option>
+                                    <option value="5">Valencia - Bonaire</option>
+                                </select>
+                                <p class="ms-2">
+                                    <label for="username" class="visually-hidden">Nombre de la Sala</label>
+                                    <input type="text" id="username" name="nombre" class="form-control" placeholder="Nombre" required="required">
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <h6>Filas y Columnas</h6>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <p>
+                                    <label for="filas" class="">Filas</label>
+                                    <input type="number" id="filas" name="filas" class="form-control" value=12 required="required">
+                                </p>
+                                <p class="ms-2">
+                                    <label for="columnas" class="">Columnas</label>
+                                    <input type="number" id="columnas" name="columnas" class="form-control" value=4 required="required">
+                                </p>
+                            </div>   
+                        </form>
+                    </div>
+                    <div class="modal-footer modfooter">
+                        <button type="submit" class="btn btn-dark">Validar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
             <div class="modal fade" id="modalSesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
@@ -538,16 +648,8 @@
                     </div>
                     <div class="modal-body modbody">
                         <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/sesion/-1}">
-                            <div class="d-flex justify-content-between mt-5">
-                                <select class="form-select w-50" aria-label="Seleccion de Cine" name="cine">
-                                    <option selected>Selecciona un cine</option>
-                                    <option value="1">Madrid - La Gavia</option>
-                                    <option value="2">Madrid - Plaza Rio 2</option>
-                                    <option value="3">Barcelona - Barnasud</option>
-                                    <option value="4">Barcelona - Diagonal</option>
-                                    <option value="5">Valencia - Bonaire</option>
-                                </select>
-                                <select class="form-select w-50" aria-label="Seleccion de Cine" name="pelicula">
+                            <div class="d-flex justify-content-center mt-3">
+                                <select class="form-select" aria-label="Seleccion de Cine" name="pelicula">
                                     <option selected>Seleccione una pelicula</option>
                                     <option value="1">El buen patrón</option>
                                     <option value="2">Delicioso</option>
@@ -556,14 +658,32 @@
                                     <option value="5">Moonfall</option>
                                 </select>
                             </div>
-                            <div class="d-flex justify-content-between mt-2">
+                            <div class="d-flex justify-content-between mt-4">
+                                <select class="form-select w-50" aria-label="Seleccion de Cine" name="cine">
+                                    <option selected>Selecciona un cine</option>
+                                    <option value="1">Madrid - La Gavia</option>
+                                    <option value="2">Madrid - Plaza Rio 2</option>
+                                    <option value="3">Barcelona - Barnasud</option>
+                                    <option value="4">Barcelona - Diagonal</option>
+                                    <option value="5">Valencia - Bonaire</option>
+                                </select>
+                                <select class="form-select w-50 ms-3" aria-label="Seleccion de Sala" disabled>
+                                    <option selected>Seleccione una sala</option>
+                                    <option value="1">Sala 1</option>
+                                    <option value="2">Sala 2</option>
+                                    <option value="3">Sala 3</option>
+                                    <option value="4">Sala 4</option>
+                                    <option value="5">Sala 5</option>
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
                                 <p>
-                                    <label for="appt" class="">Selecciona una hora:</label>
-                                    <input type="time" id="appt" class="form-control" name="hora" min="09:00" max="23:00" required>
+                                    <label for="fecha" class="">Selecciona un día:</label>
+                                    <input type="date" id="fecha" class="form-control" name="fecha" value="2022-03-01" required>
                                 </p>
                                 <p class=" ms-3">
-                                    <label for="asientos" class="">Número de Asientos</label>
-                                    <input type="number" class="form-control" id="asientos" name="asientos" min="12" max="48">
+                                    <label for="appt" class="">Selecciona una hora:</label>
+                                    <input type="time" id="appt" class="form-control" name="hora" min="09:00" max="23:00" required>
                                 </p>
                             </div>
                         </form>

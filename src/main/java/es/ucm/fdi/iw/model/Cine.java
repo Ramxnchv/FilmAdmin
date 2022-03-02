@@ -36,6 +36,7 @@ public class Cine implements Transferable<Cine.Transfer> {
 
     private LocalTime hora_apertura;
     private LocalTime hora_cierre;
+    private String nombre;
     private String telefono;
     private String direccion;
     private String ciudad;
@@ -52,6 +53,7 @@ public class Cine implements Transferable<Cine.Transfer> {
         private List<Date> festivos_cierre;
         private LocalTime hora_apertura;
         private LocalTime hora_cierre;
+        private String nombre;
         private String telefono;
         private String direccion;
         private String ciudad;
@@ -61,7 +63,7 @@ public class Cine implements Transferable<Cine.Transfer> {
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	salas, sesiones, dias_apertura, festivos_cierre, hora_apertura, hora_cierre, telefono, direccion, ciudad, urlmap);
+		return new Transfer(id,	salas, sesiones, dias_apertura, festivos_cierre, hora_apertura, hora_cierre, nombre, telefono, direccion, ciudad, urlmap);
 	}
 	
 	@Override
