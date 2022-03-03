@@ -54,7 +54,7 @@ import java.util.stream.Collectors;
  */
 
 @Controller
-@RequestMapping("peliculas")
+@RequestMapping("cines")
 public class CineController {
 
 	private static final Logger log = LogManager.getLogger(CineController.class);
@@ -62,22 +62,24 @@ public class CineController {
     @Autowired
 	private EntityManager entityManager;
 
-	@GetMapping("/cines")
+	@GetMapping("/")
     public String index(Model model) {
         /*List<Cine.Transfer> miLista = entityManager.createNamedQuery("Cine.FindAll", Cine.class).getResultStream().map(Transferable::toTransfer).collect(Collectors.toList());
         model.addAttribute("listaCines", miLista);
         return "cines";*/
 
         List<Cine.Transfer> miLista = new ArrayList<>();
-        miLista.add(new Cine.Transfer(1, null, null, null, null, LocalTime.now(), LocalTime.now(), "Madrid", "telefono", "direccion", "ciudad", "urlmap"));
+        miLista.add(1, new Cine.Transfer(1, null, null, null, null, LocalTime.now(), LocalTime.now(), "Madrid", "telefono", "direccion", "ciudad", "urlmap"));
+        miLista.add(2, new Cine.Transfer(2, null, null, null, null, LocalTime.now(), LocalTime.now(), "Valencia", "telefono", "direccion", "ciudad", "urlmap"));
+        miLista.add(3, new Cine.Transfer(3, null, null, null, null, LocalTime.now(), LocalTime.now(), "barcelona", "telefono", "direccion", "ciudad", "urlmap"));
    
         model.addAttribute("listaCines", miLista);
         return "cines";
     }
 
-    @GetMapping("/1")
+    /*@GetMapping("/1")
     public String infoCine(Model model) {
         return "cine";
     }
-
+    */
 }

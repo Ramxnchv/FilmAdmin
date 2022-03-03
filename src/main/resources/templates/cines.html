@@ -14,19 +14,18 @@
             <div class="cines">
                 <h1 class="mt-5">Listado de Cines</h1>
                 <div class="d-flex">
+                    <div th:each="cine : ${listaCines}"  class="col">
+                        <div class="card h-100">
+                        <div class="card-body">
+                            <h5 th:text="${cine.id}" class="card-title"></h5>
+                            <p th:text="${cine.telefono}" class="card-text"></p>
+                            <p th:text="${cine.direccion}" class="card-text"></p>
+                        </div>
+                        </div>
+                 </div>
                     <div class="mad d-flex flex-column mt-5 me-5">
                         <div class="cine d-flex align-items-center mt-3">
-                                <div th:each="lista : ${miLista}"  class="col">
-                                
-                                            <div class="card h-100">
-                                            <img th:src="${lista.foto}" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 th:text="${lista.nombre}" class="card-title"></h5>
-                                                <p th:text="${lista.descripcion}" class="card-text"></p>
-                                                <p th:text="${lista.emailUser}" class="card-text"></p>
-                                            </div>
-                                            </div>
-                                        </div>
+                               
                             <img th:src="@{/img/lagavia.jpg}" src="/img/lagavia.jpg" alt="imagen cine" height="120px"
                                 width="84px" class="d-inline-block">
                             <a th:href="@{/cines/la-gavia}" class="ms-2 bold text-dark">La Gavia</a>
