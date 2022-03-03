@@ -41,6 +41,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.*;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -63,8 +64,13 @@ public class CineController {
 
 	@GetMapping("/cines")
     public String index(Model model) {
-       // entityManager.find(Cine.class);
-        List<Cine> miLista = new ArrayList<>();
+        /*List<Cine.Transfer> miLista = entityManager.createNamedQuery("Cine.FindAll", Cine.class).getResultStream().map(Transferable::toTransfer).collect(Collectors.toList());
+        model.addAttribute("listaCines", miLista);
+        return "cines";*/
+
+        List<Cine.Transfer> miLista = new ArrayList<>();
+        miLista.add(new Cine.Transfer(1, null, null, null, null, LocalTime.now(), LocalTime.now(), "Madrid", "telefono", "direccion", "ciudad", "urlmap"));
+   
         model.addAttribute("listaCines", miLista);
         return "cines";
     }

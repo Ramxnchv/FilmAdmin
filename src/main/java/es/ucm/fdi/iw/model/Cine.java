@@ -15,7 +15,11 @@ import lombok.AllArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@NamedQuery(name = "Cine.FindAll", query = "SELECT c FROM Cine c")
+
+
 public class Cine implements Transferable<Cine.Transfer> {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
@@ -58,6 +62,7 @@ public class Cine implements Transferable<Cine.Transfer> {
         private String direccion;
         private String ciudad;
         private String urlmap;
+        
     }
 
 
