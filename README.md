@@ -1,5 +1,15 @@
 # FilmAdmin
 
+## Cambios realizados (versión 1.1)
+- Actualización del modelo con todas las entidades creadas en la base de datos con JPA
+- Correciones al feedback:
+  - Añadido filtro por cine, por día y por sala a todos los listados de sesiones.
+  - Cambio de tipo en fechas y horas de sesiones de String a LocalDateTime.
+  - Añadida la entidad Sala
+  - Añadidos días de apertura y festivos (consultables desde el modal de añadir cine en el panel de administración).
+- Vista dinámica de [Listado de Cines](http://localhost:8080/cines/) y consulta a API google maps.
+
+
 ## Index
 [Página de Inicio](http://localhost:8080).
 
