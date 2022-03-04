@@ -45,6 +45,7 @@ public class Cine implements Transferable<Cine.Transfer> {
     private String direccion;
     private String ciudad;
     private String urlmap;
+    private String imagen;
 
 
     @Getter
@@ -62,13 +63,14 @@ public class Cine implements Transferable<Cine.Transfer> {
         private String direccion;
         private String ciudad;
         private String urlmap;
+        private String imagen;
         
     }
 
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	salas, sesiones, dias_apertura, festivos_cierre, hora_apertura, hora_cierre, nombre, telefono, direccion, ciudad, urlmap);
+		return new Transfer(id,	salas, sesiones, dias_apertura, festivos_cierre, hora_apertura, hora_cierre, nombre, telefono, direccion, ciudad, urlmap, imagen);
 	}
 	
 	@Override

@@ -29,10 +29,10 @@ public class RootController {
         return "index";
     }
 
-    @GetMapping("/cines")
-    public String cines(Model model) {
-        return "cines";
-    }
+    // @GetMapping("/cines")
+    // public String cines(Model model) {
+    //     return "cines";
+    // }
 
     @GetMapping("/atencion-cliente")
     public String atencionCliente(Model model) {

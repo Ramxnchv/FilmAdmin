@@ -231,3 +231,20 @@ circle:hover{
 .fcierre{
     width: 80%;
 }
+
+/* Set the size of the div element that contains the map */
+#map {
+    height: 450px;
+    /* The height is 400 pixels */
+    width: 450px;
+    /* The width is the width of the web page */
+}
+
+.carousel-inner{
+    width:600px;
+    max-height: 480px !important;
+ }
+
+.titul{
+    margin-right: 15%;
+}
