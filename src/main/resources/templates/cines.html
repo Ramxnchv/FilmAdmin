@@ -58,7 +58,7 @@
                     <div id="map" class="mt-5"></div>
                     <script th:inline="javascript">
                         function initMap() {
-                                let pos = /*[[${cineInfo.urlmap}]]*/ "0,0";
+                                let pos = /*[[${cineInfo.coordenadas}]]*/ "0,0";
                                 let latlng = pos.split(",");
                                 // The location of the map
                                 var c = { lat: +latlng[0], lng: +latlng[1] };
