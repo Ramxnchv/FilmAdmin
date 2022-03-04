@@ -33,10 +33,7 @@
                         function initMap() {
                                 let pos = /*[[${cineInfo.coordenadas}]]*/ "0,0";
                                 let latlng = pos.split(",");
-                                // The location of the map
                                 var c = { lat: +latlng[0], lng: +latlng[1] };
-                                console.log(c.lat);
-                                console.log(c.lng);
                                 var map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: c });
                                 var marker = new google.maps.Marker({ position: c, map: map });
                             
