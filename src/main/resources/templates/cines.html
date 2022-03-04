@@ -13,16 +13,6 @@
         <div class="container d-flex">
             <div class="cines">
                 <h1 class="mt-5">Listado de Cines</h1>
-                <!-- <div class="d-flex"> -->
-                    <!--<div th:each="cine : ${listaCines}"  class="col">
-                        <div class="card h-100">
-                        <div class="card-body">
-                            <h5 th:text="${cine.id}" class="card-title"></h5>
-                            <p th:text="${cine.telefono}" class="card-text"></p>
-                            <p th:text="${cine.direccion}" class="card-text"></p>
-                        </div>
-                        </div>
-                    </div>-->
                     <th:block th:each="ciudad, index : ${listaCiudades}">
                         <th:block th:if="${index.first || (index.count - 1) % 2 == 0}" th:utext="'&lt;div class=&quot;d-flex&quot;&gt;'"/> 
                         <div class="d-flex flex-column mt-5 me-5">
@@ -34,33 +24,6 @@
                         </div>
                         <th:block th:if="${index.last || index.count % 2 == 0}" th:utext="'&lt;/div&gt;'" /> 
                     </th:block>
-                    <!-- <div class="mad d-flex flex-column mt-5 me-5">
-                        <h2>Madrid</h2>
-                        <div th:each="cine : ${listaCines}" th:if="${cine.ciudad=='Madrid'}" class="cine d-flex align-items-center mt-3">
-                            <img th:src="@{/img/{id}(id=${cine.imagen})}" src="/img/lagavia.jpg" alt="imagen cine" height="120px"
-                                width="84px" class="d-inline-block">
-                            <a th:text="${cine.nombre}" th:href="@{/cines/{id}(id=${cine.id})}" class="ms-2 bold text-dark">La Gavia</a>
-                        </div>
-                    </div>
-                    <div class="bcn d-flex flex-column mt-5 me-5">
-                        <h2>Barcelona</h2>
-                        <div th:each="cine : ${listaCines}" th:if="${cine.ciudad=='Barcelona'}" class="cine d-flex align-items-center mt-3">
-                            <img th:src="@{/img/{id}(id=${cine.imagen})}" src="/img/barnasud.jpg" alt="imagen cine" height="120px"
-                                width="84px" class="d-inline-block">
-                            <a th:text="${cine.nombre}" th:href="@{/cines/{id}(id=${cine.id})}" class="ms-2 bold text-dark">Barnasud</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex">
-                    <div class="vlc d-flex flex-column mt-5 me-5">
-                        <h2>Valencia</h2>
-                        <div th:each="cine : ${listaCines}" th:if="${cine.ciudad=='Valencia'}" class="cine d-flex align-items-center mt-3">
-                            <img th:src="@{/img/{id}(id=${cine.imagen})}" src="/img/bonaire.jpg" alt="imagen cine" height="120px"
-                                width="84px" class="d-inline-block">
-                            <a th:text="${cine.nombre}" th:href="@{/cines/{id}(id=${cine.id})}" class="ms-2 bold text-dark">Bonaire</a>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <div th:if="${cineInfo!=null}" class="mapa-info ms-5">
                 <div class="d-flex justify-content-center mt-5"><h2 th:text="${cineInfo.nombre}" class="mt-5 titul">La Gavia</h2></div>
