@@ -77,8 +77,17 @@ public class CineController {
                 break;
             }
         }
+        List<String> ciudades = new ArrayList<>();
+        String ciudadAnterior = null;
+        for (Cine.Transfer c: miLista) {
+            if (!c.getCiudad().toLowerCase().equals(ciudadAnterior)) {
+                ciudades.add(c.getCiudad());
+                ciudadAnterior = c.getCiudad().toLowerCase();
+            }
+        }
         model.addAttribute("listaCines", miLista);
         model.addAttribute("cineInfo", cine);
+        model.addAttribute("listaCiudades", ciudades);
         return "cines";
     }
 
@@ -94,8 +103,16 @@ public class CineController {
         miLista.add(new Cine.Transfer(3, null, null, null, null, LocalTime.now(), LocalTime.now(), "Barnasud", "936625656", "Carrer del Progrés, 69", "Barcelona", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.617249088813!2d2.005895315711201!3d41.29543390965292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a49d2282241fcd%3A0x977c6f7948b4c0a8!2sBarnasud!5e0!3m2!1ses!2ses!4v1646341973548!5m2!1ses!2ses","barnasud.jpg"));
         miLista.add(new Cine.Transfer(4, null, null, null, null, LocalTime.now(), LocalTime.now(), "Diagonal", "935677637", "Avinguda Diagonal, 3", "Barcelona", "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11969.413564338516!2d2.2165097!3d41.4098468!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcf8bb581de6135b1!2sDiagonal%20Mar%20Centro%20Comercial!5e0!3m2!1ses!2ses!4v1646341845559!5m2!1ses!2ses","diagonal.png"));
         miLista.add(new Cine.Transfer(5, null, null, null, null, LocalTime.now(), LocalTime.now(), "Bonaire", "961579224", "Autovía del Este, Km. 345", "Valencia", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3079.899095417963!2d-0.4908945843277087!3d39.47160822049665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd60503c6905e429%3A0x86cea16515a6f00a!2sCentro%20Comercial%20Bonaire!5e0!3m2!1ses!2ses!4v1646342002796!5m2!1ses!2ses","bonaire.jpg"));
-   
+        List<String> ciudades = new ArrayList<>();
+        String ciudadAnterior = null;
+        for (Cine.Transfer c: miLista) {
+            if (!c.getCiudad().toLowerCase().equals(ciudadAnterior)) {
+                ciudades.add(c.getCiudad());
+                ciudadAnterior = c.getCiudad().toLowerCase();
+            }
+        }
         model.addAttribute("listaCines", miLista);
+        model.addAttribute("listaCiudades", ciudades);
         return "cines";
     }
 
