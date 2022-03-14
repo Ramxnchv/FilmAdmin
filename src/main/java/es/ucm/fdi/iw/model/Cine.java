@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @NamedQuery(name = "Cine.FindAll", query = "SELECT c FROM Cine c")
 
 

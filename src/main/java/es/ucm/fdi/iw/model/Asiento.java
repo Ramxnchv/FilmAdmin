@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Asiento implements Transferable<Asiento.Transfer> {
 
     @Id

@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Sala implements Transferable<Sala.Transfer> {
 
     @Id

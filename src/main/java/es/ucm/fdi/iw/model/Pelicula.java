@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Pelicula implements Transferable<Pelicula.Transfer> {
 
     @Id

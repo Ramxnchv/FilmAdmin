@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Sesion implements Transferable<Sesion.Transfer>{
 
     @Id
