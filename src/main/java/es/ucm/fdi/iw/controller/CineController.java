@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.persistence.EntityManager;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class CineController {
 	private EntityManager entityManager;
 
     @GetMapping("{id}")
-    public String index(@PathVariable long id, Model model, HttpSession session) {
+    public String index(@PathVariable long id, Model model) {
         @SuppressWarnings("unchecked")
         ArrayList<Cine> miLista = (ArrayList<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
         Cine cine = entityManager.find(Cine.class, id);

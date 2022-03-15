@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedQuery(name = "Sesion.getAll", query = "SELECT p.*,ss.*,c.ID,c.NOMBRE,sl.ID,sl.NOMBRE FROM Sesion ss JOIN Cine c ON ss.CINE_ID = c.ID JOIN Pelicula p ON ss.PELICULA_ID = p.ID JOIN Sala sl ON ss.SALA_ID = sl.ID")
 public class Sesion implements Transferable<Sesion.Transfer>{
 
     @Id

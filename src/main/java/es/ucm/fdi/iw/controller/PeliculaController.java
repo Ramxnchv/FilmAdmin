@@ -14,6 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import javax.persistence.EntityManager;
 
 import es.ucm.fdi.iw.model.Pelicula;
 import es.ucm.fdi.iw.model.Sesion;
@@ -31,6 +34,9 @@ import es.ucm.fdi.iw.model.Asiento;
 public class PeliculaController {
 
 	private static final Logger log = LogManager.getLogger(PeliculaController.class);
+
+    @Autowired
+	private EntityManager entityManager;
 
 	@GetMapping("/")
     public String index(Model model) {
@@ -86,8 +92,8 @@ public class PeliculaController {
         return "peliculas";
     }
 
-    @GetMapping("/1")
-    public String infoPelicula(Model model) {
+    @GetMapping("/{id}")
+    public String infoPelicula(@PathVariable long id, Model model) {
         List<Sesion> sesiones = new ArrayList<>();
         List<Sesion> sesiones2 = new ArrayList<>();
         List<Entrada> entradas = new ArrayList<>();
