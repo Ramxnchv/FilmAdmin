@@ -10,12 +10,15 @@ import javax.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.AllArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @NamedQuery(name = "Cine.FindAll", query = "SELECT c FROM Cine c")
 
 

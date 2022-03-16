@@ -7,13 +7,16 @@ import javax.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.AllArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@NamedQuery(name = "Sesion.getAll", query = "SELECT p.*,ss.*,c.ID,c.NOMBRE,sl.ID,sl.NOMBRE FROM Sesion ss JOIN Cine c ON ss.CINE_ID = c.ID JOIN Pelicula p ON ss.PELICULA_ID = p.ID JOIN Sala sl ON ss.SALA_ID = sl.ID")
+@Getter
+@Setter
+@NamedQuery(name = "Sesion.getAll", query = "SELECT ss FROM Sesion ss JOIN ss.cine c JOIN ss.pelicula p JOIN ss.sala sl")
 public class Sesion implements Transferable<Sesion.Transfer>{
 
     @Id
@@ -29,7 +32,7 @@ public class Sesion implements Transferable<Sesion.Transfer>{
     @JoinColumn(name="cine_id")
     private Cine cine;
 
-    @ManyToOne(targetEntity = Cine.class)
+    @ManyToOne(targetEntity = Sala.class)
     @JoinColumn(name="sala_id")
     private Sala sala;
 

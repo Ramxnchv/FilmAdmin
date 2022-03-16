@@ -7,12 +7,16 @@ import javax.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.AllArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@NamedQuery(name = "Pelicula.getAll", query = "SELECT DISTINCT p FROM Sesion ss JOIN ss.cine c JOIN ss.pelicula p JOIN ss.sala sl")
 public class Pelicula implements Transferable<Pelicula.Transfer> {
 
     @Id
