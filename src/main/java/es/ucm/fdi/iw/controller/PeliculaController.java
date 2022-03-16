@@ -1,12 +1,5 @@
 package es.ucm.fdi.iw.controller;
 
-
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import javax.persistence.EntityManager;
 
+import es.ucm.fdi.iw.model.Cine;
 import es.ucm.fdi.iw.model.Pelicula;
 import es.ucm.fdi.iw.model.Sesion;
 
@@ -41,6 +35,9 @@ public class PeliculaController {
         @SuppressWarnings("unchecked")
         List<Pelicula> sesiones = (List<Pelicula>) entityManager.createNamedQuery("Pelicula.getAll").getResultList();
 
+        @SuppressWarnings("unchecked")
+        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
+
         for (Pelicula p: sesiones){
             for(Sesion s: p.getSesiones()){
                 if(s.getDia_hora().getMinute() < 10){
@@ -52,6 +49,7 @@ public class PeliculaController {
         }
 
         model.addAttribute("sesiones", sesiones);
+        model.addAttribute("cines", cines);
        
         return "peliculas";
     }
@@ -63,6 +61,9 @@ public class PeliculaController {
 
         @SuppressWarnings("unchecked")
         List<Pelicula> sesiones = (List<Pelicula>) entityManager.createNamedQuery("Pelicula.getAll").getResultList();
+
+        @SuppressWarnings("unchecked")
+        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
 
         for (Pelicula p: sesiones){
             for(Sesion s: p.getSesiones()){
@@ -76,6 +77,7 @@ public class PeliculaController {
 
         model.addAttribute("sesiones", sesiones);
         model.addAttribute("pelicula", pel);
+        model.addAttribute("cines", cines);
 
         return "pelicula";
     }
