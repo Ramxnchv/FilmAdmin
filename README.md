@@ -1,8 +1,13 @@
 # FilmAdmin
 
+## Cambios realizados (versión 2.0)
+- Vista de Cines consultando a la base de datos
+- Vista de Películas y Sesiones consultando a la base de datos
+
+
 ## Cambios realizados (versión 1.1)
 - Actualización del modelo con todas las entidades creadas en la base de datos con JPA
-- Correciones al feedback:
+- Correciones post-feedback:
   - Añadido filtro por cine, por día y por sala a todos los listados de sesiones.
   - Cambio de tipo en fechas y horas de sesiones de String a LocalDateTime.
   - Añadida la entidad Sala
