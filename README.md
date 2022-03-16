@@ -1,8 +1,8 @@
 # FilmAdmin
 
 ## Cambios realizados (versión 2.0)
-- Vista de Cines consultando a la base de datos
-- Vista de Películas y Sesiones consultando a la base de datos
+- Vista de [Cines](http://localhost:8080/cines/) consultando a la base de datos
+- Vista de [Películas y Sesiones](http://localhost:8080/peliculas/) consultando a la base de datos
 
 
 ## Cambios realizados (versión 1.1)
