@@ -38,16 +38,6 @@ public class PeliculaController {
         @SuppressWarnings("unchecked")
         List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
 
-        for (Pelicula p: sesiones){
-            for(Sesion s: p.getSesiones()){
-                if(s.getDia_hora().getMinute() < 10){
-                    log.info(s.getPelicula().getTitulo() + ": " + s.getDia_hora().getHour() + ":0" + s.getDia_hora().getMinute());
-                }else{
-                    log.info(s.getPelicula().getTitulo() + ": " + s.getDia_hora().getHour() + ":" + s.getDia_hora().getMinute());
-                }
-            }
-        }
-
         model.addAttribute("sesiones", sesiones);
         model.addAttribute("cines", cines);
        
