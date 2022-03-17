@@ -29,19 +29,9 @@ public class RootController {
         return "index";
     }
 
-    // @GetMapping("/cines")
-    // public String cines(Model model) {
-    //     return "cines";
-    // }
-
     @GetMapping("/atencion-cliente")
     public String atencionCliente(Model model) {
         return "atencionClienteUser";
-    }
-
-    @GetMapping("/compra-entradas")
-    public String compraEntradas(Model model) {
-        return "compraEntradas";
     }
 
     @GetMapping("/entradas/67G5HJ4F")

@@ -50,7 +50,7 @@
                                 <td th:text="${sesion.genero}">Comedia</td>
                                 <th:block th:each="pase : ${sesion.sesiones}">
                                     <td>
-                                        <a th:href="@{/compra-entradas?pase={p}(p=${pase.id})}">
+                                        <a th:href="@{/entradas/compra-entradas?sesion={p}(p=${pase.id})}">
                                             <button type="button" class="btn btn-dark btn-sm ms-3" th:if="${pase.dia_hora.minute &lt; 10}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}">12:00</button>
                                             <button type="button" class="btn btn-dark btn-sm ms-3" th:unless="${pase.dia_hora.minute &lt; 10}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}">12:00</button>
                                         </a>
