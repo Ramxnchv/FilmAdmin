@@ -3,6 +3,7 @@
 ## Cambios realizados (versión 2.0)
 - Vista de [Cines](http://localhost:8080/cines/) consultando a la base de datos
 - Vista de [Películas y Sesiones](http://localhost:8080/peliculas/) consultando a la base de datos
+- Vista de [Comprar Entradas](http://localhost:8080/entradas/compra-entradas?sesion=8) consultando a la base de datos
 
 
 ## Cambios realizados (versión 1.1)
