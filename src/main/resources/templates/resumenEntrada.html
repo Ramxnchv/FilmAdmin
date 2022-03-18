@@ -3,6 +3,7 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
+    <link rel="stylesheet" th:href="@{/css/print.css}" media="print" href="css/print.css" type="text/css" />
     <title>FilmAdmin</title>
 </head>
 
@@ -11,25 +12,32 @@
 
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5">Gracias por su compra</h1>
-            <div class="d-flex mt-5">
+            <div class="d-flex justify-content-center"><h1 class="mt-5">Gracias por su compra</h1></div>
+            <div class="d-flex justify-content-center mt-5">
                 <div class="d-flex flex-column">
-                    <h5><span class="bold">Película:</span> El Gran Patrón</h5>
-                    <h5><span class="bold">Cine:</span> La Gavia</h5>
-                    <h5><span class="bold">Sala:</span> 2</h5>
-                    <h5><span class="bold">Día:</span> 01/03/22</h5>
-                    <h5><span class="bold">Sesión:</span> 21:00</h5>
-                    <h5><span class="bold">Número de entradas:</span> 10</h5>
-                    <h5><span class="bold">Precio final:</span> 115,00€</h5>
-                    <button type="button" class="btn btn-dark mt-4">Imprimir entrada</button>
-                    <button type="button" class="btn btn-dark mt-2">Descargar en PDF</button>
+                    <h5><span class="bold">Película: </span><span th:text="${sesion.pelicula.titulo}">El Gran Patrón</span></h5>
+                    <h5><span class="bold">Cine: </span><span th:text="${sesion.cine.nombre}">La Gavia</span></h5>
+                    <h5><span class="bold" th:text="${sesion.sala.nombre}">Sala 2</span></h5>
+                    <h5><span class="bold">Día: </span><span th:text="${#temporals.format(sesion.dia_hora, 'dd/MM/yy')}">01/03/22</span></h5>
+                    <h5>
+                        <span class="bold">Sesión: </span>
+                        <span th:if="${sesion.dia_hora.minute &lt; 10}" th:text="${sesion.dia_hora.hour + ':0' + sesion.dia_hora.minute}">21:00</span>
+                        <span th:unless="${sesion.dia_hora.minute &lt; 10}" th:text="${sesion.dia_hora.hour + ':' + sesion.dia_hora.minute}">21:00</span>
+                    </h5>
+                    <h5><span class="bold">Número de asientos: </span><span th:text="${numeroAsientos}">10</span></h5>
+                    <h5>
+                        <span class="bold">Precio final: </span>
+                        <span th:text="${ entrada.preciofinal + '0€'}">110,00€</span> 
+                    </h5>
+                    <button type="button" class="btn btn-dark mt-4" onclick="window.print()">Imprimir entrada</button>
+                    <button type="button" class="btn btn-dark mt-2" onclick="window.print()">Descargar en PDF</button>
                 </div>
                 <div class="d-flex flex-column align-items-center ms-5">
                     <img th:src="@{/img/qrtest.png}" src="/img/qrtest.png" alt="imagen cine" height="368px" width="368px" class="d-inline-block">
-                    <h6 class="bold">67G5HJ4F</h6>
+                    <h6 th:text="${entrada.codigo}" class="bold">67G5HJ4F</h6>
                 </div>
             </div>
-            <div class="d-flex enlacepel mt-5"><a class="text-dark" th:href="@{/peliculas/}">Volver a películas</a></div>
+            <div class="d-flex justify-content-center mt-5"><a class="text-dark" th:href="@{/peliculas/}">Volver a películas</a></div>
         </div>
     </main>
 

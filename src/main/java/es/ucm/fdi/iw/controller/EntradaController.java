@@ -43,7 +43,10 @@ public class EntradaController {
     @GetMapping("/{id}")
     public String infoEntrada(@PathVariable long id, Model model) {
         Entrada e = entityManager.find(Entrada.class, id);
+        Sesion s = e.getSesion();
         model.addAttribute("entrada", e);
+        model.addAttribute("sesion", s);
+        model.addAttribute("numeroAsientos",e.getAsientos().size());
         return "resumenEntrada";
     }
 
