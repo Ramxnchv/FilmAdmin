@@ -1,6 +1,9 @@
 package es.ucm.fdi.iw.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +25,7 @@ public class Asiento implements Transferable<Asiento.Transfer> {
 
     @ManyToOne(targetEntity = Sala.class)
     @JoinColumn(name="sala_id")
+    @JsonIgnore
     private Sala sala;
 
     private int fila;
@@ -31,14 +35,13 @@ public class Asiento implements Transferable<Asiento.Transfer> {
     @AllArgsConstructor
     public static class Transfer {
         private long id;
-        private Sala sala;
         private int fila;
         private int columna;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	sala, fila, columna);
+		return new Transfer(id, fila, columna);
 	}
 	
 	@Override

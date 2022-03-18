@@ -56,10 +56,6 @@ public class Cine implements Transferable<Cine.Transfer> {
     @AllArgsConstructor
     public static class Transfer {
 		    private long id;
-        private List<Sala> salas;
-        private List<Sesion> sesiones;
-        private List<DayOfWeek> dias_apertura;
-        private List<Date> festivos_cierre;
         private LocalTime hora_apertura;
         private LocalTime hora_cierre;
         private String nombre;
@@ -74,7 +70,7 @@ public class Cine implements Transferable<Cine.Transfer> {
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	salas, sesiones, dias_apertura, festivos_cierre, hora_apertura, hora_cierre, nombre, telefono, direccion, ciudad, coordenadas, imagen);
+		return new Transfer(id,hora_apertura, hora_cierre, nombre, telefono, direccion, ciudad, coordenadas, imagen);
 	}
 	
 	@Override

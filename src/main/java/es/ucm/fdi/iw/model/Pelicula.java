@@ -38,7 +38,6 @@ public class Pelicula implements Transferable<Pelicula.Transfer> {
     public static class Transfer {
 		    private long id;
         private String titulo;
-        private List<Sesion> sesiones;
         private int duraccion;
         private String genero;
         private String img;
@@ -46,7 +45,7 @@ public class Pelicula implements Transferable<Pelicula.Transfer> {
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	titulo, sesiones, duraccion, genero, img);
+		return new Transfer(id,	titulo, duraccion, genero, img);
 	}
 	
 	@Override

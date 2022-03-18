@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +19,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Getter
 @Setter
+@NamedQuery(name = "Entrada.getAll", query = "SELECT e FROM Entrada e")
+@NamedQuery(name = "Entrada.findBySesion", query = "SELECT e FROM Entrada e WHERE e.sesion.id = :sesionId")
 public class Entrada implements Transferable<Entrada.Transfer>{
 
     @Id
@@ -41,15 +46,13 @@ public class Entrada implements Transferable<Entrada.Transfer>{
     @AllArgsConstructor
     public static class Transfer {
         private long id;
-        private Sesion sesion;
-        private User user;
         private List<Asiento> asientos;
-        private double preciofinal;
+        private Sesion sesion;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	sesion, user, asientos, preciofinal);
+		return new Transfer(id,	asientos, sesion);
 	}
 	
 	@Override

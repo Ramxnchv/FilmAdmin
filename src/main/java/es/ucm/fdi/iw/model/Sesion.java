@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,9 +29,11 @@ public class Sesion implements Transferable<Sesion.Transfer>{
 
     @ManyToOne(targetEntity = Pelicula.class)
     @JoinColumn(name="pelicula_id")
+    @JsonIgnore
     private Pelicula pelicula;
 
     @ManyToOne(targetEntity = Cine.class)
+    @JsonIgnore
     @JoinColumn(name="cine_id")
     private Cine cine;
 
@@ -37,26 +42,25 @@ public class Sesion implements Transferable<Sesion.Transfer>{
     private Sala sala;
 
     @OneToMany(targetEntity = Entrada.class)
+    @JsonIgnore
     private List<Entrada> entradas = new ArrayList<>();
 
+    @JsonIgnore
     private LocalDateTime dia_hora;
+    
     private int asientosLibres;
     
     @Getter
     @AllArgsConstructor
     public static class Transfer {
         private long id;
-        private Pelicula pelicula;
-        private Cine cine;
         private Sala sala;
-        private List<Entrada> entradas;
-        private LocalDateTime dia_hora;
         private int asientosLibres;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	pelicula, cine, sala, entradas, dia_hora, asientosLibres);
+		return new Transfer(id, sala, asientosLibres);
 	}
 	
 	@Override
