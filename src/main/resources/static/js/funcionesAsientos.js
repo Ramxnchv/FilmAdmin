@@ -17,7 +17,7 @@ async function crearAsientos(){
         id = respuesta[0].sesion.sala.asientos[0].id;
         FILAS_SALA = respuesta[0].sesion.sala.filas;
         COLUMNAS_SALA = respuesta[0].sesion.sala.columnas;
-        asientosOcupados = respuesta[0].asientos.map(a => a.id);   
+        asientosOcupados = respuesta[0].asientos.length!== 0 ? respuesta[0].asientos.map(a => a.id) : [];   
     }
 
     const svgns = "http://www.w3.org/2000/svg";
