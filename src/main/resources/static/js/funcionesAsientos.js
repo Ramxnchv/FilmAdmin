@@ -1,9 +1,27 @@
-function crearAsientos(){
-    const svgns = "http://www.w3.org/2000/svg";
-    const asientosOcupados = [9,10,25,26,28,29,31,32,33,34,37,38,39,41,42,45,46,47];
-    const FILAS_SALA = 4;
-    const COLUMNAS_SALA = 12;
+"use strict"
+
+function generarMapa() {
+    crearAsientos();
+}
+
+async function crearAsientos(){
+
+    let respuesta = await getAsientos();
+
     let id = 1;
+    let FILAS_SALA = 4;
+    let COLUMNAS_SALA = 12;
+    let asientosOcupados = [];
+
+    if(respuesta.length !== 0){
+        id = respuesta[0].sesion.sala.asientos[0].id;
+        FILAS_SALA = respuesta[0].sesion.sala.filas;
+        COLUMNAS_SALA = respuesta[0].sesion.sala.columnas;
+        asientosOcupados = respuesta[0].asientos.map(a => a.id);   
+    }
+
+    const svgns = "http://www.w3.org/2000/svg";
+
     let posX = 0;
     let posY = 0;
     for(let i=0;i<FILAS_SALA;i++){
@@ -54,7 +72,6 @@ function eliminarAsiento(e, id) {
 }
 
 function botonmass(){
-    console.log(document.getElementsByTagName("circle"));
     const primerAsientoLibre = [...document.getElementsByTagName("circle")].find(asiento => asiento.style.fill!=="yellow" && asiento.style.fill!=="red");
     primerAsientoLibre.style.fill="yellow";
     let valor = +(document.getElementById("inputcantidad").value) + 1;
@@ -77,3 +94,14 @@ function actualizarPrecio(valor){
     document.getElementById("preciofinal").innerHTML = subtotal.toFixed(2);
 }
 
+async function getAsientos(){
+    try{
+        //obtenemos la sesion del query string de /compra-entradas?sesion={sesion}
+        const params = new URLSearchParams(window.location.search);
+        let sesion = params.get('sesion');
+        let asientos = await go(`${config.rootUrl}/entradas/asientos/${sesion}`, "GET");
+        return asientos;
+    }catch(e){
+        console.log(e);
+    }
+}

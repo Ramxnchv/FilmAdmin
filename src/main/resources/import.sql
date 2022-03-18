@@ -450,7 +450,7 @@ VALUES (2,95);
 INSERT INTO Sala_Asientos (sala_id,asientos_id)
 VALUES (2,96);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (1,10,'2022-03-15 12:00',1,1,1);
+VALUES (1,38,'2022-03-15 12:00',1,1,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
 VALUES (2,7,'2022-03-15 15:00',1,1,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)

@@ -6,7 +6,7 @@
     <title>FilmAdmin</title>
 </head>
 
-<body class="d-flex flex-column h-100" onload="crearAsientos();">
+<body class="d-flex flex-column h-100" onload="generarMapa();">
     <header th:replace="fragments/nav.html :: nav"></header>
 
     <main class="flex-shrink-0">
@@ -35,7 +35,7 @@
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-column seat-selector">
                             <svg id="asientos" width="640" height="360">
-                                <!-- Aqui se crean las butacas en crearAsientos() en funciones.js -->
+                                <!-- Aqui se crean las butacas en crearAsientos() en funcionesAsientos.js -->
                             </svg>
                             <div class="d-flex justify-content-center align-items-center screen">
                                 <h5 class="text-light">PANTALLA</h5>
@@ -70,7 +70,7 @@
         </div>
     </main>
     <th:block th:replace="fragments/footer.html :: footer" />
-    <script type="text/javascript" th:src="@{/js/funciones.js}"></script>
+    <script async type="text/javascript" th:src="@{/js/funcionesAsientos.js}"></script>
 </body>
 
 </html>

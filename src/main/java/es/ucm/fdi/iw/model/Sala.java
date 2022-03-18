@@ -31,7 +31,6 @@ public class Sala implements Transferable<Sala.Transfer> {
     private Cine cine;
 
     @OneToMany(targetEntity = Asiento.class)
-    @JsonIgnore
     private List<Asiento> asientos = new ArrayList<>();
 
     @OneToMany(targetEntity = Sesion.class)
@@ -49,11 +48,12 @@ public class Sala implements Transferable<Sala.Transfer> {
         private String nombre;
         private int filas;
         private int columnas;
+        private List<Asiento> asientos;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id, nombre, filas, columnas);
+		return new Transfer(id, nombre, filas, columnas, asientos);
 	}
 	
 	@Override
