@@ -100,15 +100,6 @@ public class EntradaController {
         Entrada ultima = entradas.get(entradas.size()-1);
         long idnueva = ultima.getId()+1;
         Entrada e = new Entrada(idnueva,s,u,asientos,codigo,preciofinal);
-        
-        log.info(idnueva);
-        log.info(codigo);
-        log.info(preciofinal);
-        log.info(u.getUsername());
-        log.info(s.getPelicula().getTitulo());
-        for (int i=0;i<numeroasientos;i++){
-            log.info(asientos.get(i));
-        }
 
         entityManager.persist(e);
         entityManager.flush();
