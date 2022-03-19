@@ -21,8 +21,7 @@ import lombok.AllArgsConstructor;
 public class Sala implements Transferable<Sala.Transfer> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
-    @SequenceGenerator(name = "gen", sequenceName = "gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne(targetEntity = Cine.class)

@@ -1,8 +1,10 @@
 package es.ucm.fdi.iw.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -14,11 +16,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import javax.persistence.EntityManager;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import es.ucm.fdi.iw.model.Asiento;
 import es.ucm.fdi.iw.model.Entrada;
+import es.ucm.fdi.iw.model.Sala;
 import es.ucm.fdi.iw.model.Sesion;
 import es.ucm.fdi.iw.model.Transferable;
+import es.ucm.fdi.iw.model.User;
 
 /**
  *  Controlador para las entradas
@@ -29,6 +44,7 @@ import es.ucm.fdi.iw.model.Transferable;
 public class EntradaController {
 
     private static final Logger log = LogManager.getLogger(PeliculaController.class);
+    private final double PRECIO_ENTRADA = 11;
 
     @Autowired
 	private EntityManager entityManager;
@@ -59,5 +75,48 @@ public class EntradaController {
         
         return entradas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
     }
-    
+
+    @PostMapping(path = "/compra-entradas/{sesion}", consumes = "application/json")
+    @ResponseBody
+    @Transactional
+    public String compraEntradasPost(Model model, @PathVariable(name = "sesion") long idSesion, @RequestBody JsonNode o, HttpSession session) throws JsonProcessingException {
+        Sesion s = entityManager.find(Sesion.class, idSesion);
+        User u = (User)session.getAttribute("u");
+        String codigo = RandomStringUtils.random(8,true,true).toUpperCase();
+
+        List<Asiento> asientos = new ArrayList<>();
+        JsonNode asientosNode = o.get("asientos");
+        int numeroasientos = o.get("numeroasientos").asInt();
+        for(int i=0;i<numeroasientos;i++){
+            long idAsiento = asientosNode.get(i).asLong();
+            Asiento a = entityManager.find(Asiento.class, idAsiento);
+            asientos.add(a);
+        }
+
+        double preciofinal = PRECIO_ENTRADA*asientos.size();
+
+        @SuppressWarnings("unchecked")
+        List<Entrada> entradas = (List<Entrada>) entityManager.createNamedQuery("Entrada.getAll").getResultList();
+        Entrada ultima = entradas.get(entradas.size()-1);
+        long idnueva = ultima.getId()+1;
+        Entrada e = new Entrada(idnueva,s,u,asientos,codigo,preciofinal);
+        
+        log.info(idnueva);
+        log.info(codigo);
+        log.info(preciofinal);
+        log.info(u.getUsername());
+        log.info(s.getPelicula().getTitulo());
+        for (int i=0;i<numeroasientos;i++){
+            log.info(asientos.get(i));
+        }
+
+        entityManager.persist(e);
+        entityManager.flush();
+
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode n = mapper.createObjectNode();
+        n.put("id", e.getId());
+        String json = mapper.writeValueAsString(n);
+        return json;
+    }
 }

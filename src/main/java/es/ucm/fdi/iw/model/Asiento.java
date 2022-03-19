@@ -19,8 +19,7 @@ import lombok.AllArgsConstructor;
 public class Asiento implements Transferable<Asiento.Transfer> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
-    @SequenceGenerator(name = "gen", sequenceName = "gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne(targetEntity = Sala.class)

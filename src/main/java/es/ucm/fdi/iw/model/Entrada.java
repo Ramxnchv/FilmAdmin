@@ -21,11 +21,10 @@ import lombok.AllArgsConstructor;
 @Setter
 @NamedQuery(name = "Entrada.getAll", query = "SELECT e FROM Entrada e")
 @NamedQuery(name = "Entrada.findBySesion", query = "SELECT e FROM Entrada e WHERE e.sesion.id = :sesionId")
+@Table(name = "ENTRADA")
 public class Entrada implements Transferable<Entrada.Transfer>{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
-    @SequenceGenerator(name = "gen", sequenceName = "gen")
     private long id;
 
     @ManyToOne(targetEntity = Sesion.class)
@@ -39,7 +38,9 @@ public class Entrada implements Transferable<Entrada.Transfer>{
     @OneToMany(targetEntity = Asiento.class)
     private List<Asiento> asientos = new ArrayList<>();
 
+    @Column(unique = true)
     private String codigo;
+
     private double preciofinal;
     
     @Getter

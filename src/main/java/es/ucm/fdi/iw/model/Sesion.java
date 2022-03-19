@@ -23,8 +23,7 @@ import lombok.AllArgsConstructor;
 public class Sesion implements Transferable<Sesion.Transfer>{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
-    @SequenceGenerator(name = "gen", sequenceName = "gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne(targetEntity = Pelicula.class)

@@ -1,8 +1,15 @@
 "use strict"
 
-function generarMapa() {
+function generarMapa() { 
     crearAsientos();
 }
+
+function enviarAsientos(event){
+    event.preventDefault();
+    postAsientos();
+}
+
+var asientosSeleccionados = [];
 
 async function crearAsientos(){
 
@@ -17,7 +24,9 @@ async function crearAsientos(){
         id = respuesta[0].sesion.sala.asientos[0].id;
         FILAS_SALA = respuesta[0].sesion.sala.filas;
         COLUMNAS_SALA = respuesta[0].sesion.sala.columnas;
-        asientosOcupados = respuesta[0].asientos.length!== 0 ? respuesta[0].asientos.map(a => a.id) : [];   
+        for (let i = 0; i < respuesta.length;i++){
+            asientosOcupados = respuesta[i].asientos.length!== 0 ? respuesta[i].asientos.map(a => a.id).concat(...asientosOcupados) : [];   
+        }
     }
 
     const svgns = "http://www.w3.org/2000/svg";
@@ -55,6 +64,7 @@ function asientoOcupado() {
 function actualizarAsiento(id) {
     if (document.getElementById(id).style.fill !== "yellow") {
         document.getElementById(id).style.fill = "yellow";
+        asientosSeleccionados.push(+id);
         let valor = +(document.getElementById("inputcantidad").value) + 1;
         document.getElementById("inputcantidad").value = valor;
         actualizarPrecio(valor);
@@ -65,6 +75,8 @@ function eliminarAsiento(e, id) {
     if (document.getElementById(id).style.fill === "yellow"){
         e.preventDefault();
         document.getElementById(id).style.fill = "#92bcea";
+        let asientosNuevos = asientosSeleccionados.filter(e => e!==id);
+        asientosSeleccionados = asientosNuevos;
         let valor = +(document.getElementById("inputcantidad").value) - 1;
         document.getElementById("inputcantidad").value = valor;
         actualizarPrecio(valor);
@@ -74,6 +86,7 @@ function eliminarAsiento(e, id) {
 function botonmass(){
     const primerAsientoLibre = [...document.getElementsByTagName("circle")].find(asiento => asiento.style.fill!=="yellow" && asiento.style.fill!=="red");
     primerAsientoLibre.style.fill="yellow";
+    asientosSeleccionados.push(+primerAsientoLibre.id);
     let valor = +(document.getElementById("inputcantidad").value) + 1;
     document.getElementById("inputcantidad").value = valor;
     actualizarPrecio(valor);
@@ -82,6 +95,8 @@ function botonmass(){
 function botonmenoss(){
     const primerAsientoLibre = ([...document.getElementsByTagName("circle")].reverse()).find(asiento => asiento.style.fill==="yellow");
     primerAsientoLibre.style.fill="#92bcea";
+    let asientosNuevos = asientosSeleccionados.filter(e => e!=primerAsientoLibre.id);
+    asientosSeleccionados = asientosNuevos;
     let valor = +(document.getElementById("inputcantidad").value) - 1;
     document.getElementById("inputcantidad").value = valor;
     actualizarPrecio(valor);
@@ -101,6 +116,19 @@ async function getAsientos(){
         let sesion = params.get('sesion');
         let asientos = await go(`${config.rootUrl}/entradas/asientos/${sesion}`, "GET");
         return asientos;
+    }catch(e){
+        console.log(e);
+    }
+}
+
+async function postAsientos(){
+    try{
+        //obtenemos los asientos seleccionados y los enviamos a /compra-entradas?sesion={sesion}
+        const params = new URLSearchParams(window.location.search);
+        let sesion = params.get('sesion');
+        let asientos = {asientos: asientosSeleccionados, numeroasientos: asientosSeleccionados.length};
+        let entrada = await go(`${config.rootUrl}/entradas/compra-entradas/${sesion}`, "POST", asientos);
+        window.location.href = `${config.rootUrl}/entradas/${entrada.id}`;
     }catch(e){
         console.log(e);
     }
