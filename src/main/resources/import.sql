@@ -452,35 +452,35 @@ VALUES (2,96);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
 VALUES (1,38,'2022-03-15 12:00',1,1,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (2,7,'2022-03-15 15:00',1,1,1);
+VALUES (2,48,'2022-03-15 15:00',1,1,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (3,0,'2022-03-15 18:00',1,1,1);
+VALUES (3,48,'2022-03-15 18:00',1,1,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (4,2,'2022-03-15 21:00',1,1,1);
+VALUES (4,48,'2022-03-15 21:00',1,1,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (5,6,'2022-03-15 15:00',1,2,2);
+VALUES (5,48,'2022-03-15 15:00',1,2,2);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (6,1,'2022-03-15 18:00',1,2,2);
+VALUES (6,48,'2022-03-15 18:00',1,2,2);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (7,5,'2022-03-16 14:00',1,3,1);
+VALUES (7,48,'2022-03-16 14:00',1,3,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (8,4,'2022-03-16 19:00',1,3,1);
+VALUES (8,48,'2022-03-16 19:00',1,3,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (9,0,'2022-03-16 22:00',1,3,1);
+VALUES (9,48,'2022-03-16 22:00',1,3,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (10,15,'2022-03-16 11:00',1,4,2);
+VALUES (10,48,'2022-03-16 11:00',1,4,2);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (11,9,'2022-03-16 14:00',1,4,2);
+VALUES (11,48,'2022-03-16 14:00',1,4,2);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (12,2,'2022-03-16 17:00',1,4,2);
+VALUES (12,48,'2022-03-16 17:00',1,4,2);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (13,5,'2022-03-16 20:00',1,4,2);
+VALUES (13,48,'2022-03-16 20:00',1,4,2);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (14,3,'2022-03-17 12:00',1,5,1);
+VALUES (14,48,'2022-03-17 12:00',1,5,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (15,6,'2022-03-17 15:00',1,5,1);
+VALUES (15,48,'2022-03-17 15:00',1,5,1);
 INSERT INTO Sesion (id,asientos_libres,dia_hora,cine_id,pelicula_id,sala_id)
-VALUES (16,9,'2022-03-17 21:00',1,5,1);
+VALUES (16,48,'2022-03-17 21:00',1,5,1);
 INSERT INTO Cine_Sesiones (cine_id,sesiones_id)
 VALUES (1,1);
 INSERT INTO Cine_Sesiones (cine_id,sesiones_id)

@@ -113,6 +113,8 @@ public class EntradaController {
         entityManager.persist(e);
         entityManager.flush();
 
+        s.setAsientosLibres(s.getAsientosLibres()-e.getAsientos().size());
+
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode n = mapper.createObjectNode();
         n.put("id", e.getId());
