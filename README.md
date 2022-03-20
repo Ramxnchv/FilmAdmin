@@ -7,6 +7,7 @@
 - Vista de [Películas y Sesiones](http://localhost:8080/peliculas/) consultando a la base de datos
 - Vista de [Comprar Entradas](http://localhost:8080/entradas/compra-entradas?sesion=1) consultando a la base de datos y actualizando el mapa de asientos con AJAX
 - Vista de [Resumen entrada](http://localhost:8080/entradas/1) consultando a la base de datos.
+- Vista de [Perfil de Usuario](http://localhost:8080/user/1) mostrando listado de entradas compradas.
 - Posibilidad de hacer una compra de entradas completa (con almacenamiento en base de datos) y ¡posibilidad de imprimir la entrada!
 
 
