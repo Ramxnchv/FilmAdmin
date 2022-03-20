@@ -33,7 +33,10 @@
                         <table class="table align-middle">
                             <thead></thead>
                             <tbody>
-                                <tr th:each="entrada : ${entradas}">
+                                <tr th:if="${#lists.isEmpty(entradas)}">
+                                   <td th:if="${#lists.isEmpty(entradas)}">Aún no has comprado ninguna entrada </td>
+                                </tr>
+                                <tr th:each="entrada : ${entradas}" th:unless="${#lists.isEmpty(entradas)}">
                                     <td th:text="${#lists.size(entrada.asientos) + ' asientos'}">10 asientos</td>
                                     <td><a th:href="@{/peliculas/{id}(id=${entrada.sesion.pelicula.id})}" th:text="${entrada.sesion.pelicula.titulo}" class="text-dark bold">El buen patrón</a></td>
                                     <td th:text="${#temporals.format(entrada.sesion.dia_hora, 'dd/MM/yy')}">01/03/22</td>
