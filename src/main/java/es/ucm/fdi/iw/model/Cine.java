@@ -1,6 +1,7 @@
 package es.ucm.fdi.iw.model;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +40,7 @@ public class Cine implements Transferable<Cine.Transfer> {
     private List<DayOfWeek> dias_apertura = new ArrayList<>();
 
     @ElementCollection
-    private List<Date> festivos_cierre = new ArrayList<>();
+    private List<LocalDate> festivos_cierre = new ArrayList<>();
 
     private LocalTime hora_apertura;
     private LocalTime hora_cierre;

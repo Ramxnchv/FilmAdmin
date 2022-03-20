@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -48,7 +49,7 @@ public class User implements Transferable<User.Transfer> {
     private String firstName;
     private String lastName;
     private String email;
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @OneToMany(targetEntity = Entrada.class)
     private List<Entrada> entradas = new ArrayList<>();
@@ -81,7 +82,7 @@ public class User implements Transferable<User.Transfer> {
         private String firstName;
         private String lastName;
         private String email;
-        private Date birthDate;
+        private LocalDate birthDate;
         private List<Entrada> entradas;
 		private int totalReceived;
 		private int totalSent;
