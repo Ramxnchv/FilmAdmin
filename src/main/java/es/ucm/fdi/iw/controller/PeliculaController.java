@@ -14,7 +14,6 @@ import javax.persistence.EntityManager;
 
 import es.ucm.fdi.iw.model.Cine;
 import es.ucm.fdi.iw.model.Pelicula;
-import es.ucm.fdi.iw.model.Sesion;
 
 /**
  *  Controlador para las peliculas

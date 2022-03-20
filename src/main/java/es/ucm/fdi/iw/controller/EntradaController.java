@@ -25,12 +25,10 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import es.ucm.fdi.iw.model.Asiento;
 import es.ucm.fdi.iw.model.Entrada;
-import es.ucm.fdi.iw.model.Sala;
 import es.ucm.fdi.iw.model.Sesion;
 import es.ucm.fdi.iw.model.Transferable;
 import es.ucm.fdi.iw.model.User;
@@ -104,6 +102,7 @@ public class EntradaController {
         entityManager.persist(e);
         entityManager.flush();
 
+        //actualizamos los asientos libres de la sesión
         s.setAsientosLibres(s.getAsientosLibres()-e.getAsientos().size());
 
         ObjectMapper mapper = new ObjectMapper();

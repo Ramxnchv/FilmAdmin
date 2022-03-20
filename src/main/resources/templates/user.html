@@ -33,59 +33,15 @@
                         <table class="table align-middle">
                             <thead></thead>
                             <tbody>
-                                <tr>
-                                    <td>10 entradas</td>
-                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
-                                    <td>01/03/22</td>
-                                    <td>21:00</td>
-                                    <td>La Gavia</td>
-                                    <td>Sala 3</td>
-                                    <td><a th:href="@{/entradas/67G5HJ4F}" ><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td>2 entradas</td>
-                                    <td><a th:href="@{/peliculas/2}" class="text-dark bold">Belfast</a></td>
-                                    <td>02/03/22</td>
-                                    <td>19:00</td>
-                                    <td>La Gavia</td>
-                                    <td>Sala 2</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
-                                </tr>
-                                <tr>
-                                    <td>1 entrada</td>
-                                    <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
-                                    <td>03/03/22</td>
-                                    <td>16:00</td>
-                                    <td>Plaza Río 2</td>
-                                    <td>Sala 1</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
-                                </tr>
-                                <tr>
-                                    <td>7 entradas</td>
-                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
-                                    <td>04/03/22</td>
-                                    <td>18:00</td>
-                                    <td>Barnasud</td>
-                                    <td>Sala 7</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
-                                </tr>
-                                <tr>
-                                    <td>9 entradas</td>
-                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
-                                    <td>05/03/22</td>
-                                    <td>18:00</td>
-                                    <td>Diagonal</td>
-                                    <td>Sala 5</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
-                                </tr>
-                                <tr>
-                                    <td>3 entradas</td>
-                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
-                                    <td>06/03/22</td>
-                                    <td>18:00</td>
-                                    <td>Bonaire</td>
-                                    <td>Sala 4</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></td>
+                                <tr th:each="entrada : ${entradas}">
+                                    <td th:text="${#lists.size(entrada.asientos) + ' asientos'}">10 asientos</td>
+                                    <td><a th:href="@{/peliculas/{id}(id=${entrada.sesion.pelicula.id})}" th:text="${entrada.sesion.pelicula.titulo}" class="text-dark bold">El buen patrón</a></td>
+                                    <td th:text="${#temporals.format(entrada.sesion.dia_hora, 'dd/MM/yy')}">01/03/22</td>
+                                    <td th:if="${entrada.sesion.dia_hora.minute &lt; 10}" th:text="${entrada.sesion.dia_hora.hour + ':0' + entrada.sesion.dia_hora.minute}">21:00</td>
+                                    <td th:unless="${entrada.sesion.dia_hora.minute &lt; 10}" th:text="${entrada.sesion.dia_hora.hour + ':' + entrada.sesion.dia_hora.minute}">21:00</td>
+                                    <td th:text="${entrada.sesion.cine.nombre}">La Gavia</td>
+                                    <td th:text="${entrada.sesion.sala.nombre}">Sala 3</td>
+                                    <td><a th:href="@{/entradas/{id}(id=${entrada.id})}" ><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></a></td>
                                 </tr>
                             </tbody>
                         </table>
