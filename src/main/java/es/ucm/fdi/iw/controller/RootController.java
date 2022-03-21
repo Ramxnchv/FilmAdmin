@@ -33,10 +33,4 @@ public class RootController {
     public String atencionCliente(Model model) {
         return "atencionClienteUser";
     }
-
-    @GetMapping("/entradas/67G5HJ4F")
-    public String resumenEntradas(Model model) {
-        return "resumenEntrada";
-    }
-
 }

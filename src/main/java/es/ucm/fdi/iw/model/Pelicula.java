@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 @Getter
 @Setter
 @NamedQuery(name = "Pelicula.getAll", query = "SELECT DISTINCT p FROM Sesion ss JOIN ss.cine c JOIN ss.pelicula p JOIN ss.sala sl")
+@NamedQuery(name = "Pelicula.getList", query = "SELECT p FROM Pelicula p")
 public class Pelicula implements Transferable<Pelicula.Transfer> {
 
     @Id
