@@ -26,8 +26,7 @@
                         <option value="1">Sala 1</option>
                         <option value="2">Sala 2</option>
                     </select>
-                    <input type="date" class="form-control w-25 ms-3" value="2022-03-01" id="fecha" name="fecha"
-                        required="required">
+                    <input type="date" class="form-control w-25 ms-3" th:value="${#temporals.format(dia, 'yyyy-MM-dd')}" id="fecha" name="fecha">
                     <form class="d-flex w-75 ms-3">
                         <input type="text" placeholder="Busca un título o una categoría" class="busctitulocat">
                         <button type="button" class="btn btn-dark ms-2">A-Z ↓</button>

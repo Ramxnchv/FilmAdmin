@@ -63,6 +63,13 @@ public class AdminController {
 
     @GetMapping("/gestion-entradas")
     public String gestionEntradas(Model model) {
+        @SuppressWarnings("unchecked")
+        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
+        @SuppressWarnings("unchecked")
+        List<Sesion> sesiones = (List<Sesion>) entityManager.createNamedQuery("Sesion.getList").getResultList();
+        model.addAttribute("cines", cines);
+        model.addAttribute("sesiones", sesiones);
+        model.addAttribute("dia", LocalDate.now());
         return "gestionentradas";
     }
 

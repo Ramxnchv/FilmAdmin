@@ -1,5 +1,6 @@
 package es.ucm.fdi.iw.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -39,6 +40,7 @@ public class PeliculaController {
 
         model.addAttribute("sesiones", sesiones);
         model.addAttribute("cines", cines);
+        model.addAttribute("dia", LocalDate.now());
        
         return "peliculas";
     }
@@ -57,6 +59,7 @@ public class PeliculaController {
         model.addAttribute("sesiones", sesiones);
         model.addAttribute("pelicula", pel);
         model.addAttribute("cines", cines);
+        model.addAttribute("dia", LocalDate.now());
 
         return "pelicula";
     }

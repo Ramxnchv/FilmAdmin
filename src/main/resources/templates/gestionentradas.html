@@ -17,71 +17,34 @@
                     <div class="d-flex mt-3 gestionn">
                         <select class="form-select w-50 h-50 ms-auto" aria-label="Seleccion de Cine">
                             <option selected>Seleccione un cine</option>
-                            <option value="1">Madrid - La Gavia</option>
-                            <option value="2">Madrid - Plaza Rio 2</option>
-                            <option value="3">Barcelona -  Barnasud</option>
-                            <option value="4">Barcelona -  Diagonal</option>
-                            <option value="5">Valencia - Bonaire</option>
+                            <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
+                                th:attr="value=#{cine.id}">Madrid - La Gavia</option>
                         </select>
                         <select class="form-select w-50 ms-3" aria-label="Seleccion de Sala" disabled>
                             <option selected>Seleccione una sala</option>
                             <option value="1">Sala 1</option>
                             <option value="2">Sala 2</option>
-                            <option value="3">Sala 3</option>
-                            <option value="4">Sala 4</option>
-                            <option value="5">Sala 5</option>
                         </select>
-                        <input type="date" class="form-control w-50 ms-3" value="2022-03-01" id="fecha" name="fecha" required="required">
+                        <input type="date" class="form-control w-50 ms-3" th:value="${#temporals.format(dia, 'yyyy-MM-dd')}" id="fecha" name="fecha" required="required">
                         <input type="text" class="form-control w-50 ms-3" placeholder="Busca un título" >
                     </div>
                     <div class="table-responsive tablagestion mt-3">
                         <table class="table align-middle">
                             <thead></thead>
                             <tbody>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/1}"><img
-                                                th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td>01/03/22</td>
-                                    <td>21:00</td>
-                                    <td><a th:href="@{/peliculas/1}" class="text-dark bold">El buen patrón</a></td>
-                                    <td>La Gavia</td>
-                                    <td>Sala 2</td>
+                                <tr th:each="sesion : ${sesiones}">
+                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/{id}(id=${sesion.pelicula.id})}"><img
+                                        th:src="@{/img/{img}(img=${sesion.pelicula.img})}" src="/img/img1.jpg"
+                                        alt="imagen pelicula" height="120px" width="84px"
+                                        class="d-inline-block"></a></td>
+                                    <td th:text="${#temporals.format(sesion.dia_hora, 'dd/MM/yy')}">01/03/22</td>
+                                    <td th:if="${sesion.dia_hora.minute &lt; 10}" th:text="${sesion.dia_hora.hour + ':0' + sesion.dia_hora.minute}">21:00</td>
+                                    <td th:unless="${sesion.dia_hora.minute &lt; 10}" th:text="${sesion.dia_hora.hour + ':' + sesion.dia_hora.minute}">21:00</td>
+                                    <td><a th:href="@{/peliculas/{id}(id=${sesion.pelicula.id})}" th:text="${sesion.pelicula.titulo}" class="text-dark bold">El buen patrón</a></td>
+                                    <td th:text="${sesion.cine.nombre}">La Gavia</td>
+                                    <td th:text="${sesion.sala.nombre}">Sala 2</td>
                                     <td><button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalButacas">Ver asientos</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/2}"><img
-                                                th:src="@{/img/Delicioso-886756010-mmed.jpg}" src="/img/Delicioso-886756010-mmed.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td>02/03/22</td>            
-                                    <td>18:00</td>
-                                    <td><a th:href="@{/peliculas/2}" class="text-dark bold">Delicioso</a></td>
-                                    <td>Plaza Río 2</td>
-                                    <td>Sala 1</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Ver asientos</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/3}"><img
-                                                th:src="@{/img/Belfast-622346571-large.jpg}" src="/img/Belfast-622346571-large.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td>03/03/22</td>
-                                    <td>14:00</td>
-                                    <td><a th:href="@{/peliculas/3}" class="text-dark bold">Belfast</a></td>
-                                    <td>La Gavia</td>
-                                    <td>Sala 4</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Ver asientos</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="d-flex align-items-center"><a th:href="@{/peliculas/5}"><img
-                                                th:src="@{/img/Moonfall-138176660-large.jpg}" src="/img/Moonfall-138176660-large.jpg" alt="imagen pelicula"
-                                                height="120px" width="84px" class="d-inline-block"></a></td>
-                                    <td>04/03/22</td>
-                                    <td>22:00</td>
-                                    <td><a th:href="@{/peliculas/5}" class="text-dark bold">Moonfall</a></td>
-                                    <td>Diagonal</td>
-                                    <td>Sala 3</td>
-                                    <td><button type="button" class="btn btn-dark btn-sm">Ver asientos</button></td>
-                                </tr>      
+                                </tr>    
                             </tbody>
                         </table>
                     </div>
