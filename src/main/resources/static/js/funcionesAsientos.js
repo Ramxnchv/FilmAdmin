@@ -68,6 +68,7 @@ function actualizarAsiento(id) {
         let valor = +(document.getElementById("inputcantidad").value) + 1;
         document.getElementById("inputcantidad").value = valor;
         actualizarPrecio(valor);
+        document.getElementById("botoncomprar").disabled = false;
     }
 }
 
@@ -80,6 +81,7 @@ function eliminarAsiento(e, id) {
         let valor = +(document.getElementById("inputcantidad").value) - 1;
         document.getElementById("inputcantidad").value = valor;
         actualizarPrecio(valor);
+        if(asientosSeleccionados.length === 0){document.getElementById("botoncomprar").disabled = true;}
     }
 }
 
@@ -90,6 +92,7 @@ function botonmass(){
     let valor = +(document.getElementById("inputcantidad").value) + 1;
     document.getElementById("inputcantidad").value = valor;
     actualizarPrecio(valor);
+    document.getElementById("botoncomprar").disabled = false;
 }
 
 function botonmenoss(){
@@ -100,6 +103,7 @@ function botonmenoss(){
     let valor = +(document.getElementById("inputcantidad").value) - 1;
     document.getElementById("inputcantidad").value = valor;
     actualizarPrecio(valor);
+    if(asientosSeleccionados.length === 0){document.getElementById("botoncomprar").disabled = true;}
 }
 
 function actualizarPrecio(valor){
