@@ -2,6 +2,11 @@
 
 ## [Trabajo pendiente](https://docs.google.com/document/d/1Jl7SJprP_qKExY1gCgEuXgIvUAb5TF3F0B_dflthpi4/edit?usp=sharing)
 
+## Cambios realizados (versión 2.1)
+- Prueba externa para la compra de entradas
+- Desactivado botón comprar cuando el número de asientos seleccionados es 0
+
+
 ## Cambios realizados (versión 2.0)
 - Vista de [Cines](http://localhost:8080/cines/) consultando a la base de datos
 - Vista de [Películas y Sesiones](http://localhost:8080/peliculas/) consultando a la base de datos
