@@ -3,8 +3,9 @@
 ## [Trabajo pendiente](https://docs.google.com/document/d/1Jl7SJprP_qKExY1gCgEuXgIvUAb5TF3F0B_dflthpi4/edit?usp=sharing)
 
 ## Cambios realizados (versión 2.1)
-- Prueba externa para la compra de entradas
-- Desactivado botón comprar cuando el número de asientos seleccionados es 0
+- Prueba externa para la compra de entradas.
+- Desactivado botón comprar cuando el número de asientos seleccionados es 0.
+- Añadido mensaje de error al hacer login erroneo.
 
 
 ## Cambios realizados (versión 2.0)
@@ -24,7 +25,7 @@
   - Cambio de tipo en fechas y horas de sesiones de String a LocalDateTime.
   - Añadida la entidad Sala
   - Añadidos días de apertura y festivos (consultables desde el modal de añadir cine en el panel de administración).
-- Vista dinámica de [Listado de Cines](http://localhost:8080/cines/) y consulta a API google maps.
+- Vista dinámica de [Listado de Cines](http://localhost:8080/cines/) y consulta a API Google Maps.
 
 
 ## Index
