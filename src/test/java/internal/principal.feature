@@ -1,1 +1,0 @@
-Feature: Compra de Entradas

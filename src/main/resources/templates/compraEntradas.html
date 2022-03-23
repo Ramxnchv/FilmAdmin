@@ -11,7 +11,7 @@
 
     <main class="flex-shrink-0">
         <div class="container">
-            <form method="POST" action="/entradas/compra-entradas/2" onsubmit="enviarAsientos(event);">
+            <form method="POST" action="/entradas/compra-entradas/2" id="form-comprar" onsubmit="enviarAsientos(event);">
                 <h1 th:if="${sesion.dia_hora.minute &lt; 10}" th:text="${sesion.pelicula.titulo + ' - Sesión de las ' + sesion.dia_hora.hour + ':0' + sesion.dia_hora.minute}" class="mt-5">El buen patrón - Sesión de las 12:00</h1>
                 <h1 th:unless="${sesion.dia_hora.minute &lt; 10}" th:text="${sesion.pelicula.titulo + '- Sesión de las ' + sesion.dia_hora.hour + ':' + sesion.dia_hora.minute}" class="mt-5">El buen patrón - Sesión de las 12:00</h1>
                 <div class="d-flex align-items-center mt-5">

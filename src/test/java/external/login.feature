@@ -1,17 +1,44 @@
-Feature: csrf and sign-in end point
-Background:
-* url baseUrl
-* def util = Java.type('karate.KarateTests')
-Scenario: get login page, capture csrf, send login
-* path 'login'
-* method get
-* status 200
-# ... name="_csrf" value="0a7c65e8-4e8e-452f-ad44-40b995bb91d6"
-* def csrf = karate.extract(response, '"_csrf" value="([ˆ"]*)"', 1)* path 'login'
-* form field username = 'a'
-* form field password = 'aa'
-* form field _csrf = csrf
-* method post
-* status 200
-* def h4s = util.selectHtml(response, "h4");
-* match h4s contains 'Usuarios'
+Feature: login en servidor
+
+#
+#  Este test funciona, pero no es de buena educación martillear una API externa
+#
+#  Scenario: login malo en github
+#    Given driver 'https://github.com/login'
+#    And input('#login_field', 'dummy')
+#    And input('#password', 'world')
+#    When submit().click("input[name=commit]")
+#    Then match html('.flash-error') contains 'Incorrect username or password.'
+#
+
+  Scenario: login malo en plantilla
+    Given driver baseUrl + '/user/2'
+    And input('#username', 'dummy')
+    And input('#password', 'world')
+    When submit().click(".form-signin button")
+    Then match html('.error') contains 'Error en nombre de usuario o contraseña'
+
+  @login_b
+  Scenario: login correcto como b
+    Given driver baseUrl + '/login'
+    And input('#username', 'b')
+    And input('#password', 'aa')
+    When submit().click(".form-signin button")
+    Then waitForUrl(baseUrl + '/user/2')
+
+  @login_a
+  Scenario: login correcto como a
+    Given driver baseUrl + '/login'
+    And input('#username', 'a')
+    And input('#password', 'aa')
+    When submit().click(".form-signin button")
+    Then waitForUrl(baseUrl + '/admin')
+
+  Scenario: logout after login
+    Given driver baseUrl + '/login'
+    And input('#username', 'a')
+    And input('#password', 'aa')
+    When submit().click(".form-signin button")
+    Then waitForUrl(baseUrl + '/admin')
+    When submit().click("{button}logout")
+    Then waitForUrl(baseUrl + '/login')
