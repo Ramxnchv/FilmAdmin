@@ -90,4 +90,32 @@ async function postUser() {
     } catch (e) {
         console.log(e);
     }
+
 }
+
+$(function () {
+    $('.editarusuario').click(function() {
+        const $btn = $(this);
+        const id = $btn.attr('data-id');
+        const username = $btn.attr('data-username');
+        const email = $btn.attr('data-email');
+        const firstname = $btn.attr('data-firstname');
+        const lastname = $btn.attr('data-lastname');
+        const birthdate = $btn.attr('data-birthdate');
+
+        let $modal = $('#modalUsuario').clone().removeAttr("id");
+
+        $modal.find('input[id="username"]').val(username);
+        $modal.find('input[id="email"]').val(email);
+        $modal.find('input[id="nombre"]').val(firstname);
+        $modal.find('input[id="apellidos"]').val(lastname);
+        $modal.find('input[id="fecha"]').val(birthdate);
+        
+        const action = $modal.find('form').attr('action').replace('-1', id);
+        $modal.find('form').attr('action',action);
+
+        $modal.modal('show');
+    });
+
+
+});

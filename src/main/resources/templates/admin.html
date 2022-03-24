@@ -4,6 +4,8 @@
 <head>
     <th:block th:replace="fragments/head :: header" />
     <title>FilmAdmin</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/funcionesUser.js}"></script>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -52,7 +54,8 @@
                                                         class="d-inline-block"></a></td>
                                             <td th:text="${usuario.username}" class="text-dark bold">a</td>
                                             <td th:text="${usuario.roles}">admin</td>
-                                            <td><button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalUsuario">Editar</button></td>
+                                            <td><button type="button" class="btn btn-dark btn-sm editarusuario" th:attr="data-id=${usuario.id},data-username=${usuario.username},
+                                                data-email=${usuario.email},data-firstname=${usuario.firstName},data-lastname=${usuario.lastName},data-birthdate=${usuario.birthDate}">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
                                         </tr>
@@ -190,10 +193,6 @@
             </div>
 
 
-
-
-
-
             <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
@@ -220,34 +219,34 @@
                                 </p>
                                 <p class="ms-4">
                                     <label for="confirm_password" class="visually-hidden">Confirmar Password</label>
-                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirmar contraseña" required="required">
+                                    <input type="password" class="form-control" id="confirm_password" name="pass2" placeholder="Confirmar contraseña" required="required">
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between mt-2">
                                 <p>
                                     <label for="nombre" class="visually-hidden">Nombre</label>
-                                    <input type="text" class="form-control" placeholder="Nombre" id="nombre" name="nombre" required="required">
+                                    <input type="text" class="form-control" placeholder="Nombre" id="nombre" name="firstName" required="required">
                                 </p>
                                 <p class="ms-4">
                                     <label for="apellidos" class="visually-hidden">Apellidos</label>
-                                    <input type="text" class="form-control" placeholder="Apellidos" id="apellidos" name="apellidos" required="required">
+                                    <input type="text" class="form-control" placeholder="Apellidos" id="apellidos" name="lastName" required="required">
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between mt-2 ms-3">
                                 <p>
                                     <label for="fecha" class="visually-hidden">Fecha de Nacimiento</label>
-                                    <input type="date" class="form-control mb-2" value="1998-01-01" id="fecha" name="fecha" required="required">
+                                    <input type="date" class="form-control mb-2" value="1998-01-01" id="fecha" name="birthDate" required="required">
                                 </p>
                                 <p class="ms-4">
                                     <label for="userimg" class="visually-hidden">Imagen</label>
                                     <input class="form-control fileinput" type="file" id="userimg" name="userimg" accept="image/*">
                                 </p>
-                            </div>       
+                            </div>  
+                            <div class="modal-footer modfooter">
+                                <button type="submit" class="btn btn-dark">Validar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            </div>     
                         </form>
-                    </div>
-                    <div class="modal-footer modfooter">
-                        <button type="submit" class="btn btn-dark">Validar</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                   </div>
                 </div>
