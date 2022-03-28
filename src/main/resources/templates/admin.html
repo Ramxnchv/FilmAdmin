@@ -201,7 +201,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modbody">
-                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/user/-1}">
+                        <form class=" d-flex flex-column align-items-center formusuario" id="formUsuario" method="post" th:action="@{/user/-1}">
                             <div class="d-flex justify-content-between mt-5">
                                 <p>
                                     <label for="username" class="visually-hidden">Username</label>
@@ -243,7 +243,7 @@
                                 </p>
                             </div>  
                             <div class="modal-footer modfooter">
-                                <button type="submit" class="btn btn-dark">Validar</button>
+                                <button type="submit" class="btn btn-dark" id="validarusuario">Validar</button>
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                             </div>     
                         </form>
@@ -263,11 +263,11 @@
                             <div class="d-flex justify-content-between mt-5">
                                 <p>
                                     <label for="username" class="visually-hidden">Titulo</label>
-                                    <input type="text" id="username" name="titulo" class="form-control" placeholder="Título" required="required">
+                                    <input type="text" id="username2" name="titulo" class="form-control" placeholder="Título" required="required">
                                 </p>
                                 <p class="ms-4">
                                     <label for="email" class="visually-hidden">Duracion</label>
-                                    <input type="text" class="form-control" placeholder="Duración (minutos)" id="email" name="duracion" required="required">
+                                    <input type="text" class="form-control" placeholder="Duración (minutos)" id="email2" name="duracion" required="required">
                                 </p>
                             </div>
                             
@@ -305,11 +305,11 @@
                             <div class="d-flex justify-content-between mt-2">
                                 <p>
                                     <label for="username" class="visually-hidden">Nombre</label>
-                                    <input type="text" id="username" name="nombre" class="form-control" placeholder="Nombre" required="required">
+                                    <input type="text" id="username2" name="nombre2" class="form-control" placeholder="Nombre" required="required">
                                 </p>
                                 <p class="ms-4">
                                     <label for="email" class="visually-hidden">Direccion</label>
-                                    <input type="text" class="form-control" placeholder="Dirección" id="email" name="direccion" required="required">
+                                    <input type="text" class="form-control" placeholder="Dirección" id="email2" name="direccion" required="required">
                                 </p>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
@@ -384,7 +384,7 @@
                             <div class="d-flex justify-content-between mt-2 ms-3">
                                 <p>
                                     <label for="nombre" class="visually-hidden">Latitud,Longitud</label>
-                                    <input type="text" class="form-control" placeholder="Latitud,Longitud" id="nombre" name="maps" required="required">
+                                    <input type="text" class="form-control" placeholder="Latitud,Longitud" id="nombre2" name="maps" required="required">
                                 </p>
                                 <p class="ms-4">
                                     <label for="formFileMultiple" class="visually-hidden">Imagenes</label>
@@ -423,7 +423,7 @@
                                 </select>
                                 <p class="ms-2">
                                     <label for="username" class="visually-hidden">Nombre de la Sala</label>
-                                    <input type="text" id="username" name="nombre" class="form-control" placeholder="Nombre" required="required">
+                                    <input type="text" id="username2" name="nombre2" class="form-control" placeholder="Nombre" required="required">
                                 </p>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
