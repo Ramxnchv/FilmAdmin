@@ -2,6 +2,10 @@
 
 ## [Trabajo pendiente](https://docs.google.com/document/d/1Jl7SJprP_qKExY1gCgEuXgIvUAb5TF3F0B_dflthpi4/edit?usp=sharing)
 
+## Usuarios
+- Username: a | Contraseña: aa (Administrador)
+- Username: b | Contraseña: aa (Usuario)
+
 ## Cambios realizados (versión 2.1)
 - Prueba externa para la compra de entradas.
 - Desactivado botón comprar cuando el número de asientos seleccionados es 0.
