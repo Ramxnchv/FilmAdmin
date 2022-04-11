@@ -36,20 +36,15 @@ public class AdminController {
 	@GetMapping("/")
     public String index(Model model) {
 
-        @SuppressWarnings("unchecked")
-        List<Pelicula> peliculas = (List<Pelicula>) entityManager.createNamedQuery("Pelicula.getList").getResultList();
+        List<Pelicula> peliculas = (List<Pelicula>) entityManager.createNamedQuery("Pelicula.getList",Pelicula.class).getResultList();
 
-        @SuppressWarnings("unchecked")
-        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
+        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll",Cine.class).getResultList();
 
-        @SuppressWarnings("unchecked")
-        List<Sala> salas = (List<Sala>) entityManager.createNamedQuery("Sala.FindAll").getResultList();
+        List<Sala> salas = (List<Sala>) entityManager.createNamedQuery("Sala.FindAll",Sala.class).getResultList();
 
-        @SuppressWarnings("unchecked")
-        List<Sesion> sesiones = (List<Sesion>) entityManager.createNamedQuery("Sesion.getList").getResultList();
+        List<Sesion> sesiones = (List<Sesion>) entityManager.createNamedQuery("Sesion.getList",Sesion.class).getResultList();
 
-        @SuppressWarnings("unchecked")
-        List<User> usuarios = (List<User>) entityManager.createNamedQuery("User.getAll").getResultList();
+        List<User> usuarios = (List<User>) entityManager.createNamedQuery("User.getAll",User.class).getResultList();
 
         model.addAttribute("peliculas", peliculas);
         model.addAttribute("cines", cines);
@@ -63,10 +58,9 @@ public class AdminController {
 
     @GetMapping("/gestion-entradas")
     public String gestionEntradas(Model model) {
-        @SuppressWarnings("unchecked")
-        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
-        @SuppressWarnings("unchecked")
-        List<Sesion> sesiones = (List<Sesion>) entityManager.createNamedQuery("Sesion.getList").getResultList();
+
+        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll",Cine.class).getResultList();
+        List<Sesion> sesiones = (List<Sesion>) entityManager.createNamedQuery("Sesion.getList",Sesion.class).getResultList();
         model.addAttribute("cines", cines);
         model.addAttribute("sesiones", sesiones);
         model.addAttribute("dia", LocalDate.now());

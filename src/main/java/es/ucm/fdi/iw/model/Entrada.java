@@ -17,8 +17,6 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @NamedQuery(name = "Entrada.getAll", query = "SELECT e FROM Entrada e")
 @NamedQuery(name = "Entrada.findBySesion", query = "SELECT e FROM Entrada e WHERE e.sesion.id = :sesionId")
 @NamedQuery(name = "Entrada.findByUser", query = "SELECT e FROM Entrada e WHERE e.user.id = :userId")

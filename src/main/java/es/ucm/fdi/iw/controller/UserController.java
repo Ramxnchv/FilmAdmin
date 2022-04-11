@@ -278,6 +278,20 @@ public class UserController {
 	}
 
 	/**
+	 * Returns JSON with all sent messages
+	 */
+	@GetMapping(path = "sent", produces = "application/json")
+	@Transactional // para no recibir resultados inconsistentes
+	@ResponseBody // para indicar que no devuelve vista, sino un objeto (jsonizado)
+	public List<Message.Transfer> retrieveSentMessages(HttpSession session) {
+		long userId = ((User) session.getAttribute("u")).getId();
+		User u = entityManager.find(User.class, userId);
+		log.info("Generating message list for user {} ({} messages)",
+				u.getUsername(), u.getReceived().size());
+		return u.getSent().stream().map(Transferable::toTransfer).collect(Collectors.toList());
+	}
+
+	/**
 	 * Returns JSON with count of unread messages
 	 */
 	@GetMapping(path = "unread", produces = "application/json")

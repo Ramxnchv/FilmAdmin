@@ -30,8 +30,7 @@ public class CineController {
 
     @GetMapping("{id}")
     public String index(@PathVariable long id, Model model) {
-        @SuppressWarnings("unchecked")
-        ArrayList<Cine> miLista = (ArrayList<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
+        ArrayList<Cine> miLista = (ArrayList<Cine>) entityManager.createNamedQuery("Cine.FindAll",Cine.class).getResultList();
         Cine cine = entityManager.find(Cine.class, id);
         for(Cine c: miLista){
             if(c.getId()==id){
@@ -55,8 +54,8 @@ public class CineController {
 
 	@GetMapping("/")
     public String index(Model model) {
-        @SuppressWarnings("unchecked")
-        ArrayList<Cine> miLista = (ArrayList<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
+
+        ArrayList<Cine> miLista = (ArrayList<Cine>) entityManager.createNamedQuery("Cine.FindAll",Cine.class).getResultList();
         List<String> ciudades = new ArrayList<>();
         String ciudadAnterior = null;
         for (Cine c: miLista) {

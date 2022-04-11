@@ -4,9 +4,10 @@
 <head>
     <th:block th:replace="fragments/head :: header" />
     <title>FilmAdmin</title>
+    <script async type="text/javascript" th:src="@{/js/funcionesMensajes.js}"></script>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100" onload="loadMessages()">
     
     <header th:replace="fragments/nav.html :: nav"></header>
 
@@ -16,22 +17,15 @@
             <div class="d-flex align-items-center top-chat">
                 <span class="p-1 bold ms-auto me-auto">Chat de Atención al Cliente</span>
             </div>
-            <div class="w-100 mensajes mb-3">
-                <div class="mb-2"><span class="bold">user:</span> hola buenas quería saber el horario del cine plaza rio 2 </div>
-                <div class="d-flex justify-content-end"><div class="mb-2"><span class="bold">Filmadmin:</span> El horario es de 10:00 a 22:00 todos los días de la semana</div></div>
-                <div class="mb-2"><span class="bold">user:</span> perfecto, muchas gracias</div>
-                <div class="d-flex justify-content-end"><div class="mb-2"><span class="bold">Filmadmin:</span> ¿Desea algo más?</div></div>
-                <div class="mb-2"><span class="bold">user:</span> el centro comercial cuenta con parking?</div>
-                <div class="d-flex justify-content-end"><div class=""><span class="bold">Filmadmin:</span> Así es. Funciona en el mismo horario que el resto de servicios.</div></div>
-                <div class="d-flex justify-content-center mt-4"><div>Filmadmin está escribiendo...</div></div>
+            <div class="w-100 mensajes mb-3" id="mensajes">
+                <!-- <div class="d-flex justify-content-center mt-4"><div>Filmadmin está escribiendo...</div></div> -->
             </div>
-            <form class="d-flex flex-column">
-                <textarea></textarea>
-                <button type="button" class="btn btn-dark mt-3">Enviar</button>
+            <form class="d-flex flex-column" method="POST" id="messageform" onsubmit="enviarMensaje(event)">
+                <textarea id="message"></textarea>
+                <button type="submit" id="sendmsg" class="btn btn-dark mt-3">Enviar</button>
             </form>
         </div>
     </main>
-
     <th:block th:replace="fragments/footer.html :: footer" />
 
 </body>

@@ -18,8 +18,6 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @NamedQuery(name = "Cine.FindAll", query = "SELECT c FROM Cine c")
 
 
