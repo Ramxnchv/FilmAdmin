@@ -6,6 +6,13 @@
 - Username: a | Contraseña: aa (Administrador)
 - Username: b | Contraseña: aa (Usuario)
 
+
+## Cambios realizados (versión 2.2)
+- Chat de atención al cliente con Websockets funcionando (para un cliente de momento).
+- Correciones post-feedback:
+  - Eliminados @Getter y @Setter (dejando @Data).
+  - @SuppressWarnings("unchecked") cambiados por createNamedQuery con 2 argumentos.
+
 ## Cambios realizados (versión 2.1)
 - Prueba externa para la compra de entradas.
 - Desactivado botón comprar cuando el número de asientos seleccionados es 0.
