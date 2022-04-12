@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @NamedQuery(name = "Sala.FindAll", query = "SELECT s FROM Sala s")
+@NamedQuery(name = "Sala.findByCine", query = "SELECT s FROM Sala s WHERE s.cine.id = :cineId")
 public class Sala implements Transferable<Sala.Transfer> {
 
     @Id

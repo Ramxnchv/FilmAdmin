@@ -19,6 +19,7 @@ import javax.transaction.Transactional;
 
 import es.ucm.fdi.iw.model.Cine;
 import es.ucm.fdi.iw.model.Pelicula;
+import es.ucm.fdi.iw.model.Sala;
 import es.ucm.fdi.iw.model.Transferable;
 
 /**
@@ -65,12 +66,16 @@ public class PeliculaController {
         return "pelicula";
     }
 
-    @GetMapping(path = "peliculas", produces = "application/json")
-	@Transactional // para no recibir resultados inconsistentes
+    @GetMapping(path = "salas/{id}", produces = "application/json")
 	@ResponseBody // para indicar que no devuelve vista, sino un objeto (jsonizado)
-	public List<Pelicula.Transfer> retrieveMovies(HttpSession session) {
-        List<Pelicula> sesiones = (List<Pelicula>) entityManager.createNamedQuery("Pelicula.getAll", Pelicula.class).getResultList();
-		return sesiones.stream().map(Transferable::toTransfer).collect(Collectors.toList());
+	public List<Sala.Transfer> retrieveMovies(@PathVariable long id,HttpSession session) {
+        List<Sala> salas = (List<Sala>) entityManager.createNamedQuery("Sala.findByCine", Sala.class)
+        .setParameter("cineId", id)
+        .getResultList();
+        for(Sala s: salas){
+            log.info(s.getNombre());
+        }
+		return salas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
 	}
 
 }

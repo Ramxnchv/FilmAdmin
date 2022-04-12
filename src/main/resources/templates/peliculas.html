@@ -24,8 +24,6 @@
                     </select>
                     <select id="sala-selector" class="form-select w-25 ms-3" aria-label="Seleccion de Sala" onchange="filtroSala(event)" disabled>
                         <option selected value="0">Seleccione una sala</option>
-                        <option value="1">Sala 1</option>
-                        <option value="2">Sala 2</option>
                     </select>
                     <input type="date" class="form-control w-25 ms-3" th:value="${#temporals.format(dia, 'yyyy-MM-dd')}" id="fecha-selector" name="fecha" onchange="filtroFecha(event)">
                     <form class="d-flex w-75 ms-3">
@@ -49,7 +47,7 @@
                                 <td th:text="${sesion.duraccion + ' min'}">120 min</td>
                                 <td th:text="${sesion.genero}">Comedia</td>
                                 
-                                    <td th:each="pase : ${sesion.sesiones}" th:id="'sesion' + ${pase.id}" th:class="'sesion cine-' + ${pase.cine.id}">
+                                    <td th:each="pase : ${sesion.sesiones}" th:id="'sesion' + ${pase.id}" th:class="'sesion cine-' + ${pase.cine.id} + ' sala-' + ${pase.sala.id}">
                                         <a th:href="@{/entradas/compra-entradas?sesion={p}(p=${pase.id})}">
                                             <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &lt; 10}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}">12:00</button>
                                             <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:unless="${pase.dia_hora.minute &lt; 10}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}">12:00</button>
@@ -57,6 +55,7 @@
                                         <p class="mt-2 text-danger bold" th:if="${pase.asientosLibres == 0}">AGOTADO</p>
                                         <p class="mt-2 text-danger bold" th:if="${pase.asientosLibres &lt; 3 && pase.asientosLibres &gt; 0}" th:text="${pase.asientosLibres + ' butacas'}">2 butacas</p>
                                         <p class="mt-2" th:if="${pase.asientosLibres &gt; 2}" th:text="${pase.asientosLibres + ' butacas'}">10 butacas</p>
+                                        <input type="hidden" th:value="${pase.dia_hora}"></input>
                                     </td>
                                 
                             </tr>
