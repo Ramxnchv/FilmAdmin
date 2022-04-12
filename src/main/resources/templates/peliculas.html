@@ -4,6 +4,7 @@
 <head>
     <th:block th:replace="fragments/head :: header" />
     <title>FilmAdmin</title>
+    <script async type="text/javascript" th:src="@{/js/funcionesSesiones.js}"></script>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -16,28 +17,28 @@
                 <h1 class="mt-5">Listado de Peliculas</h1>
 
                 <div class="d-flex flex-row align-items-center mt-5">
-                    <select class="form-select w-50" aria-label="Seleccion de Cine">
-                        <option selected>Seleccione un cine</option>
+                    <select id="cine-selector" class="form-select w-50" aria-label="Seleccion de Cine" onchange="filtroCine(event)">
+                        <option selected value="0">Seleccione un cine</option>
                         <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
-                            th:attr="value=#{cine.id}">Madrid - La Gavia</option>
+                            th:attr="value=${cine.id}">Madrid - La Gavia</option>
                     </select>
-                    <select class="form-select w-25 ms-3" aria-label="Seleccion de Sala" disabled>
-                        <option selected>Seleccione una sala</option>
+                    <select id="sala-selector" class="form-select w-25 ms-3" aria-label="Seleccion de Sala" onchange="filtroSala(event)" disabled>
+                        <option selected value="0">Seleccione una sala</option>
                         <option value="1">Sala 1</option>
                         <option value="2">Sala 2</option>
                     </select>
-                    <input type="date" class="form-control w-25 ms-3" th:value="${#temporals.format(dia, 'yyyy-MM-dd')}" id="fecha" name="fecha">
+                    <input type="date" class="form-control w-25 ms-3" th:value="${#temporals.format(dia, 'yyyy-MM-dd')}" id="fecha-selector" name="fecha" onchange="filtroFecha(event)">
                     <form class="d-flex w-75 ms-3">
-                        <input type="text" placeholder="Busca un título o una categoría" class="busctitulocat">
-                        <button type="button" class="btn btn-dark ms-2">A-Z ↓</button>
-                        <button type="button" class="btn btn-dark ms-2">Duración ↓</button>
+                        <input type="text" placeholder="Busca un título o una categoría" class="busctitulocat" onkeyup="filtroTituloCategoria(event)">
+                        <button type="button" id="alphabetic" class="btn btn-dark ms-2" onclick="filtroAlfabetico(event)">A-Z ↓</button>
+                        <button type="button" id="duration" class="btn btn-dark ms-2" onclick="filtroDuracion(event)">Duración ↓</button>
                     </form>
                 </div>
                 <div class="table-responsive tabla mt-3">
                     <table class="table align-middle">
                         <thead></thead>
-                        <tbody>
-                            <tr th:each="sesion : ${sesiones}">
+                        <tbody id="peliculas">
+                            <tr th:each="sesion : ${sesiones}" th:id="${sesion.id}">
                                 <td class="d-flex align-items-center"><a
                                         th:href="@{/peliculas/{id}(id=${sesion.id})}"><img
                                             th:src="@{/img/{id}(id=${sesion.img})}" src="/img/img1.jpg"
@@ -47,9 +48,9 @@
                                         class="text-dark bold">El buen patrón</a></td>
                                 <td th:text="${sesion.duraccion + ' min'}">120 min</td>
                                 <td th:text="${sesion.genero}">Comedia</td>
-                                <th:block th:each="pase : ${sesion.sesiones}">
-                                    <td>
-                                        <a th:id="'sesion' + ${pase.id}" th:href="@{/entradas/compra-entradas?sesion={p}(p=${pase.id})}">
+                                
+                                    <td th:each="pase : ${sesion.sesiones}" th:id="'sesion' + ${pase.id}" th:class="'sesion cine-' + ${pase.cine.id}">
+                                        <a th:href="@{/entradas/compra-entradas?sesion={p}(p=${pase.id})}">
                                             <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &lt; 10}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}">12:00</button>
                                             <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:unless="${pase.dia_hora.minute &lt; 10}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}">12:00</button>
                                         </a>
@@ -57,7 +58,7 @@
                                         <p class="mt-2 text-danger bold" th:if="${pase.asientosLibres &lt; 3 && pase.asientosLibres &gt; 0}" th:text="${pase.asientosLibres + ' butacas'}">2 butacas</p>
                                         <p class="mt-2" th:if="${pase.asientosLibres &gt; 2}" th:text="${pase.asientosLibres + ' butacas'}">10 butacas</p>
                                     </td>
-                                </th:block>
+                                
                             </tr>
                         </tbody>
                     </table>
