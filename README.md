@@ -11,6 +11,7 @@
 
 ## Cambios realizados (versión 2.2)
 - Chat de atención al cliente con Websockets funcionando (permite al administrador atender a varios clientes).
+- Filtro por título, categoría, orden alfabético o duración añadido al listado de películas.
 - Correciones post-feedback:
   - Eliminados @Getter y @Setter (dejando @Data).
   - @SuppressWarnings("unchecked") cambiados por createNamedQuery con 2 argumentos.
