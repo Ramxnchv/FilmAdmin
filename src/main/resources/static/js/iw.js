@@ -207,6 +207,13 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Not opening websocket: missing config", config)
     }
 
+    document.querySelector("#unreadbutton").addEventListener("click",function() {
+        let p = document.querySelector("#nav-unread");
+        if(p){
+            go(`${config.rootUrl}/user/read`, "GET").then(d => p.textContent = 0);
+        }
+    })
+
     // add your after-page-loaded JS code here; or even better, call 
     // 	 document.addEventListener("DOMContentLoaded", () => { /* your-code-here */ });
     //   (assuming you do not care about order-of-execution, all such handlers will be called correctly)

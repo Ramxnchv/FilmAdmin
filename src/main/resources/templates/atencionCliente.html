@@ -16,28 +16,40 @@
             <h1 class="mt-5">Atención al Cliente</h1>
               <div class="d-flex mt-5">
                 <div class="nav flex-column nav-pills me-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                  <button class="nav-link chat-selector active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Cliente 1</button>
-                  <button class="nav-link chat-selector" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Cliente 2</button>
-                  <button class="nav-link chat-selector" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Cliente 3</button>
-                  <button class="nav-link chat-selector" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Cliente 4</button>
+                  <button th:each="user, index : ${usuarios}" class="nav-link chat-selector active" th:if="${index.first}" th:id="'v-pills-' + ${user.id} + '-tab'" data-bs-toggle="pill" th:attr="data-bs-target='#v-pills-' + ${user.id},aria-controls='v-pills-' + ${user.id}" type="button" role="tab" aria-selected="false" th:text="'Cliente ' + ${user.username}">Cliente 2</button>
+                  <button th:each="user, index : ${usuarios}" class="nav-link chat-selector" th:unless="${index.first}" th:id="'v-pills-' + ${user.id} + '-tab'" data-bs-toggle="pill" th:attr="data-bs-target='#v-pills-' + ${user.id},aria-controls='v-pills-' + ${user.id}" type="button" role="tab" aria-selected="false" th:text="'Cliente ' + ${user.username}">Cliente 2</button>
                 </div>
                 <div class="tab-content chat" id="v-pills-tabContent">
-                  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                  <div class="tab-pane fade active show" th:each="user, index : ${usuarios}" th:if="${index.first}" th:id="'v-pills-' + ${user.id}" role="tabpanel" th:attr="aria-labelledby='v-pills-' + ${user.id} + '-tab'">
                     <div class="d-flex align-items-center top-chat">
-                      <span class="p-1 bold ms-auto">Chat con Cliente 1</span>
+                      <span class="p-1 bold ms-auto" th:text="'Chat con ' + ${user.firstName} + ' ' + ${user.lastName}">Chat con Cliente 1</span>
                       <button type="button" class="btn-close btn-close-white ms-auto me-2" aria-label="Close"></button>
                     </div>
-                    <div class="mensajes mb-3" id="mensajes">
+                    <div class="mensajes mb-3" th:id="'mensajes-' + ${user.id}">
                       <!-- <div class="d-flex justify-content-center mt-4"><div>user está escribiendo...</div></div> -->
                     </div>
                     <form class="d-flex flex-column" method="POST" id="messageform" onsubmit="enviarMensajeUser(event)">
-                      <textarea id="message"></textarea>
+                      <textarea id="message" class="message" onkeypress="enviarMensajeUser(event)"></textarea>
                       <button class="btn btn-dark mt-3" type="submit" id="sendmsg">Enviar</button>
+                      <input type="hidden" th:id="userid" th:value="${user.id}"></input>
+                      <input type="hidden" th:class="usernameclient" th:value="${user.username}"></input>
                     </form>
                   </div>
-                  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-                  <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-                  <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+                  <div class="tab-pane fade" th:each="user, index : ${usuarios}" th:unless="${index.first}" th:id="'v-pills-' + ${user.id}" role="tabpanel" th:attr="aria-labelledby='v-pills-' + ${user.id} + '-tab'">
+                    <div class="d-flex align-items-center top-chat">
+                      <span class="p-1 bold ms-auto" th:text="'Chat con ' + ${user.firstName} + ' ' + ${user.lastName}">Chat con Cliente 1</span>
+                      <button type="button" class="btn-close btn-close-white ms-auto me-2" aria-label="Close"></button>
+                    </div>
+                    <div class="mensajes mb-3" th:id="'mensajes-' + ${user.id}">
+                      <!-- <div class="d-flex justify-content-center mt-4"><div>user está escribiendo...</div></div> -->
+                    </div>
+                    <form class="d-flex flex-column" method="POST" id="messageform" onsubmit="enviarMensajeUser(event)">
+                      <textarea id="message" class="message" onkeypress="enviarMensajeUser(event)"></textarea>
+                      <button class="btn btn-dark mt-3" type="submit" id="sendmsg">Enviar</button>
+                      <input type="hidden" th:id="userid" th:value="${user.id}"></input>
+                      <input type="hidden" th:class="usernameclient" th:value="${user.username}"></input>
+                    </form>
+                  </div>
                 </div>
               </div>
         </div>

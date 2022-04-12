@@ -68,8 +68,7 @@ public class EntradaController {
     @ResponseBody
     public List<Entrada.Transfer> getAsientos(@PathVariable long idSesion, Model model) {
 
-        @SuppressWarnings("unchecked")
-        List<Entrada> entradas = (List<Entrada>) entityManager.createNamedQuery("Entrada.findBySesion").setParameter("sesionId", idSesion).getResultList();
+        List<Entrada> entradas = (List<Entrada>) entityManager.createNamedQuery("Entrada.findBySesion",Entrada.class).setParameter("sesionId", idSesion).getResultList();
         
         return entradas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
     }
@@ -93,8 +92,7 @@ public class EntradaController {
 
         double preciofinal = PRECIO_ENTRADA*asientos.size();
 
-        @SuppressWarnings("unchecked")
-        List<Entrada> entradas = (List<Entrada>) entityManager.createNamedQuery("Entrada.getAll").getResultList();
+        List<Entrada> entradas = (List<Entrada>) entityManager.createNamedQuery("Entrada.getAll",Entrada.class).getResultList();
         Entrada ultima = entradas.get(entradas.size()-1);
         long idnueva = ultima.getId()+1;
         Entrada e = new Entrada(idnueva,s,u,asientos,codigo,preciofinal);

@@ -11,6 +11,7 @@ import net.bytebuddy.asm.Advice.Local;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -303,6 +304,24 @@ public class UserController {
 				.getSingleResult();
 		session.setAttribute("unread", unread);
 		return "{\"unread\": " + unread + "}";
+	}
+
+	/**
+	 * Set to read all user messages
+	 */
+	@GetMapping(path = "read", produces = "application/json")
+	@ResponseBody
+	@Transactional
+	@Modifying
+	public String setRead(HttpSession session) {
+
+		long userId = ((User) session.getAttribute("u")).getId();
+		entityManager.createNamedQuery("Message.setRead")
+				.setParameter("userId", userId)
+				.setParameter("date", LocalDateTime.now())
+				.executeUpdate();
+		
+		return "{\"read\": " + true + "}";
 	}
 
 	/**

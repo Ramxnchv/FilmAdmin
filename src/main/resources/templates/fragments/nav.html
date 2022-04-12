@@ -56,7 +56,7 @@
                                 </a>
                                 <a class="nav-link text-light" th:if="${session.u.hasRole('ADMIN')}"
                                     th:href="@{/admin/atencion-cliente}">Atención al Cliente
-                                    <button type="button" class="btn btn-outline-light btn-sm position-relative ms-2">
+                                    <button type="button" id="unreadbutton" class="btn btn-outline-light btn-sm position-relative ms-2">
                                         ✉️ <span id="nav-unread"
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+99
                                             <span class="visually-hidden">unread messages</span></span>

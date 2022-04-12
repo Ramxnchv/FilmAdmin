@@ -1,6 +1,7 @@
 package es.ucm.fdi.iw.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,6 +19,7 @@ import es.ucm.fdi.iw.model.Pelicula;
 import es.ucm.fdi.iw.model.Sala;
 import es.ucm.fdi.iw.model.Sesion;
 import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.model.User.Role;
 
 /**
  *  Site administration.
@@ -69,6 +71,17 @@ public class AdminController {
 
     @GetMapping("/atencion-cliente")
     public String atencionCliente(Model model) {
+
+        List<User> usuarios = (List<User>) entityManager.createNamedQuery("User.getAll",User.class).getResultList();
+        List<User> roleUser = new ArrayList<>();
+        for(User u: usuarios){
+            if(!u.hasRole(Role.ADMIN)){
+                roleUser.add(u);
+            }
+        }
+
+        model.addAttribute("usuarios", roleUser);
+
         return "atencionCliente";
     }
 }

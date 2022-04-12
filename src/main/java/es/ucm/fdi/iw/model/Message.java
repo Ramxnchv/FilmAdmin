@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.data.jpa.repository.Modifying;
 
 import lombok.Data;
 import lombok.Getter;
@@ -27,7 +28,9 @@ import lombok.AllArgsConstructor;
 @NamedQueries({
 	@NamedQuery(name="Message.countUnread",
 	query="SELECT COUNT(m) FROM Message m "
-			+ "WHERE m.recipient.id = :userId AND m.dateRead = null")
+			+ "WHERE m.recipient.id = :userId AND m.dateRead = null"),
+	@NamedQuery(name="Message.setRead",
+	query="UPDATE Message m SET m.dateRead =:date WHERE m.recipient.id = :userId")
 })
 @Data
 public class Message implements Transferable<Message.Transfer> {

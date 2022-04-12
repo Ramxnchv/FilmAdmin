@@ -17,12 +17,14 @@
             <div class="d-flex align-items-center top-chat">
                 <span class="p-1 bold ms-auto me-auto">Chat de Atención al Cliente</span>
             </div>
-            <div class="w-100 mensajes mb-3" id="mensajes">
+            <div class="w-100 mensajes mb-3" id="mensajes-1">
                 <!-- <div class="d-flex justify-content-center mt-4"><div>Filmadmin está escribiendo...</div></div> -->
             </div>
             <form class="d-flex flex-column" method="POST" id="messageform" onsubmit="enviarMensaje(event)">
-                <textarea id="message"></textarea>
+                <textarea id="message" class="message" onkeypress="enviarMensaje(event)"></textarea>
                 <button type="submit" id="sendmsg" class="btn btn-dark mt-3">Enviar</button>
+                <input type="hidden" id="userid" value="1"></input>
+                <input type="hidden" class="usernameclient" value="a"></input>
             </form>
         </div>
     </main>

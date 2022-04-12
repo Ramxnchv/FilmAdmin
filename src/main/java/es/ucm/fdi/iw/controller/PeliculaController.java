@@ -32,11 +32,9 @@ public class PeliculaController {
 	@GetMapping("/")
     public String index(Model model) {
 
-        @SuppressWarnings("unchecked")
-        List<Pelicula> sesiones = (List<Pelicula>) entityManager.createNamedQuery("Pelicula.getAll").getResultList();
+        List<Pelicula> sesiones = (List<Pelicula>) entityManager.createNamedQuery("Pelicula.getAll", Pelicula.class).getResultList();
 
-        @SuppressWarnings("unchecked")
-        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
+        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll", Cine.class).getResultList();
 
         model.addAttribute("sesiones", sesiones);
         model.addAttribute("cines", cines);
@@ -50,11 +48,9 @@ public class PeliculaController {
 
         Pelicula pel = entityManager.find(Pelicula.class, id);
 
-        @SuppressWarnings("unchecked")
-        List<Pelicula> sesiones = (List<Pelicula>) entityManager.createNamedQuery("Pelicula.getAll").getResultList();
+        List<Pelicula> sesiones = (List<Pelicula>) entityManager.createNamedQuery("Pelicula.getAll", Pelicula.class).getResultList();
 
-        @SuppressWarnings("unchecked")
-        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll").getResultList();
+        List<Cine> cines = (List<Cine>) entityManager.createNamedQuery("Cine.FindAll",Cine.class).getResultList();
 
         model.addAttribute("sesiones", sesiones);
         model.addAttribute("pelicula", pel);

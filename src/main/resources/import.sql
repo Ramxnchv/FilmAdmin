@@ -1,9 +1,15 @@
 -- insert admin (username a, password aa)
-INSERT INTO IWUser (id, enabled, roles, username, password)
-VALUES (1, TRUE, 'ADMIN,USER', 'a',
+INSERT INTO IWUser (id, enabled, roles, username, first_name, last_name, password)
+VALUES (1, TRUE, 'ADMIN,USER', 'a', 'Admin', 'FilmAdmin',
     '{bcrypt}$2a$10$2BpNTbrsarbHjNsUWgzfNubJqBRf.0Vz9924nRSHBqlbPKerkgX.W');
-INSERT INTO IWUser (id, enabled, roles, username, password)
-VALUES (2, TRUE, 'USER', 'b',
+INSERT INTO IWUser (id, enabled, roles, username, first_name, last_name, password)
+VALUES (2, TRUE, 'USER', 'b', 'Ramon', 'Rosa',
+    '{bcrypt}$2a$10$2BpNTbrsarbHjNsUWgzfNubJqBRf.0Vz9924nRSHBqlbPKerkgX.W');
+INSERT INTO IWUser (id, enabled, roles, username, first_name, last_name, password)
+VALUES (3, TRUE, 'USER', 'c', 'Daniel', 'Lucas',
+    '{bcrypt}$2a$10$2BpNTbrsarbHjNsUWgzfNubJqBRf.0Vz9924nRSHBqlbPKerkgX.W');
+INSERT INTO IWUser (id, enabled, roles, username, first_name, last_name, password)
+VALUES (4, TRUE, 'USER', 'd', 'Jose', 'Otegui',
     '{bcrypt}$2a$10$2BpNTbrsarbHjNsUWgzfNubJqBRf.0Vz9924nRSHBqlbPKerkgX.W');
 INSERT INTO Cine (id,ciudad,coordenadas,direccion,hora_apertura,hora_cierre,imagen,nombre,telefono)
 VALUES (1,'Madrid','40.369008,-3.599046','C/Adolfo Bioy Casares, 2', '10:00', '22:00', 'lagavia.jpg', 'La Gavia', '914255401');
