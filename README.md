@@ -5,13 +5,16 @@
 ## Usuarios
 - Username: a | Contraseña: aa (Administrador)
 - Username: b | Contraseña: aa (Usuario)
+- Username: c | Contraseña: aa (Usuario)
+- Username: d | Contraseña: aa (Usuario)
 
 
 ## Cambios realizados (versión 2.2)
-- Chat de atención al cliente con Websockets funcionando (para un cliente de momento).
+- Chat de atención al cliente con Websockets funcionando (permite al administrador atender a varios clientes).
 - Correciones post-feedback:
   - Eliminados @Getter y @Setter (dejando @Data).
   - @SuppressWarnings("unchecked") cambiados por createNamedQuery con 2 argumentos.
+
 
 ## Cambios realizados (versión 2.1)
 - Prueba externa para la compra de entradas.
