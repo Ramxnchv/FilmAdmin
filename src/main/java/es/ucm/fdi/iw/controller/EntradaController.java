@@ -54,9 +54,9 @@ public class EntradaController {
         return "compraEntradas";
     }
 
-    @GetMapping("/{id}")
-    public String infoEntrada(@PathVariable long id, Model model) {
-        Entrada e = entityManager.find(Entrada.class, id);
+    @GetMapping("/{codigo}")
+    public String infoEntradaCodigo(@PathVariable String codigo, Model model) {
+        Entrada e = entityManager.createNamedQuery("Entrada.findByCode",Entrada.class).setParameter("codigo", codigo).getSingleResult();
         Sesion s = e.getSesion();
         model.addAttribute("entrada", e);
         model.addAttribute("sesion", s);
@@ -105,7 +105,7 @@ public class EntradaController {
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode n = mapper.createObjectNode();
-        n.put("id", e.getId());
+        n.put("id", e.getCodigo());
         String json = mapper.writeValueAsString(n);
         return json;
     }

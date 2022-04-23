@@ -57,7 +57,7 @@
                                     <td th:unless="${entrada.sesion.dia_hora.minute &lt; 10}" th:text="${entrada.sesion.dia_hora.hour + ':' + entrada.sesion.dia_hora.minute}">21:00</td>
                                     <td th:text="${entrada.sesion.cine.nombre}">La Gavia</td>
                                     <td th:text="${entrada.sesion.sala.nombre}">Sala 3</td>
-                                    <td><a th:href="@{/entradas/{id}(id=${entrada.id})}" ><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></a></td>
+                                    <td><a th:href="@{/entradas/{codigo}(codigo=${entrada.codigo})}" ><button type="button" class="btn btn-dark btn-sm">Ver entrada</button></a></td>
                                 </tr>
                             </tbody>
                         </table>
