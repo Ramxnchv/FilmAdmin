@@ -6,6 +6,7 @@
     <title>FilmAdmin</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/funcionesUser.js}"></script>
+    <script type="text/javascript" th:src="@{/js/funcionesCine.js}"></script>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -106,7 +107,9 @@
                                                         alt="imagen cine" height="120px" width="84px"
                                                         class="d-inline-block"></a></td>
                                             <td><a th:href="@{/cines/{id}(id=${cine.id})}" th:text="${cine.nombre}" class="text-dark bold">La Gavia</a></td>
-                                            <td><button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalCine">Editar</button></td>
+                                            <td><button type="button" class="btn btn-dark btn-sm editarcine" th:attr="data-id=${cine.id},data-nombre=${cine.nombre},
+                                                data-direccion=${cine.direccion},data-dias_apertura=${cine.dias_apertura}, data-festivos_cierre= ${cine.festivos_cierre},
+                                                data-hora_apertura=${cine.hora_apertura}, data-hora_cierre=${cine.hora_cierre}, data-coordenadas=${cine.coordenadas}">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
                                         </tr>
@@ -251,6 +254,7 @@
                   </div>
                 </div>
             </div>
+
             <div class="modal fade" id="modalPelicula" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
@@ -290,6 +294,7 @@
                   </div>
                 </div>
             </div>
+
             <div class="modal fade" id="modalCine" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
@@ -305,11 +310,11 @@
                             <div class="d-flex justify-content-between mt-2">
                                 <p>
                                     <label for="username" class="visually-hidden">Nombre</label>
-                                    <input type="text" id="username2" name="nombre2" class="form-control" placeholder="Nombre" required="required">
+                                    <input type="text" id="nombre-cine" name="nombre" class="form-control" placeholder="Nombre" required="required">
                                 </p>
                                 <p class="ms-4">
                                     <label for="email" class="visually-hidden">Direccion</label>
-                                    <input type="text" class="form-control" placeholder="Dirección" id="email2" name="direccion" required="required">
+                                    <input type="text" class="form-control" placeholder="Dirección" id="direccion-cine" name="direccion" required="required">
                                 </p>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
@@ -317,56 +322,56 @@
                             </div>
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="LUNES">
-                                    <label class="form-check-label" for="LUNES">
+                                    <input class="form-check-input" type="checkbox" value="" id="MONDAY">
+                                    <label class="form-check-label" for="MONDAY">
                                       LUNES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="MARTES">
-                                    <label class="form-check-label" for="MARTES">
+                                    <input class="form-check-input" type="checkbox" value="" id="TUESDAY">
+                                    <label class="form-check-label" for="TUESDAY">
                                       MARTES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="MIERCOLES">
-                                    <label class="form-check-label" for="MIERCOLES">
+                                    <input class="form-check-input" type="checkbox" value="" id="WEDNESDAY">
+                                    <label class="form-check-label" for="WEDNESDAY">
                                       MIERCOLES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="JUEVES">
-                                    <label class="form-check-label" for="JUEVES">
+                                    <input class="form-check-input" type="checkbox" value="" id="THURSDAY">
+                                    <label class="form-check-label" for="THURSDAY">
                                       JUEVES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="VIERNES">
-                                    <label class="form-check-label" for="VIERNES">
+                                    <input class="form-check-input" type="checkbox" value="" id="FRIDAY">
+                                    <label class="form-check-label" for="FRIDAY">
                                       VIERNES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="SABADO">
-                                    <label class="form-check-label" for="SABADO">
+                                    <input class="form-check-input" type="checkbox" value="" id="SATURDAY">
+                                    <label class="form-check-label" for="SATURDAY">
                                       SABADO
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="DOMINGO">
-                                    <label class="form-check-label" for="DOMINGO">
+                                    <input class="form-check-input" type="checkbox" value="" id="SUNDAY">
+                                    <label class="form-check-label" for="SUNDAY">
                                       DOMINGO
                                     </label>
                                 </div>    
                             </div>
                             <div class="d-flex justify-content-between mt-4">
                                 <p>
-                                    <label for="appt" class="">Hora Apertura:</label>
-                                    <input type="time" id="appt" name="appt" min="09:00" max="23:00" required>
+                                    <label for="hora-apertura" class="">Hora Apertura:</label>
+                                    <input type="time" id="hora-apertura" name="apertura" min="09:00" max="23:00" required>
                                 </p>
                                 <p class="ms-4">
-                                    <label for="appt2" class="">Hora Cierre:</label>
-                                    <input type="time" id="appt2" name="appt" min="09:00" max="23:00" required>
+                                    <label for="hora-cierre" class="">Hora Cierre:</label>
+                                    <input type="time" id="hora-cierre" name="cierre" min="09:00" max="23:00" required>
                                 </p>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
@@ -383,8 +388,8 @@
                             </div>
                             <div class="d-flex justify-content-between mt-2 ms-3">
                                 <p>
-                                    <label for="nombre" class="visually-hidden">Latitud,Longitud</label>
-                                    <input type="text" class="form-control" placeholder="Latitud,Longitud" id="nombre2" name="maps" required="required">
+                                    <label for="coordenadas" class="visually-hidden">Latitud,Longitud</label>
+                                    <input type="text" class="form-control" placeholder="Latitud,Longitud" id="coordenadas" name="maps" required="required">
                                 </p>
                                 <p class="ms-4">
                                     <label for="formFileMultiple" class="visually-hidden">Imagenes</label>

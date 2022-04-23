@@ -13,14 +13,46 @@ VALUES (4, TRUE, 'USER', 'd', 'Jose', 'Otegui',
     '{bcrypt}$2a$10$2BpNTbrsarbHjNsUWgzfNubJqBRf.0Vz9924nRSHBqlbPKerkgX.W');
 INSERT INTO Cine (id,ciudad,coordenadas,direccion,hora_apertura,hora_cierre,imagen,nombre,telefono)
 VALUES (1,'Madrid','40.369008,-3.599046','C/Adolfo Bioy Casares, 2', '10:00', '22:00', 'lagavia.jpg', 'La Gavia', '914255401');
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (1, 0);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (1, 1);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (1, 2);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (1, 3);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (1, 4);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (1, 5);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (1, 6);
+INSERT INTO cine_festivos_cierre(cine_id, festivo_cierre) VALUES (1, '2000-12-25');
+INSERT INTO cine_festivos_cierre(cine_id, festivo_cierre) VALUES (1, '2000-01-01');
 INSERT INTO Cine (id,ciudad,coordenadas,direccion,hora_apertura,hora_cierre,imagen,nombre,telefono)
 VALUES (2,'Madrid','40.39083,-3.70144','Av del Manzanares, 210', '9:00', '23:00', 'plazario2.jpg', 'Plaza Rio 2', '911374548');
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (2, 1);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (2, 2);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (2, 3);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (2, 4);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (2, 5);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (2, 6);
 INSERT INTO Cine (id,ciudad,coordenadas,direccion,hora_apertura,hora_cierre,imagen,nombre,telefono)
 VALUES (3,'Barcelona','41.29555,2.00805','Carrer del Progres, 69', '10:00', '23:00', 'barnasud.jpg', 'Barnasud', '936625656');
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (3, 0);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (3, 2);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (3, 3);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (3, 4);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (3, 5);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (3, 6);
 INSERT INTO Cine (id,ciudad,coordenadas,direccion,hora_apertura,hora_cierre,imagen,nombre,telefono)
 VALUES (4,'Barcelona','41.40997,2.21648','Avinguda Diagonal, 3', '11:00', '00:00', 'diagonal.png', 'Diagonal', '935677637');
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (4, 0);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (4, 1);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (4, 2);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (4, 4);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (4, 5);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (4, 6);
 INSERT INTO Cine (id,ciudad,coordenadas,direccion,hora_apertura,hora_cierre,imagen,nombre,telefono)
 VALUES (5,'Valencia','39.47172,-0.48867','Autovia del Este, Km. 345', '17:00', '22:30', 'bonaire.jpg', 'Bonaire', '961579224');
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (5, 2);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (5, 3);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (5, 4);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (5, 5);
+INSERT INTO cine_dias_apertura(cine_id, dia_apertura) VALUES (5, 6);
 INSERT INTO Pelicula (id,duraccion,genero,img,titulo)
 VALUES (1, 120, 'Comedia', 'img1.jpg', 'El buen patron');
 INSERT INTO Pelicula (id,duraccion,genero,img,titulo)
