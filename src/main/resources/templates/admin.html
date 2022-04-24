@@ -5,13 +5,12 @@
     <th:block th:replace="fragments/head :: header" />
     <title>FilmAdmin</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" th:src="@{/js/funcionesUser.js}"></script>
-    <script type="text/javascript" th:src="@{/js/funcionesCine.js}"></script>
+    <script type="text/javascript" th:src="@{/js/funcionesAdmin.js}"></script>
 </head>
 
 <body class="d-flex flex-column h-100">
 
-    <header th:replace="fragments/nav.html :: nav"></header>
+    <header th:replace="fragments/nav.html :: nav"></header> 
 
     <main class="flex-shrink-0">
         <div class="container">
@@ -107,9 +106,7 @@
                                                         alt="imagen cine" height="120px" width="84px"
                                                         class="d-inline-block"></a></td>
                                             <td><a th:href="@{/cines/{id}(id=${cine.id})}" th:text="${cine.nombre}" class="text-dark bold">La Gavia</a></td>
-                                            <td><button type="button" class="btn btn-dark btn-sm editarcine" th:attr="data-id=${cine.id},data-nombre=${cine.nombre},
-                                                data-direccion=${cine.direccion},data-dias_apertura=${cine.dias_apertura}, data-festivos_cierre= ${cine.festivos_cierre},
-                                                data-hora_apertura=${cine.hora_apertura}, data-hora_cierre=${cine.hora_cierre}, data-coordenadas=${cine.coordenadas}">Editar</button></td>
+                                            <td><button type="button" class="btn btn-dark btn-sm editarcine" th:attr="data-id=${cine.id}">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
                                         </tr>
@@ -122,7 +119,7 @@
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Salas</h2>
                                 <select class="form-select w-25 h-50 ms-auto" aria-label="Seleccion de Cine">
-                                    <option selected>Seleccione un cine</option>
+                                    <option value="" selected disabled hidden>Seleccione un cine</option>
                                     <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
                                         th:attr="value=#{cine.id}">Madrid - La Gavia</option>
                                 </select>
@@ -142,7 +139,7 @@
                                             <td><a th:href="@{/cines/{id}(id=${sala.cine.id})}" th:text="${sala.cine.nombre}" class="text-dark bold">La Gavia</a></td>
                                             <td th:text="${sala.filas + ' filas'}">4 filas</td>
                                             <td th:text="${sala.columnas + ' columnas'}">12 columnas</td>
-                                            <td><button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalSala">Editar</button></td>
+                                            <td><button type="button" class="btn btn-dark btn-sm editarsala" th:attr="data-id=${sala.id}, data-cineid=${sala.cine.id}">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
                                         </tr>
@@ -155,12 +152,12 @@
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Sesiones</h2>
                                 <select class="form-select w-25 h-50 ms-5" aria-label="Seleccion de Cine">
-                                    <option selected>Seleccione un cine</option>
+                                    <option value="" selected disabled hidden>Seleccione un cine</option>
                                     <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
                                         th:attr="value=#{cine.id}">Madrid - La Gavia</option>
                                 </select>
                                 <select class="form-select w-25 h-50 ms-3" aria-label="Seleccion de Sala" disabled>
-                                    <option selected>Seleccione una sala</option>
+                                    <option value="" selected disabled hidden>Seleccione una sala</option>
                                     <option value="1">Sala 1</option>
                                     <option value="2">Sala 2</option>
                                 </select>
@@ -183,7 +180,9 @@
                                             <td><a th:href="@{/peliculas/{id}(id=${sesion.pelicula.id})}" th:text="${sesion.pelicula.titulo}" class="text-dark bold">El buen patrón</a></td>
                                             <td th:text="${sesion.cine.nombre}">La Gavia</td>
                                             <td th:text="${sesion.sala.nombre}">Sala 2</td>
-                                            <td><button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalSesion">Editar</button></td>
+                                            <td><button type="button" class="btn btn-dark btn-sm editarsesion" th:attr="data-id=${sesion.id}, 
+                                                data-cineid=${sesion.cine.id}, data-peliculaid=${sesion.pelicula.id}, 
+                                                data-salaid=${sesion.sala.id}, data-diahora=${sesion.dia_hora}">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
                                         </tr>
@@ -405,6 +404,7 @@
                   </div>
                 </div>
             </div>
+
             <div class="modal fade" id="modalSala" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
@@ -418,17 +418,14 @@
                                 <h6>Cine y Nombre</h6>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
-                                <select class="form-select w-50 h-50" aria-label="Seleccion de Cine" name="cine">
-                                    <option selected>Selecciona un cine</option>
-                                    <option value="1">Madrid - La Gavia</option>
-                                    <option value="2">Madrid - Plaza Rio 2</option>
-                                    <option value="3">Barcelona - Barnasud</option>
-                                    <option value="4">Barcelona - Diagonal</option>
-                                    <option value="5">Valencia - Bonaire</option>
+                                <select class="form-select w-50 h-50" aria-label="Seleccion de Cine" name="seleccion-cine" id="seleccion-cine">
+                                    <option value="" selected disabled hidden>Seleccione un cine</option>
+                                    <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
+                                        th:attr="value=${cine.id}">Madrid - La Gavia</option>
                                 </select>
                                 <p class="ms-2">
                                     <label for="username" class="visually-hidden">Nombre de la Sala</label>
-                                    <input type="text" id="username2" name="nombre2" class="form-control" placeholder="Nombre" required="required">
+                                    <input type="text" id="nombre-sala" name="nombre-sala" class="form-control" placeholder="Nombre" required="required">
                                 </p>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
@@ -453,6 +450,7 @@
                   </div>
                 </div>
             </div>
+
             <div class="modal fade" id="modalSesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
@@ -464,30 +462,22 @@
                         <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/sesion/-1}">
                             <div class="d-flex justify-content-center mt-3">
                                 <select class="form-select" aria-label="Seleccion de Cine" name="pelicula">
-                                    <option selected>Seleccione una pelicula</option>
-                                    <option value="1">El buen patrón</option>
-                                    <option value="2">Delicioso</option>
-                                    <option value="3">Belfast</option>
-                                    <option value="4">Encanto</option>
-                                    <option value="5">Moonfall</option>
+                                    <option value="" selected disabled hidden>Seleccione una pelicula</option>
+                                    <option th:each="pelicula : ${peliculas}" th:text="${pelicula.titulo}"
+                                        th:attr="value=${pelicula.id}">El buen patron</option>
                                 </select>
                             </div>
                             <div class="d-flex justify-content-between mt-4">
                                 <select class="form-select w-50" aria-label="Seleccion de Cine" name="cine">
-                                    <option selected>Selecciona un cine</option>
-                                    <option value="1">Madrid - La Gavia</option>
-                                    <option value="2">Madrid - Plaza Rio 2</option>
-                                    <option value="3">Barcelona - Barnasud</option>
-                                    <option value="4">Barcelona - Diagonal</option>
-                                    <option value="5">Valencia - Bonaire</option>
+                                    <option value="" selected disabled hidden>Selecciona un cine</option>
+                                    <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
+                                    th:attr="value=${cine.id}">Madrid - La Gavia</option>
                                 </select>
-                                <select class="form-select w-50 ms-3" aria-label="Seleccion de Sala" disabled>
-                                    <option selected>Seleccione una sala</option>
-                                    <option value="1">Sala 1</option>
-                                    <option value="2">Sala 2</option>
-                                    <option value="3">Sala 3</option>
-                                    <option value="4">Sala 4</option>
-                                    <option value="5">Sala 5</option>
+                                <select class="form-select w-50 ms-3" aria-label="Seleccion de Sala" name="sala" disabled>
+                                    <option value="seleccion" selected disabled hidden>Seleccione una sala</option>
+                                    <option th:each="sala : ${salas}" th:text="${sala.cine.nombre + ' - ' + sala.nombre}"
+                                        th:attr="value=${sala.id}, cine=${sala.cine.id}">Sala 1</option>
+
                                 </select>
                             </div>
                             <div class="d-flex justify-content-between mt-4">
@@ -496,8 +486,8 @@
                                     <input type="date" id="fecha" class="form-control" name="fecha" value="2022-03-01" required>
                                 </p>
                                 <p class=" ms-3">
-                                    <label for="appt" class="">Selecciona una hora:</label>
-                                    <input type="time" id="appt" class="form-control" name="hora" min="09:00" max="23:00" required>
+                                    <label for="hora" class="">Selecciona una hora:</label>
+                                    <input type="time" id="hora" class="form-control" name="hora" min="09:00" max="23:00" required>
                                 </p>
                             </div>
                         </form>
@@ -514,5 +504,27 @@
     <th:block th:replace="fragments/footer.html :: footer" />
 
 </body>
+
+
+<script th:inline="javascript">
+
+    /*<![CDATA[*/
+
+    var peliculas = /*[[${peliculas}]]*/ 'Peliculas';
+    var cines = /*[[${cines}]]*/ 'Cines';
+    var salas = /*[[${salas}]]*/ 'Salas';
+    var sesiones = /*[[${sesiones}]]*/ 'Sesiones';
+
+    console.log(salas);
+
+    $(function () {
+        $('.editarusuario').click(editarUsuario);
+        $('.editarcine').click({cines}, editarCine);
+        $('.editarsala').click({salas}, editarSala);
+        $('.editarsesion').click({sesiones, salas}, editarSesion);
+    });
+
+     /*]]>*/
+</script>
 
 </html>
