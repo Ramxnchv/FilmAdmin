@@ -1,47 +1,12 @@
 # FilmAdmin
 
-## [Trabajo pendiente](https://docs.google.com/document/d/1Jl7SJprP_qKExY1gCgEuXgIvUAb5TF3F0B_dflthpi4/edit?usp=sharing)
+Aplicación web para gestión completa de un cine. ¿Necesitas mostrar las sesiones disponibles con filtros de todo tipo? ¿Vender entradas con un mapa de asientos personalizable? ¿Validar entradas en el acceso al cine? ¿Mostrar información de películas? FilmAdmin es tu aplicación.
 
 ## Usuarios
 - Username: a | Contraseña: aa (Administrador)
 - Username: b | Contraseña: aa (Usuario)
 - Username: c | Contraseña: aa (Usuario)
 - Username: d | Contraseña: aa (Usuario)
-
-
-## Cambios realizados (versión 2.2)
-- Chat de atención al cliente con Websockets funcionando (permite al administrador atender a varios clientes).
-- Filtro por cine, sala, fecha, título, categoría, orden alfabético o duración añadido al listado de películas.
-- Correciones post-feedback:
-  - Eliminados @Getter y @Setter (dejando @Data).
-  - @SuppressWarnings("unchecked") cambiados por createNamedQuery con 2 argumentos.
-
-
-## Cambios realizados (versión 2.1)
-- Prueba externa para la compra de entradas.
-- Desactivado botón comprar cuando el número de asientos seleccionados es 0.
-- Añadido mensaje de error al hacer login erroneo.
-
-
-## Cambios realizados (versión 2.0)
-- Vista de [Cines](http://localhost:8080/cines/) consultando a la base de datos
-- Vista de [Películas y Sesiones](http://localhost:8080/peliculas/) consultando a la base de datos
-- Vista de [Comprar Entradas](http://localhost:8080/entradas/compra-entradas?sesion=1) consultando a la base de datos y actualizando el mapa de asientos con AJAX
-- Vista de [Resumen entrada](http://localhost:8080/entradas/1) consultando a la base de datos.
-- Vista de [Perfil de Usuario](http://localhost:8080/user/1) mostrando listado de entradas compradas y pudiendo cambiar información del usuario (imagen, datos y contraseña).
-- Vista de [Panel de administración](http://localhost:8080/admin/) mostrando los listados desde la base de datos.
-- Posibilidad de hacer una compra de entradas completa (con almacenamiento en base de datos) y ¡posibilidad de imprimir la entrada!
-
-
-## Cambios realizados (versión 1.1)
-- Actualización del modelo con todas las entidades creadas en la base de datos con JPA
-- Correciones post-feedback:
-  - Añadido filtro por cine, por día y por sala a todos los listados de sesiones.
-  - Cambio de tipo en fechas y horas de sesiones de String a LocalDateTime.
-  - Añadida la entidad Sala
-  - Añadidos días de apertura y festivos (consultables desde el modal de añadir cine en el panel de administración).
-- Vista dinámica de [Listado de Cines](http://localhost:8080/cines/) y consulta a API Google Maps.
-
 
 ## Index
 [Página de Inicio](http://localhost:8080).
@@ -97,3 +62,5 @@ Vista en la que poder ver los asientos ocupados y disponibles en cada sesión y 
 [Panel de administración](http://localhost:8080/admin/).
 
 Vista de administración en la que poder añadir, editar o eliminar cualquier usuario, película, cine o sesión. (Funciona con tabs para cada entidad y dentro de cada entidad encontramos una tabla con los elementos, un buscador y un boton añadir que abre un modal para crear un elemento de esta entidad).
+
+## [Trabajo pendiente](https://docs.google.com/document/d/1Jl7SJprP_qKExY1gCgEuXgIvUAb5TF3F0B_dflthpi4/edit?usp=sharing)
