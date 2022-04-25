@@ -3,7 +3,9 @@
 ## [2.3] - 2022-04-27
 - Página de [Gestión de Entradas](http://localhost:8080/admin/gestion-entradas/) funcionando. Permite consultar los asientos de cada sesión al administrador del cine, validar una entrada (al acceder al cine) y comprobar los asientos de la misma.
 - Añadida librería para generar códigos QR en la página de [Resumen de la Entrada](http://localhost:8080/entradas/67G5HJ4F).
+- Ahora la página de cada [película](http://localhost:8080/peliculas/1) contiene información de la misma obtenida de IMDB (junto con la almacenada en la BD).
 - Mejoras en panel de administración. Ahora los modals cargan la información de cada entidad.
+- Solucionado un error que no permitía comprar entradas con los mismos IDs de asientos. La relación Entrada-Asiento ahora es M a N (antes era 1 a N).
 - Correciones post-feedback:
   - El directorio /data ahora está a la misma altura que /src y contiene las imágenes de películas y cines
   - Cambiada la forma de acceder a la página de una entrada, ahora se utiliza el código (antes el id)
