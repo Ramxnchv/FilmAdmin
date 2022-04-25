@@ -48,9 +48,17 @@
                                 <td th:text="${sesion.genero}">Comedia</td>
                                 
                                     <td th:each="pase : ${sesion.sesiones}" th:id="'sesion' + ${pase.id}" th:class="'sesion cine-' + ${pase.cine.id} + ' sala-' + ${pase.sala.id}">
-                                        <a th:href="@{/entradas/compra-entradas?sesion={p}(p=${pase.id})}">
-                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &lt; 10}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}">12:00</button>
-                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:unless="${pase.dia_hora.minute &lt; 10}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}">12:00</button>
+                                        <a th:if="${pase.asientosLibres > 0}" th:href="@{/entradas/compra-entradas?sesion={p}(p=${pase.id})}">
+                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &lt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}">12:00</button>
+                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &gt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}">12:00</button>
+                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &lt; 10 && pase.asientosLibres == 0}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}" disabled>12:00</button>
+                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &gt; 10 && pase.asientosLibres == 0}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}" disabled>12:00</button>
+                                        </a>
+                                        <a th:unless="${pase.asientosLibres > 0}" href="#">
+                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &lt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}">12:00</button>
+                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &gt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}">12:00</button>
+                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &lt; 10 && pase.asientosLibres == 0}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}" disabled>12:00</button>
+                                            <button type="button" class="btn btn-dark btn-sm ms-3 btn-sesion" th:if="${pase.dia_hora.minute &gt; 10 && pase.asientosLibres == 0}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}" disabled>12:00</button>
                                         </a>
                                         <p class="mt-2 text-danger bold" th:if="${pase.asientosLibres == 0}">AGOTADO</p>
                                         <p class="mt-2 text-danger bold" th:if="${pase.asientosLibres &lt; 3 && pase.asientosLibres &gt; 0}" th:text="${pase.asientosLibres + ' butacas'}">2 butacas</p>

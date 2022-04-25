@@ -1,5 +1,8 @@
 package es.ucm.fdi.iw.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,6 +26,10 @@ public class Asiento implements Transferable<Asiento.Transfer> {
     @JoinColumn(name="sala_id")
     @JsonIgnore
     private Sala sala;
+
+    @ManyToMany(targetEntity = Entrada.class, mappedBy = "asientos")
+    @JsonIgnore
+    private List<Entrada> entradas = new ArrayList<>();
 
     private int fila;
     private int columna;

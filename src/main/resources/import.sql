@@ -621,23 +621,23 @@ INSERT INTO IWUser_Entradas (user_id,entradas_id)
 VALUES (2, 1);
 INSERT INTO Sesion_Entradas (sesion_id,entradas_id)
 VALUES (1,1);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,1);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,2);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,3);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,4);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,5);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,6);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,7);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,8);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,9);
-INSERT INTO Entrada_Asientos (entrada_id,asientos_id)
+INSERT INTO Entrada_Asientos (entradas_id,asientos_id)
 VALUES (1,10);

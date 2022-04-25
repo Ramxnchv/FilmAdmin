@@ -12,27 +12,19 @@
     <main class="flex-shrink-0">
         <div class="container">
             <div class="d-flex align-items-center mt-5">
-                <h1>El buen patrón</h1>
-                <select class="form-select filtropelicula h-50 ms-auto" aria-label="Seleccion de Cine">
-                    <option selected>Seleccione un cine</option>
-                    <option value="1">Madrid - La Gavia</option>
-                    <option value="2">Madrid - Plaza Rio 2</option>
-                    <option value="3">Barcelona -  Barnasud</option>
-                    <option value="4">Barcelona -  Diagonal</option>
-                    <option value="5">Valencia - Bonaire</option>
+                <h1 th:text="${pelicula.titulo}">El buen patrón</h1>
+                <select id="cine-selector" class="form-select filtropelicula h-50 ms-auto" aria-label="Seleccion de Cine" onchange="filtroCine(event)">
+                    <option selected value="0">Seleccione un cine</option>
+                    <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
+                            th:attr="value=${cine.id}">Madrid - La Gavia</option>
                 </select>
-                <select class="form-select filtropelicula ms-3" aria-label="Seleccion de Sala" disabled>
-                    <option selected>Seleccione una sala</option>
-                    <option value="1">Sala 1</option>
-                    <option value="2">Sala 2</option>
-                    <option value="3">Sala 3</option>
-                    <option value="4">Sala 4</option>
-                    <option value="5">Sala 5</option>
+                <select id="sala-selector" class="form-select filtropelicula ms-3" aria-label="Seleccion de Sala" onchange="filtroSala(event)" disabled>
+                    <option selected value="0">Seleccione una sala</option>
                 </select>
-                <input type="date" class="form-control filtropelicula ms-3 me-auto" value="2022-03-01" id="fecha" name="fecha" required="required">
+                <input type="date" class="form-control filtropelicula ms-3 me-auto" th:value="${#temporals.format(dia, 'yyyy-MM-dd')}" id="fecha-selector" name="fecha" onchange="filtroFecha(event)">
             </div>
             <div class="d-flex mt-5 align-items-center">
-                <img th:src="@{/img/img1.jpg}" src="/img/img1.jpg" alt="imagen pelicula" width="210px" height="300px" class="d-inline-block">
+                <img th:src="@{/img/{id}(id=${pelicula.img})}" src="/img/img1.jpg" alt="imagen pelicula" width="210px" height="300px" class="d-inline-block">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/o0iZkyB7c0I" title="YouTube video player" frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="ms-5" allowfullscreen></iframe>
                 <div class="d-flex flex-column ms-5">
@@ -47,10 +39,24 @@
             </div>
             <h2 class="mt-5">Sesiones</h2>
             <div class="d-flex mt-5">
-                <div class="d-flex flex-column me-5"><button type="button" class="btn btn-dark">12:00</button><p class="mt-2">10 butacas</p></div>
-                <div class="d-flex flex-column me-5"><button type="button" class="btn btn-dark">15:00</button><p class="mt-2">7 butacas</p></div>
-                <div class="d-flex flex-column me-5"><button type="button" class="btn btn-dark" disabled>18:00</button><p class="mt-2 text-danger bold">AGOTADO</p></div>
-                <div class="d-flex flex-column me-5"><button type="button" class="btn btn-dark">21:00</button><p class="mt-2 text-danger bold">2 butacas</p></div>
+                <div th:each="pase : ${pelicula.sesiones}" class="d-flex flex-column me-5">
+                    <a th:if="${pase.asientosLibres > 0}" th:href="@{/entradas/compra-entradas?sesion={p}(p=${pase.id})}">
+                        <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &lt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}">12:00</button>
+                        <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &gt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}">12:00</button>
+                        <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &lt; 10 && pase.asientosLibres == 0}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}" disabled>12:00</button>
+                        <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &gt; 10 && pase.asientosLibres == 0}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}" disabled>12:00</button>
+                    </a>
+                    <a th:unless="${pase.asientosLibres > 0}" href="#">
+                        <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &lt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}">12:00</button>
+                        <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &gt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}">12:00</button>
+                        <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &lt; 10 && pase.asientosLibres == 0}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}" disabled>12:00</button>
+                        <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &gt; 10 && pase.asientosLibres == 0}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}" disabled>12:00</button>
+                    </a>
+                    <p class="mt-2 text-danger bold" th:if="${pase.asientosLibres == 0}">AGOTADO</p>
+                    <p class="mt-2 text-danger bold" th:if="${pase.asientosLibres &lt; 3 && pase.asientosLibres &gt; 0}" th:text="${pase.asientosLibres + ' butacas'}">2 butacas</p>
+                    <p class="mt-2" th:if="${pase.asientosLibres &gt; 2}" th:text="${pase.asientosLibres + ' butacas'}">10 butacas</p>
+                    <input type="hidden" th:value="${pase.dia_hora}"></input>
+                </div>
             </div>   
         </div>
     </main>

@@ -35,7 +35,7 @@ public class Entrada implements Transferable<Entrada.Transfer>{
     @JoinColumn(name="user_id")
     private User user;
 
-    @OneToMany(targetEntity = Asiento.class)
+    @ManyToMany(targetEntity = Asiento.class)
     private List<Asiento> asientos = new ArrayList<>();
 
     @Column(unique = true)
