@@ -4,42 +4,33 @@
 <head>
     <th:block th:replace="fragments/head :: header" />
     <title>FilmAdmin</title>
+    <script async type="text/javascript" th:src="@{/js/funcionesPelicula.js}"></script>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100" onload="getPeliculaInfo()">
     <header th:replace="fragments/nav.html :: nav"></header>
 
     <main class="flex-shrink-0">
         <div class="container">
             <div class="d-flex align-items-center mt-5">
-                <h1 th:text="${pelicula.titulo}">El buen patrón</h1>
-                <select id="cine-selector" class="form-select filtropelicula h-50 ms-auto" aria-label="Seleccion de Cine" onchange="filtroCine(event)">
-                    <option selected value="0">Seleccione un cine</option>
-                    <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
-                            th:attr="value=${cine.id}">Madrid - La Gavia</option>
-                </select>
-                <select id="sala-selector" class="form-select filtropelicula ms-3" aria-label="Seleccion de Sala" onchange="filtroSala(event)" disabled>
-                    <option selected value="0">Seleccione una sala</option>
-                </select>
-                <input type="date" class="form-control filtropelicula ms-3 me-auto" th:value="${#temporals.format(dia, 'yyyy-MM-dd')}" id="fecha-selector" name="fecha" onchange="filtroFecha(event)">
+                <h1 id="titulo" th:text="${pelicula.titulo}">El buen patrón</h1>
+                
             </div>
             <div class="d-flex mt-5 align-items-center">
                 <img th:src="@{/img/{id}(id=${pelicula.img})}" src="/img/img1.jpg" alt="imagen pelicula" width="210px" height="300px" class="d-inline-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/o0iZkyB7c0I" title="YouTube video player" frameborder="0" 
+                <iframe width="560" id="trailer" height="315" src="" title="YouTube video player" frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="ms-5" allowfullscreen></iframe>
                 <div class="d-flex flex-column ms-5">
-                    <p><span class="bold">Duración:</span> 120min</p>
-                    <p><span class="bold">País:</span> España</p>
-                    <p><span class="bold">Género:</span> Comedia</span>
-                    <p><span class="bold">Directores:</span> Fernando de León Aranoa</p>
-                    <p><span class="bold">Guionistas:</span> Fernando de León Aranoa</p>
-                    <p><span class="bold">Productores:</span> Tripictures</p>
-                    <p><span class="bold">Actores:</span> Almudena Amor, Javier Bardem</p>
+                    <p><span class="bold">Duración: </span><span id="duracion" th:text="${pelicula.duraccion}"></span> min</p>
+                    <p><span class="bold">Género: </span><span id="genero" th:text="${pelicula.genero}"></span></span>
+                    <p><span class="bold">Directores: </span><span id="director"></span></p>
+                    <p><span class="bold">Guionistas: </span><span id="guionista"></span></p>
+                    <p><span class="bold">Actores: </span><span id="actores"></span></p>
                 </div>
             </div>
             <h2 class="mt-5">Sesiones</h2>
             <div class="d-flex mt-5">
-                <div th:each="pase : ${pelicula.sesiones}" class="d-flex flex-column me-5">
+                <div th:each="pase : ${pelicula.sesiones}" th:id="'sesion' + ${pase.id}" th:class="'d-flex flex-column me-5 sesion cine-' + ${pase.cine.id} + ' sala-' + ${pase.sala.id}">
                     <a th:if="${pase.asientosLibres > 0}" th:href="@{/entradas/compra-entradas?sesion={p}(p=${pase.id})}">
                         <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &lt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':0' + pase.dia_hora.minute}">12:00</button>
                         <button type="button" class="btn btn-dark" th:if="${pase.dia_hora.minute &gt; 10 && pase.asientosLibres > 0}" th:text="${pase.dia_hora.hour + ':' + pase.dia_hora.minute}">12:00</button>
