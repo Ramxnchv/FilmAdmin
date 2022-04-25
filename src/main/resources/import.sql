@@ -615,8 +615,8 @@ INSERT INTO Sala_Sesiones (sala_id,sesiones_id)
 VALUES (1,15);
 INSERT INTO Sala_Sesiones (sala_id,sesiones_id)
 VALUES (1,16);
-INSERT INTO Entrada (id,codigo,preciofinal,sesion_id,user_id)
-VALUES (1,'67G5HJ4F',110.00,1,2);
+INSERT INTO Entrada (id,codigo,preciofinal,sesion_id,user_id,validate)
+VALUES (1,'67G5HJ4F',110.00,1,2,false);
 INSERT INTO IWUser_Entradas (user_id,entradas_id)
 VALUES (2, 1);
 INSERT INTO Sesion_Entradas (sesion_id,entradas_id)

@@ -82,6 +82,17 @@ public class EntradaController {
         return entradas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
     }
 
+    @PostMapping(path = "/validate/{codigo}" , produces = "application/json")
+    @ResponseBody
+    @Transactional
+    public List<Entrada.Transfer> validateEntrada(@PathVariable String codigo, Model model) {
+        Entrada e = entityManager.createNamedQuery("Entrada.findByCode",Entrada.class).setParameter("codigo", codigo).getSingleResult();
+        e.setValidate(true);
+        List<Entrada> entradas =  new ArrayList<>();
+        entradas.add(e);
+        return entradas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
+    }
+
     @PostMapping(path = "/compra-entradas/{sesion}", consumes = "application/json")
     @ResponseBody
     @Transactional
@@ -104,7 +115,7 @@ public class EntradaController {
         List<Entrada> entradas = (List<Entrada>) entityManager.createNamedQuery("Entrada.getAll",Entrada.class).getResultList();
         Entrada ultima = entradas.get(entradas.size()-1);
         long idnueva = ultima.getId()+1;
-        Entrada e = new Entrada(idnueva,s,u,asientos,codigo,preciofinal);
+        Entrada e = new Entrada(idnueva,s,u,asientos,codigo, preciofinal, false);
 
         entityManager.persist(e);
         entityManager.flush();
