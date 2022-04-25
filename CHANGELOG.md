@@ -5,6 +5,7 @@
 - Añadida librería para generar códigos QR en la página de [Resumen de la Entrada](http://localhost:8080/entradas/67G5HJ4F).
 - Mejoras en panel de administración. Ahora los modals cargan la información de cada entidad.
 - Correciones post-feedback:
+  - El directorio /data ahora está a la misma altura que /src y contiene las imágenes de películas y cines
   - Cambiada la forma de acceder a la página de una entrada, ahora se utiliza el código (antes el id)
   - Se utilizan websockets en chat de [atención al cliente](http://localhost:8080/admin/atencion-cliente)
   - Validación de entradas hecha (para que no entren dos veces con el mismo código)
