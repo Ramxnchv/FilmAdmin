@@ -1,5 +1,6 @@
 package es.ucm.fdi.iw.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.AllArgsConstructor;
 
 @Entity
@@ -49,11 +49,14 @@ public class Entrada implements Transferable<Entrada.Transfer>{
         private long id;
         private List<Asiento> asientos;
         private Sesion sesion;
+        private String cine;
+        private String pelicula;
+        private LocalDateTime hora;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	asientos, sesion);
+		return new Transfer(id,	asientos, sesion, sesion.getCine().getNombre(), sesion.getPelicula().getTitulo(), sesion.getDia_hora());
 	}
 	
 	@Override

@@ -73,6 +73,15 @@ public class EntradaController {
         return entradas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
     }
 
+    @GetMapping(path = "/info/{codigo}" , produces = "application/json")
+    @ResponseBody
+    public List<Entrada.Transfer> getInfoEntrada(@PathVariable String codigo, Model model) {
+        Entrada e = entityManager.createNamedQuery("Entrada.findByCode",Entrada.class).setParameter("codigo", codigo).getSingleResult();
+        List<Entrada> entradas =  new ArrayList<>();
+        entradas.add(e);
+        return entradas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
+    }
+
     @PostMapping(path = "/compra-entradas/{sesion}", consumes = "application/json")
     @ResponseBody
     @Transactional
