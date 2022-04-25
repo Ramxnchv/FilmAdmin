@@ -6,6 +6,7 @@
 - Ahora la página de cada [película](http://localhost:8080/peliculas/1) contiene información de la misma obtenida de IMDB (junto con la almacenada en la BD).
 - Mejoras en panel de administración. Ahora los modals cargan la información de cada entidad.
 - Solucionado un error que no permitía comprar entradas con los mismos IDs de asientos. La relación Entrada-Asiento ahora es M a N (antes era 1 a N).
+- Solucionado un error que no deshabilitaba el botón de una sesión cuando se agotaban las butacas.
 - Correciones post-feedback:
   - El directorio /data ahora está a la misma altura que /src y contiene las imágenes de películas y cines
   - Cambiada la forma de acceder a la página de una entrada, ahora se utiliza el código (antes el id)
