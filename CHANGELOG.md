@@ -1,11 +1,13 @@
 # Changelog
 
 ## [2.3] - 2022-04-27
-- Página de [Gestión de Entradas](http://localhost:8080/admin/gestion-entradas/) funcionando. Permite consultar los asientos de cada sesión al administrador del cine, validar una entrada y comprobar los asientos de la misma.
+- Página de [Gestión de Entradas](http://localhost:8080/admin/gestion-entradas/) funcionando. Permite consultar los asientos de cada sesión al administrador del cine, validar una entrada (al acceder al cine) y comprobar los asientos de la misma.
 - Añadida librería para generar códigos QR en la página de [Resumen de la Entrada](http://localhost:8080/entradas/67G5HJ4F).
 - Mejoras en panel de administración. Ahora los modals cargan la información de cada entidad.
 - Correciones post-feedback:
   - Cambiada la forma de acceder a la página de una entrada, ahora se utiliza el código (antes el id)
+  - Se utilizan websockets en chat de [atención al cliente](http://localhost:8080/admin/atencion-cliente)
+  - Validación de entradas hecha (para que no entren dos veces con el mismo código)
 
 ## [2.2] - 2022-04-08
 - Chat de atención al cliente con Websockets funcionando (permite al administrador atender a varios clientes).
