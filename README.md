@@ -16,12 +16,12 @@ Pagina de inicio con el logo del cine que además actúa de navbar con enlaces a
 ## Películas
 [Listado de Películas](http://localhost:8080/peliculas/).
 
-Listado de películas donde poder seleccionar un cine para ver las butacas disponibles en cada sesión, poder filtrar por título, categoría, duración u orden alfabético y poder acceder a la información de la película o comprar entradas para una sesión en particular.
+Listado de películas donde poder seleccionar un cine para ver las butacas disponibles en cada sesión, poder filtrar por título, cine, sala, fecha, categoría, duración u orden alfabético y poder acceder a la información de la película o comprar entradas para una sesión en particular.
 
 ## Información Película
 [Información de una Película](http://localhost:8080/peliculas/1).
 
-Información de la película obtenida de IMDB (imagen, trailer, duración, país, género, directores, etc) además del listado de sesiones de la vista anterior.
+Información de la película obtenida de IMDB (imagen, trailer, duración, género, directores, etc) además del listado de sesiones de la vista anterior.
 
 ## Comprar entrada
 [Compra de entradas](http://localhost:8080/compra-entradas).
@@ -31,7 +31,7 @@ Vista donde seleccionar la información de la compra (cine, número de entradas,
 ## QR y Página postcompra entrada
 [Resumen entrada](http://localhost:8080/entradas/67G5HJ4F).
 
-Aquí tenemos la página postcompra donde encontramos un resumen de la información de nuestra entrada, las opciones de imprimirla o descargarla en pdf (aún no implementadas) y el código QR generado a su lado con el id del enlace que autogenere (en este caso 67G5HJ4F). Este ID se podrá utilizar en la página de gestión de entradas del administrador para comprobar la validez o los asientos de las mismas.
+Aquí tenemos la página postcompra donde encontramos un resumen de la información de nuestra entrada, las opciones de imprimirla o descargarla en pdf y el código QR generado a su lado con el id del enlace que autogenere (en este caso 67G5HJ4F). Este ID se podrá utilizar en la página de gestión de entradas del administrador para comprobar la validez o los asientos de las mismas.
 
 ## Cines
 [Listado de Cines](http://localhost:8080/cines/).
