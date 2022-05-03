@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.0] - 2022-05-19
+- Correciones post-feedback:
+  - Solucionado un error que no capturaba la excepción al no encontrar el código de una entrada y no mostraba el error de "no encontrada"
+  - Añadida la fecha de la sesión al abrir el modal de comprobar código
+ 
 ## [2.3] - 2022-04-27
 - Página de [Gestión de Entradas](http://localhost:8080/admin/gestion-entradas/) funcionando. Permite consultar los asientos de cada sesión al administrador del cine, validar una entrada (al acceder al cine) y comprobar los asientos de la misma.
 - Añadida librería para generar códigos QR en la página de [Resumen de la Entrada](http://localhost:8080/entradas/67G5HJ4F).
