@@ -8,8 +8,8 @@ async function comprobarEntrada(event) {
             keyboard: false
         })
         myModal.show();
-        console.log(new Date(entrada[0].hora).getHours())
-        document.getElementById('tituloModal').innerHTML = `Entrada ${code} para ${entrada[0].pelicula} - ${new Date(entrada[0].hora).getHours()}:${new Date(entrada[0].hora).getMinutes() < 10 ? '0' + new Date(entrada[0].hora).getMinutes() : new Date(entrada[0].hora).getMinutes()} - ${entrada[0].cine} - ${entrada[0].sesion.sala.nombre}`;
+        console.log(entrada)
+        document.getElementById('tituloModal').innerHTML = `Entrada ${code} para ${entrada[0].pelicula} - ${new Date(entrada[0].hora).getDate()}/${new Date(entrada[0].hora).getMonth()}/${new Date(entrada[0].hora).getFullYear()} - ${new Date(entrada[0].hora).getHours()}:${new Date(entrada[0].hora).getMinutes() < 10 ? '0' + new Date(entrada[0].hora).getMinutes() : new Date(entrada[0].hora).getMinutes()} - ${entrada[0].cine} - ${entrada[0].sesion.sala.nombre}`;
 
         let id = 1;
         let FILAS_SALA = 4;
