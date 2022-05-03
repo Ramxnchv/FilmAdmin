@@ -3,7 +3,7 @@ async function comprobarEntrada(event) {
     let code = document.getElementById("codigoentrada").value;
     let entrada = null;
     entrada = await go(config.rootUrl + `/entradas/info/${code}`, "GET");
-    if (entrada && !entrada[0].validate) {
+    if (entrada.length > 0 && !entrada[0].validate) {
         var myModal = new bootstrap.Modal(document.getElementById('modalButacas'), {
             keyboard: false
         })
@@ -49,7 +49,7 @@ async function comprobarEntrada(event) {
             }
         }
 
-    } else if(entrada[0].validate){
+    } else if(entrada.length > 0 && entrada[0].validate){
         let formcomprobar = document.getElementById('formcomprobar');
         let alertdiv = document.createElement("div");
         let textdiv = document.createElement('div');

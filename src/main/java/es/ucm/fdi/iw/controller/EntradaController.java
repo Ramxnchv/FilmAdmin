@@ -76,10 +76,14 @@ public class EntradaController {
     @GetMapping(path = "/info/{codigo}" , produces = "application/json")
     @ResponseBody
     public List<Entrada.Transfer> getInfoEntrada(@PathVariable String codigo, Model model) {
-        Entrada e = entityManager.createNamedQuery("Entrada.findByCode",Entrada.class).setParameter("codigo", codigo).getSingleResult();
-        List<Entrada> entradas =  new ArrayList<>();
-        entradas.add(e);
-        return entradas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
+        try{
+            Entrada e = entityManager.createNamedQuery("Entrada.findByCode",Entrada.class).setParameter("codigo", codigo).getSingleResult();
+            List<Entrada> entradas =  new ArrayList<>();
+            entradas.add(e);
+            return entradas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
+        }catch(Exception e){
+            return new ArrayList<Entrada.Transfer>();
+        }
     }
 
     @PostMapping(path = "/validate/{codigo}" , produces = "application/json")
