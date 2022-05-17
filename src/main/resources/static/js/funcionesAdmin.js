@@ -1,3 +1,62 @@
+function crearUsuario() {
+    let $modal = $('#modalUsuario').clone().removeAttr("id");
+
+    $modal.find('input[id="userimg"]').change(() => {
+        const userimg = $modal.find('input[id="userimg"]')[0].files[0];
+        readImageFileData(userimg, $modal.find('img[id="previewimg"]')[0]);
+        $modal.find('img[id="previewimg"]').show();
+    });
+
+    let action = $modal.find('form').attr('action');
+
+    $modal.find('form').submit(function(event) {
+        event.preventDefault();
+        
+        const $form = $(this);
+
+        const username = $form.find('input[id="username"]').val();
+
+        const email = $form.find('input[id="email"]').val();
+
+        const password = $form.find('input[id="password"]').val();
+        const pass2 = $form.find('input[id="confirm_password"]').val();
+
+        const firstName = $form.find('input[id="nombre"]').val();
+
+        const lastName = $form.find('input[id="apellidos"]').val();
+
+        const birthDate = $form.find('input[id="fecha"]').val();
+        
+        let data = { username, email, password, pass2, firstName, lastName, birthDate}
+
+        go(action, "POST", data).then((response) => {
+
+            action = action.replace('-1', response.id);
+
+            let imgSrc = $form.find('img[id="previewimg"]').attr('src');
+            if (imgSrc) 
+                postImage($form.find('img[id="previewimg"]')[0], action + "/pic", "photo", response.id+".jpg").then(() => {
+                    location.reload();
+                }).catch((error) => {
+                    if (error.text) {
+                        const errMsg = JSON.parse(error.text);
+                        alert(errMsg.message);
+                    }
+                    else location.reload();
+                });
+            else location.reload();
+            }).catch((error) => {
+                if (error.text) {
+                    const errMsg = JSON.parse(error.text);
+                    alert(errMsg.message);
+                }
+            });
+
+    });
+
+    $modal.modal('show');   
+}
+
 function editarUsuario() {
     const $btn = $(this);
     const id = $btn.attr('data-id');
@@ -9,19 +68,20 @@ function editarUsuario() {
 
     let $modal = $('#modalUsuario').clone().removeAttr("id");
 
+    $modal.find('input[id="userimg"]').change(() => {
+        const userimg = $modal.find('input[id="userimg"]')[0].files[0];
+        readImageFileData(userimg, $modal.find('img[id="previewimg"]')[0]);
+        $modal.find('img[id="previewimg"]').show();
+    });
+
     $modal.find('input[id="username"]').val(username);
     $modal.find('input[id="email"]').val(email);
     $modal.find('input[id="nombre"]').val(firstname);
     $modal.find('input[id="apellidos"]').val(lastname);
     $modal.find('input[id="fecha"]').val(birthdate);
 
-    $modal.find('input[id="username"]').prop('required', false);
-    $modal.find('input[id="email"]').prop('required', false);
     $modal.find('input[id="password"]').prop('required', false);
     $modal.find('input[id="confirm_password"]').prop('required', false);
-    $modal.find('input[id="nombre"]').prop('required', false);
-    $modal.find('input[id="apellidos"]').prop('required', false);
-    $modal.find('input[id="fecha"]').prop('required', false);
 
     const action = $modal.find('form').attr('action').replace('-1', id);
     $modal.find('form').attr('action', action);
@@ -32,29 +92,42 @@ function editarUsuario() {
         const $form = $(this);
 
         const username = $form.find('input[id="username"]').val();
-
         const email = $form.find('input[id="email"]').val();
-        if (email) $modal.find('form').attr('action', action);
+        const firstName = $form.find('input[id="nombre"]').val();
+        const lastName = $form.find('input[id="apellidos"]').val();
+        const birthDate = $form.find('input[id="fecha"]').val();
+
+        let data = {username, email, firstName, lastName, birthDate};
 
         const password = $form.find('input[id="password"]').val();
         const pass2 = $form.find('input[id="confirm_password"]').val();
-
-        const firstName = $form.find('input[id="nombre"]').val();
-        if (firstName) $btn.attr('data-firstname', firstName);
-
-        const lastName = $form.find('input[id="apellidos"]').val();
-        if (lastName) $btn.attr('data-lastname', lastName);
-
-        const birthDate = $form.find('input[id="fecha"]').val();
-        if (birthDate) $btn.attr('data-birthdate', birthDate);
-        
-        let data = { username, email, password, pass2, firstName, lastName, birthDate}
-
-        $modal.modal('hide');
-
-        go(action, "POST", data);
-
-        });
+        if (password && pass2) data = {...data, password, pass2};
+        else if ((password && !pass2) || (!password && pass2)) 
+            alert("Para cambiar la contraseña es necesario rellenar los dos campos correspondientes.")
+    
+        if ((password && pass2) || (!password && !pass2)) {
+            go(action, "POST", data).then(() => {
+                
+                let imgSrc = $form.find('img[id="previewimg"]').attr('src');
+                if (imgSrc) 
+                    postImage($form.find('img[id="previewimg"]')[0], action + "/pic", "photo", id+".jpg").then(() => {
+                        location.reload();
+                    }).catch((error) => {
+                        if (error.text) {
+                            const errMsg = JSON.parse(error.text);
+                            alert(errMsg.message);
+                        }
+                        else location.reload();
+                    });
+                else location.reload();
+            }).catch((error) => {
+                if (error.text) {
+                    const errMsg = JSON.parse(error.text);
+                    alert(errMsg.message);
+                }
+            });
+        }
+    });
 
     $modal.modal('show');    
 }

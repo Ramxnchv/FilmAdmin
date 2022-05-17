@@ -83,6 +83,10 @@ public class UserController {
 	public static class NoEsTuPerfilException extends RuntimeException {
 	}
 
+	@ResponseStatus(value = HttpStatus.FORBIDDEN, reason = "Las contraseñas introducidas no coinciden.") // 403
+	public static class PasswordsNoCoincidenException extends RuntimeException {
+	}
+
 	/**
 	 * Encodes a password, so that it can be saved for future checking. Notice
 	 * that encoding the same password multiple times will yield different
@@ -142,10 +146,11 @@ public class UserController {
 		if (id == -1 && requester.hasRole(Role.ADMIN)) {
 			// create new user with random password
 			target = new User();
+			target.setUsername(o.get("username").asText());
 			target.setPassword(encodePassword(generateRandomBase64Token(12)));
 			target.setEnabled(true);
 			entityManager.persist(target);
-			entityManager.flush(); // forces DB to add user & assign valid id
+			entityManager.flush();
 			id = target.getId(); // retrieve assigned id from DB
 		}
 
@@ -163,7 +168,7 @@ public class UserController {
 			String pass2 = o.get("pass2").asText();
 			if (password != null) {
 				if (!password.equals(pass2)) {
-					// FIXME: complain
+					throw new PasswordsNoCoincidenException();
 				} else {
 					// save encoded version of password
 					target.setPassword(encodePassword(password));
