@@ -16,7 +16,7 @@
                 <div class="d-flex flex-column">
                     <h2 class="mt-5 mb-5">Información de <span th:text="${user.username}">Paco</span></h2>
                     <div class="d-flex align-items-center">
-                        <img width="240px" height="326px" th:src="@{/user/{id}/pic(id=${session.u.id})}">
+                        <img width="240px" height="326px" th:src="@{/user/{id}/pic(id=${user.id})}">
                         <div id="forms">
                             <form method="POST" onsubmit="enviarUser(event)" class="d-flex flex-column ms-5" id="forminfouser">
                                 <input type="text" class="form-control mb-2" placeholder="Nombre" id="firstName" name="firstName" th:if="${user.firstName != null}" th:value="${user.firstName}">

@@ -33,7 +33,7 @@
                             <tbody id="peliculas">
                                 <tr th:each="sesion : ${sesiones}" th:id="${sesion.id}" th:class="'cine-' + ${sesion.cine.id} + ' sala-' + ${sesion.sala.id}">
                                     <td class="d-flex align-items-center"><a th:href="@{/peliculas/{id}(id=${sesion.pelicula.id})}"><img
-                                        th:src="@{/img/{img}(img=${sesion.pelicula.img})}" src="/img/img1.jpg"
+                                        th:src="@{/peliculas/{id}/pic(id=${sesion.pelicula.id})}" src="/img/img1.jpg"
                                         alt="imagen pelicula" height="120px" width="84px"
                                         class="d-inline-block"></a></td>
                                     <td th:text="${#temporals.format(sesion.dia_hora, 'dd/MM/yy')}">01/03/22</td>

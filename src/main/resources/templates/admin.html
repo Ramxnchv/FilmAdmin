@@ -69,7 +69,7 @@
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Películas</h2>
                                 <input type="text" placeholder="Buscar película" class="w-50 buscador ms-5 form-control">
-                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalPelicula">Añadir película</button>
+                                <button type="button" class="btn btn-dark" id="crearpelicula">Añadir película</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
                                 <table class="table align-middle">
@@ -77,11 +77,11 @@
                                     <tbody>
                                         <tr th:each="pelicula : ${peliculas}">
                                             <td class="d-flex align-items-center"><a th:href="@{/peliculas/{id}(id=${pelicula.id})}"><img
-                                                        th:src="@{/img/{img}(img=${pelicula.img})}" src="/img/img1.jpg"
+                                                        th:src="@{/peliculas/{id}/pic(id=${pelicula.id})}" src="/img/img1.jpg"
                                                         alt="imagen pelicula" height="120px" width="84px"
                                                         class="d-inline-block"></a></td>
                                             <td><a th:href="@{/peliculas/{id}(id=${pelicula.id})}" th:text="${pelicula.titulo}" class="text-dark bold">El buen patrón</a></td>
-                                            <td><button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalPelicula">Editar</button></td>
+                                            <td><button type="button" class="btn btn-dark btn-sm editarpelicula" th:attr="data-id=${pelicula.id}">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
                                         </tr>
@@ -94,7 +94,7 @@
                             <div class="d-flex justify-content-between">
                                 <h2 class="ms-5">Cines</h2>
                                 <input type="text" placeholder="Buscar cine" class="w-50 buscador form-control ms-5">
-                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCine">Añadir Cine</button>
+                                <button type="button" class="btn btn-dark" id="crearcine">Añadir Cine</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
                                 <table class="table align-middle">
@@ -102,7 +102,7 @@
                                     <tbody>
                                         <tr th:each="cine : ${cines}">
                                             <td class="d-flex align-items-center"><a th:href="@{/cines/{id}(id=${cine.id})}"><img
-                                                        th:src="@{/img/{img}(img=${cine.imagen})}" src="/img/lagavia.jpg"
+                                                        th:src="@{/cines/{id}/pic(id=${cine.id})}" src="/img/lagavia.jpg"
                                                         alt="imagen cine" height="120px" width="84px"
                                                         class="d-inline-block"></a></td>
                                             <td><a th:href="@{/cines/{id}(id=${cine.id})}" th:text="${cine.nombre}" class="text-dark bold">La Gavia</a></td>
@@ -124,7 +124,7 @@
                                         th:attr="value=#{cine.id}">Madrid - La Gavia</option>
                                 </select>
                                 <input type="text" placeholder="Buscar sala por nombre" class="buscadorsala form-control ms-5 me-5">
-                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalSala">Añadir Sala</button>
+                                <button type="button" class="btn btn-dark" id="crearsala">Añadir Sala</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
                                 <table class="table align-middle">
@@ -163,7 +163,7 @@
                                 </select>
                                 <input type="date" class="form-control w-25 h-50 ms-3" th:value="${#temporals.format(dia, 'yyyy-MM-dd')}" id="fecha" name="fecha" required="required">
                                 <input type="text" class="form-control w-25 h-50 ms-3 me-3" placeholder="Busca un título" >
-                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalSesion">Añadir sesión</button>
+                                <button type="button" class="btn btn-dark" id="crearsesion">Añadir sesión</button>
                             </div>
                             <div class="table-responsive tabla tablaadmin mt-3">
                                 <table class="table align-middle">
@@ -267,15 +267,15 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modbody">
-                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/pelicula/-1}">
+                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/peliculas/-1}">
                             <div class="d-flex justify-content-between mt-5">
                                 <p>
                                     <label for="username" class="visually-hidden">Titulo</label>
-                                    <input type="text" id="username2" name="titulo" class="form-control" placeholder="Título" required="required">
+                                    <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título" required="required">
                                 </p>
                                 <p class="ms-4">
                                     <label for="email" class="visually-hidden">Duracion</label>
-                                    <input type="text" class="form-control" placeholder="Duración (minutos)" id="email2" name="duracion" required="required">
+                                    <input type="text" class="form-control" placeholder="Duración (minutos)" id="duracion" name="duracion" required="required">
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between mt-2 ms-3">
@@ -284,15 +284,20 @@
                                     <input type="text" id="genero" name="genero" class="form-control" placeholder="Género" required="required">
                                 </p>
                                 <p class="ms-4">
-                                    <label for="userimg" class="visually-hidden">Imagen</label>
-                                    <input class="form-control fileinput" type="file" id="userimg" name="imagen" accept="image/*">
+                                    <label for="peliculaimg" class="visually-hidden">Imagen</label>
+                                    <input class="form-control fileinput" type="file" id="peliculaimg" name="imagen" accept="image/*">
                                 </p>
-                            </div>     
+                            </div>
+                            <div class="d-flex justify-content-start mt-2">
+                                <p>
+                                    <img id="previewimg" src="" height="120px" width="84px" style="display: none;">
+                                </p>
+                            </div> 
+                            <div class="modal-footer modfooter">
+                                <button type="submit" class="btn btn-dark">Validar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            </div>    
                         </form>
-                    </div>
-                    <div class="modal-footer modfooter">
-                        <button type="submit" class="btn btn-dark">Validar</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                   </div>
                 </div>
@@ -306,14 +311,18 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modbody">
-                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/cine/-1}">
+                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/cines/-1}">
                             <div class="d-flex justify-content-center mt-3">
-                                <h6>Nombre y Dirección</h6>
+                                <h6>Nombre, Ciudad y Dirección</h6>
                             </div>
                             <div class="d-flex justify-content-between mt-2">
                                 <p>
-                                    <label for="username" class="visually-hidden">Nombre</label>
+                                    <label for="nombre" class="visually-hidden">Nombre</label>
                                     <input type="text" id="nombre-cine" name="nombre" class="form-control" placeholder="Nombre" required="required">
+                                </p>
+                                <p class="ms-4">
+                                    <label for="ciudad" class="visually-hidden">Ciudad</label>
+                                    <input type="text" id="ciudad" name="ciudad" class="form-control" placeholder="Ciudad" required="required">
                                 </p>
                                 <p class="ms-4">
                                     <label for="email" class="visually-hidden">Direccion</label>
@@ -325,43 +334,43 @@
                             </div>
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="MONDAY">
+                                    <input class="form-check-input" type="checkbox" value="1" id="MONDAY">
                                     <label class="form-check-label" for="MONDAY">
                                       LUNES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="TUESDAY">
+                                    <input class="form-check-input" type="checkbox" value="2" id="TUESDAY">
                                     <label class="form-check-label" for="TUESDAY">
                                       MARTES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="WEDNESDAY">
+                                    <input class="form-check-input" type="checkbox" value="3" id="WEDNESDAY">
                                     <label class="form-check-label" for="WEDNESDAY">
                                       MIERCOLES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="THURSDAY">
+                                    <input class="form-check-input" type="checkbox" value="4" id="THURSDAY">
                                     <label class="form-check-label" for="THURSDAY">
                                       JUEVES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="FRIDAY">
+                                    <input class="form-check-input" type="checkbox" value="5" id="FRIDAY">
                                     <label class="form-check-label" for="FRIDAY">
                                       VIERNES
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="SATURDAY">
+                                    <input class="form-check-input" type="checkbox" value="6" id="SATURDAY">
                                     <label class="form-check-label" for="SATURDAY">
                                       SABADO
                                     </label>
                                 </div>
                                 <div class="form-check ms-2">
-                                    <input class="form-check-input" type="checkbox" value="" id="SUNDAY">
+                                    <input class="form-check-input" type="checkbox" value="7" id="SUNDAY">
                                     <label class="form-check-label" for="SUNDAY">
                                       DOMINGO
                                     </label>
@@ -383,7 +392,7 @@
                             <div class="d-flex justify-content-start mt-2 fcierre">
                                 <p>
                                     <label for="festivoscierre" class="visually-hidden">Festivos Cierre</label>
-                                    <input type="text" id="festivoscierre" name="festivoscierre" class="form-control" placeholder="Introduce los festivos separados por comas (Ejemplo: 01/01,12/10,25/12)" required="required">
+                                    <input type="text" id="festivoscierre" name="festivoscierre" class="form-control" placeholder="Introduce los festivos separados por comas (Ejemplo: 01/01,12/10,25/12)">
                                 </p>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
@@ -395,15 +404,20 @@
                                     <input type="text" class="form-control" placeholder="Latitud,Longitud" id="coordenadas" name="maps" required="required">
                                 </p>
                                 <p class="ms-4">
-                                    <label for="formFileMultiple" class="visually-hidden">Imagenes</label>
-                                    <input class="form-control" type="file" name="imagenes" id="formFileMultiple" multiple>
+                                    <label for="cineimg" class="visually-hidden">Imagen</label>
+                                    <input class="form-control fileinput" type="file" id="cineimg" name="imagen" accept="image/*">
                                 </p>
+                            </div>
+                            <div class="d-flex justify-content-start mt-2">
+                                <p>
+                                    <img id="previewimg" src="" height="120px" width="84px" style="display: none;">
+                                </p>
+                            </div> 
+                            <div class="modal-footer modfooter">
+                                <button type="submit" class="btn btn-dark">Validar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                             </div>       
                         </form>
-                    </div>
-                    <div class="modal-footer modfooter">
-                        <button type="submit" class="btn btn-dark">Validar</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                   </div>
                 </div>
@@ -519,12 +533,13 @@
     var salas = /*[[${salas}]]*/ 'Salas';
     var sesiones = /*[[${sesiones}]]*/ 'Sesiones';
 
-    console.log(salas);
-
     $(function () {
         $('#crearusuario').click(crearUsuario);
+        $('#crearcine').click(crearCine);
+        $('#crearpelicula').click(crearPelicula);
 
         $('.editarusuario').click(editarUsuario);
+        $('.editarpelicula').click({peliculas}, editarPelicula);
         $('.editarcine').click({cines}, editarCine);
         $('.editarsala').click({salas}, editarSala);
         $('.editarsesion').click({sesiones, salas}, editarSesion);

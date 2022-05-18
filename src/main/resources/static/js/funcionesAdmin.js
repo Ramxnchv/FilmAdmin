@@ -30,7 +30,6 @@ function crearUsuario() {
         let data = { username, email, password, pass2, firstName, lastName, birthDate}
 
         go(action, "POST", data).then((response) => {
-
             action = action.replace('-1', response.id);
 
             let imgSrc = $form.find('img[id="previewimg"]').attr('src');
@@ -55,6 +54,121 @@ function crearUsuario() {
     });
 
     $modal.modal('show');   
+}
+
+function crearPelicula() {
+    let $modal = $('#modalPelicula').clone().removeAttr("id");
+
+    $modal.find('input[id="peliculaimg"]').change(() => {
+        const peliculaimg = $modal.find('input[id="peliculaimg"]')[0].files[0];
+        readImageFileData(peliculaimg, $modal.find('img[id="previewimg"]')[0]);
+        $modal.find('img[id="previewimg"]').show();
+    });
+
+    const action = $modal.find('form').attr('action');
+
+    $modal.find('form').submit(function(event) {
+        event.preventDefault();
+        
+        const $form = $(this);
+
+        const titulo = $form.find('input[id="titulo"]').val();
+        const duracion = $form.find('input[id="duracion"]').val();
+        const genero = $form.find('input[id="genero"]').val();
+
+        let data = {titulo, duracion, genero};
+
+        go(action, "POST", data).then((response) => {
+            action = action.replace('-1', response.id);
+
+            let imgSrc = $form.find('img[id="previewimg"]').attr('src');
+            if (imgSrc) 
+                postImage($form.find('img[id="previewimg"]')[0], action + "/pic", "photo", id+".jpg").then(() => {
+                    location.reload();
+                }).catch((error) => {
+                    if (error.text) {
+                        const errMsg = JSON.parse(error.text);
+                        alert(errMsg.message);
+                    }
+                    else location.reload();
+                });
+            else location.reload();
+        }).catch((error) => {
+            if (error.text) {
+                const errMsg = JSON.parse(error.text);
+                alert(errMsg.message);
+            }
+        });
+    });
+
+    $modal.modal('show');  
+}
+
+function crearCine() {
+    let $modal = $('#modalCine').clone().removeAttr("id");
+
+    $modal.find('input[id="cineimg"]').change(() => {
+        const cineimg = $modal.find('input[id="cineimg"]')[0].files[0];
+        readImageFileData(cineimg, $modal.find('img[id="previewimg"]')[0]);
+        $modal.find('img[id="previewimg"]').show();
+    });
+
+    const action = $modal.find('form').attr('action');
+        
+    $modal.find('form').submit(function(event) {
+        event.preventDefault();
+        
+        const $form = $(this);
+
+        const nombre = $modal.find('input[id="nombre-cine"]').val();
+        const ciudad = $modal.find('input[id="ciudad"]').val();
+        const direccion = $modal.find('input[id="direccion-cine"]').val();
+        const hora_apertura = $modal.find('input[id="hora-apertura"]').val();
+        const hora_cierre = $modal.find('input[id="hora-cierre"]').val();
+        const coordenadas = $modal.find('input[id="coordenadas"]').val();
+        const festivoscierreString = $modal.find('input[id="festivoscierre"]').val();
+
+        const festivoscierreArray = festivoscierreString.replace(/\s+/g,'').split(",");
+        const festivoscierre = festivoscierreArray.map(festivo => {
+            festivo = festivo.replace(/\//gi,'');
+            const dia = '-' + festivo.substring(0,2);
+            festivo = '--' + festivo.substring(2,4) + dia;
+            return festivo;
+        });
+
+        const dias_apertura = [];
+        $modal.find(`input[type="checkbox"]`).each(function(){
+            if($(this).prop('checked'))
+                dias_apertura.push(parseInt($(this).val()));
+        });
+        
+        let data = {nombre, ciudad, direccion, hora_apertura, hora_cierre, festivoscierre, coordenadas, dias_apertura};
+
+        go(action, "POST", data).then((response) => {
+            action = action.replace('-1', response.id);
+
+            let imgSrc = $form.find('img[id="previewimg"]').attr('src');
+            if (imgSrc) 
+                postImage($form.find('img[id="previewimg"]')[0], action + "/pic", "photo", id+".jpg").then(() => {
+                    location.reload();
+                }).catch((error) => {
+                    if (error.text) {
+                        const errMsg = JSON.parse(error.text);
+                        alert(errMsg.message);
+                    }
+                    else location.reload();
+                });
+            else location.reload();
+        }).catch((error) => {
+            if (error.text) {
+                const errMsg = JSON.parse(error.text);
+                alert(errMsg.message);
+            }
+        });
+    });
+    
+    
+    $modal.modal('show');  
 }
 
 function editarUsuario() {
@@ -132,6 +246,62 @@ function editarUsuario() {
     $modal.modal('show');    
 }
 
+function editarPelicula(event) {
+    const $btn = $(this);
+    const id = $btn.attr('data-id');
+
+    const pelicula = event.data.peliculas.find(p => p.id == id);
+
+    let $modal = $('#modalPelicula').clone().removeAttr("id");
+
+    $modal.find('input[id="peliculaimg"]').change(() => {
+        const peliculaimg = $modal.find('input[id="peliculaimg"]')[0].files[0];
+        readImageFileData(peliculaimg, $modal.find('img[id="previewimg"]')[0]);
+        $modal.find('img[id="previewimg"]').show();
+    });
+    
+    $modal.find('input[id="titulo"]').val(pelicula.titulo);
+    $modal.find('input[id="duracion"]').val(pelicula.duraccion);
+    $modal.find('input[id="genero"]').val(pelicula.genero);
+
+    const action = $modal.find('form').attr('action').replace('-1', id);
+    $modal.find('form').attr('action', action);
+
+    $modal.find('form').submit(function(event) {
+        event.preventDefault();
+        
+        const $form = $(this);
+
+        const titulo = $form.find('input[id="titulo"]').val();
+        const duracion = $form.find('input[id="duracion"]').val();
+        const genero = $form.find('input[id="genero"]').val();
+
+        let data = {titulo, duracion, genero};
+
+        go(action, "POST", data).then(() => {
+            let imgSrc = $form.find('img[id="previewimg"]').attr('src');
+            if (imgSrc) 
+                postImage($form.find('img[id="previewimg"]')[0], action + "/pic", "photo", id+".jpg").then(() => {
+                    location.reload();
+                }).catch((error) => {
+                    if (error.text) {
+                        const errMsg = JSON.parse(error.text);
+                        alert(errMsg.message);
+                    }
+                    else location.reload();
+                });
+            else location.reload();
+        }).catch((error) => {
+            if (error.text) {
+                const errMsg = JSON.parse(error.text);
+                alert(errMsg.message);
+            }
+        });
+    });
+
+    $modal.modal('show');  
+}
+
 function editarCine(event) {
     const $btn = $(this);
     const id = $btn.attr('data-id');
@@ -149,14 +319,75 @@ function editarCine(event) {
 
     let $modal = $('#modalCine').clone().removeAttr("id");
 
+    $modal.find('input[id="cineimg"]').change(() => {
+        const cineimg = $modal.find('input[id="cineimg"]')[0].files[0];
+        readImageFileData(cineimg, $modal.find('img[id="previewimg"]')[0]);
+        $modal.find('img[id="previewimg"]').show();
+    });
+
     $modal.find('input[id="nombre-cine"]').val(cine.nombre);
+    $modal.find('input[id="ciudad"]').val(cine.ciudad);
     $modal.find('input[id="direccion-cine"]').val(cine.direccion);
     $modal.find('input[id="hora-apertura"]').val(cine.hora_apertura);
     $modal.find('input[id="hora-cierre"]').val(cine.hora_cierre);
     $modal.find('input[id="festivoscierre"]').val(festivos_cierre);
     $modal.find('input[id="coordenadas"]').val(cine.coordenadas);
     for (const dia of cine.dias_apertura) 
-        $modal.find(`input[id="${dia}"]`).prop("checked", true);    
+        $modal.find(`input[id="${dia}"]`).prop("checked", true);
+
+    const action = $modal.find('form').attr('action').replace('-1', id);
+    $modal.find('form').attr('action', action);
+        
+    $modal.find('form').submit(function(event) {
+        event.preventDefault();
+        
+        const $form = $(this);
+
+        const nombre = $modal.find('input[id="nombre-cine"]').val();
+        const ciudad = $modal.find('input[id="ciudad"]').val();
+        const direccion = $modal.find('input[id="direccion-cine"]').val();
+        const hora_apertura = $modal.find('input[id="hora-apertura"]').val();
+        const hora_cierre = $modal.find('input[id="hora-cierre"]').val();
+        const coordenadas = $modal.find('input[id="coordenadas"]').val();
+        const festivoscierreString = $modal.find('input[id="festivoscierre"]').val();
+
+        const festivoscierreArray = festivoscierreString.replace(/\s+/g,'').split(",");
+        const festivoscierre = festivoscierreArray.map(festivo => {
+            festivo = festivo.replace(/\//gi,'');
+            const dia = '-' + festivo.substring(0,2);
+            festivo = '--' + festivo.substring(2,4) + dia;
+            return festivo;
+        });
+
+        const dias_apertura = [];
+        $modal.find(`input[type="checkbox"]`).each(function(){
+            if($(this).prop('checked'))
+                dias_apertura.push(parseInt($(this).val()));
+        });
+        
+        let data = {nombre, ciudad, direccion, hora_apertura, hora_cierre, festivoscierre, coordenadas, dias_apertura};
+
+        go(action, "POST", data).then(() => {
+            let imgSrc = $form.find('img[id="previewimg"]').attr('src');
+            if (imgSrc) 
+                postImage($form.find('img[id="previewimg"]')[0], action + "/pic", "photo", id+".jpg").then(() => {
+                    location.reload();
+                }).catch((error) => {
+                    if (error.text) {
+                        const errMsg = JSON.parse(error.text);
+                        alert(errMsg.message);
+                    }
+                    else location.reload();
+                });
+            else location.reload();
+        }).catch((error) => {
+            if (error.text) {
+                const errMsg = JSON.parse(error.text);
+                alert(errMsg.message);
+            }
+        });
+    });
+    
     
     $modal.modal('show');  
 }
