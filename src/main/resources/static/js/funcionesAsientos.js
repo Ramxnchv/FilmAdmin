@@ -28,27 +28,28 @@ async function crearAsientos(){
         for (let i = 0; i < respuesta.length;i++){
             asientosOcupados = respuesta[i].asientos.length!== 0 ? respuesta[i].asientos.map(a => a.id).concat(...asientosOcupados) : [];   
         }
+        asientos = respuesta[0].sesion.sala.asientos.map(function(a){
+            if(asientosOcupados.includes(a.id)){
+                return {
+                    id: a.id,
+                    columna: a.columna,
+                    fila: a.fila,
+                    estado: "ocupado"
+                }
+            }else{
+                return {
+                    id: a.id,
+                    columna: a.columna,
+                    fila: a.fila,
+                    estado: "libre"
+                }
+            }   
+        })
+    
+        console.log(asientos)
     }
 
-    asientos = respuesta[0].sesion.sala.asientos.map(function(a){
-        if(asientosOcupados.includes(a.id)){
-            return {
-                id: a.id,
-                columna: a.columna,
-                fila: a.fila,
-                estado: "ocupado"
-            }
-        }else{
-            return {
-                id: a.id,
-                columna: a.columna,
-                fila: a.fila,
-                estado: "libre"
-            }
-        }   
-    })
-
-    console.log(asientos)
+    
 
     const svgns = "http://www.w3.org/2000/svg";
 
