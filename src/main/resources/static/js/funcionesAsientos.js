@@ -10,6 +10,7 @@ function enviarAsientos(event){
 }
 
 var asientosSeleccionados = [];
+var asientos = [];
 
 async function crearAsientos(){
 
@@ -28,6 +29,26 @@ async function crearAsientos(){
             asientosOcupados = respuesta[i].asientos.length!== 0 ? respuesta[i].asientos.map(a => a.id).concat(...asientosOcupados) : [];   
         }
     }
+
+    asientos = respuesta[0].sesion.sala.asientos.map(function(a){
+        if(asientosOcupados.includes(a.id)){
+            return {
+                id: a.id,
+                columna: a.columna,
+                fila: a.fila,
+                estado: "ocupado"
+            }
+        }else{
+            return {
+                id: a.id,
+                columna: a.columna,
+                fila: a.fila,
+                estado: "libre"
+            }
+        }   
+    })
+
+    console.log(asientos)
 
     const svgns = "http://www.w3.org/2000/svg";
 
@@ -62,8 +83,9 @@ function asientoOcupado() {
 }
 
 function actualizarAsiento(id) {
-    if (document.getElementById(id).style.fill !== "yellow") {
+    if (asientos[+id-1].estado !== "seleccionado") {
         document.getElementById(id).style.fill = "yellow";
+        asientos[+id-1].estado = "seleccionado"
         asientosSeleccionados.push(+id);
         let valor = +(document.getElementById("inputcantidad").value) + 1;
         document.getElementById("inputcantidad").value = valor;
@@ -73,9 +95,10 @@ function actualizarAsiento(id) {
 }
 
 function eliminarAsiento(e, id) {
-    if (document.getElementById(id).style.fill === "yellow"){
+    if (asientos[+id-1].estado === "seleccionado"){
         e.preventDefault();
         document.getElementById(id).style.fill = "#92bcea";
+        asientos[+id-1].estado = "libre"
         let asientosNuevos = asientosSeleccionados.filter(e => e!==id);
         asientosSeleccionados = asientosNuevos;
         let valor = +(document.getElementById("inputcantidad").value) - 1;
@@ -86,7 +109,9 @@ function eliminarAsiento(e, id) {
 }
 
 function botonmass(){
-    const primerAsientoLibre = [...document.getElementsByTagName("circle")].find(asiento => asiento.style.fill!=="yellow" && asiento.style.fill!=="red");
+    const primerAsiento = asientos.find(asiento => asiento.estado !== "seleccionado" && asiento.estado !== "ocupado");
+    const primerAsientoLibre = document.getElementById(primerAsiento.id);
+    asientos[+primerAsiento.id-1].estado = "seleccionado";
     primerAsientoLibre.style.fill="yellow";
     asientosSeleccionados.push(+primerAsientoLibre.id);
     let valor = +(document.getElementById("inputcantidad").value) + 1;
@@ -96,7 +121,9 @@ function botonmass(){
 }
 
 function botonmenoss(){
-    const primerAsientoLibre = ([...document.getElementsByTagName("circle")].reverse()).find(asiento => asiento.style.fill==="yellow");
+    const primerAsiento = [...asientos].reverse().find(asiento => asiento.estado === "seleccionado")
+    const primerAsientoLibre = document.getElementById(primerAsiento.id);
+    asientos[+primerAsiento.id-1].estado = "libre";
     primerAsientoLibre.style.fill="#92bcea";
     let asientosNuevos = asientosSeleccionados.filter(e => e!=primerAsientoLibre.id);
     asientosSeleccionados = asientosNuevos;
