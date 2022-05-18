@@ -10,7 +10,6 @@ function enviarAsientos(event){
 }
 
 var asientosSeleccionados = [];
-var asientos = [];
 
 async function crearAsientos(){
 
@@ -49,8 +48,6 @@ async function crearAsientos(){
         console.log(asientos)
     }
 
-    
-
     const svgns = "http://www.w3.org/2000/svg";
 
     let posX = 0;
@@ -84,9 +81,8 @@ function asientoOcupado() {
 }
 
 function actualizarAsiento(id) {
-    if (asientos[+id-1].estado !== "seleccionado") {
+    if (document.getElementById(id).style.fill !== "yellow") {
         document.getElementById(id).style.fill = "yellow";
-        asientos[+id-1].estado = "seleccionado"
         asientosSeleccionados.push(+id);
         let valor = +(document.getElementById("inputcantidad").value) + 1;
         document.getElementById("inputcantidad").value = valor;
@@ -96,10 +92,9 @@ function actualizarAsiento(id) {
 }
 
 function eliminarAsiento(e, id) {
-    if (asientos[+id-1].estado === "seleccionado"){
+    if (document.getElementById(id).style.fill === "yellow"){
         e.preventDefault();
         document.getElementById(id).style.fill = "#92bcea";
-        asientos[+id-1].estado = "libre"
         let asientosNuevos = asientosSeleccionados.filter(e => e!==id);
         asientosSeleccionados = asientosNuevos;
         let valor = +(document.getElementById("inputcantidad").value) - 1;
@@ -110,9 +105,7 @@ function eliminarAsiento(e, id) {
 }
 
 function botonmass(){
-    const primerAsiento = asientos.find(asiento => asiento.estado !== "seleccionado" && asiento.estado !== "ocupado");
-    const primerAsientoLibre = document.getElementById(primerAsiento.id);
-    asientos[+primerAsiento.id-1].estado = "seleccionado";
+    const primerAsientoLibre = [...document.getElementsByTagName("circle")].find(asiento => asiento.style.fill!=="yellow" && asiento.style.fill!=="red");
     primerAsientoLibre.style.fill="yellow";
     asientosSeleccionados.push(+primerAsientoLibre.id);
     let valor = +(document.getElementById("inputcantidad").value) + 1;
@@ -122,9 +115,7 @@ function botonmass(){
 }
 
 function botonmenoss(){
-    const primerAsiento = [...asientos].reverse().find(asiento => asiento.estado === "seleccionado")
-    const primerAsientoLibre = document.getElementById(primerAsiento.id);
-    asientos[+primerAsiento.id-1].estado = "libre";
+    const primerAsientoLibre = ([...document.getElementsByTagName("circle")].reverse()).find(asiento => asiento.style.fill==="yellow");
     primerAsientoLibre.style.fill="#92bcea";
     let asientosNuevos = asientosSeleccionados.filter(e => e!=primerAsientoLibre.id);
     asientosSeleccionados = asientosNuevos;
