@@ -132,7 +132,7 @@
                                     <tbody>
                                         <tr th:each="sala : ${salas}">
                                             <td class="d-flex align-items-center"><img
-                                                        th:src="@{/img/{img}(img=${sala.cine.imagen})}" src="/img/lagavia.jpg"
+                                                        th:src="@{/cines/{id}/pic(id=${sala.cine.id})}" src="/img/lagavia.jpg"
                                                         alt="imagen cine" height="120px" width="84px"
                                                         class="d-inline-block"></td>
                                             <td class="text-dark bold" th:text="${sala.nombre}">Sala 2</td>
@@ -171,7 +171,7 @@
                                     <tbody>
                                         <tr th:each="sesion : ${sesiones}">
                                             <td class="d-flex align-items-center"><a th:href="@{/peliculas/{id}(id=${sesion.pelicula.id})}"><img
-                                                        th:src="@{/img/{img}(img=${sesion.pelicula.img})}" src="/img/img1.jpg"
+                                                        th:src="@{/peliculas/{id}/pic(id=${sesion.pelicula.id})}" src="/img/img1.jpg"
                                                         alt="imagen pelicula" height="120px" width="84px"
                                                         class="d-inline-block"></a></td>
                                             <td th:text="${#temporals.format(sesion.dia_hora, 'dd/MM/yy')}">01/03/22</td>
@@ -431,12 +431,12 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modbody">
-                        <form class=" d-flex flex-column align-items-between" method="post" th:action="@{/sala/-1}">
+                        <form class=" d-flex flex-column align-items-between" method="post" th:action="@{/salas/-1}">
                             <div class="d-flex justify-content-center mt-3">
                                 <h6>Cine y Nombre</h6>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
-                                <select class="form-select w-50 h-50" aria-label="Seleccion de Cine" name="seleccion-cine" id="seleccion-cine">
+                                <select class="form-select w-50 h-50" aria-label="Seleccion de Cine" name="seleccion-cine" id="seleccion-cine" required="required">
                                     <option value="" selected disabled hidden>Seleccione un cine</option>
                                     <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
                                         th:attr="value=${cine.id}">Madrid - La Gavia</option>
@@ -452,18 +452,18 @@
                             <div class="d-flex justify-content-center mt-4">
                                 <p>
                                     <label for="filas" class="">Filas</label>
-                                    <input type="number" id="filas" name="filas" class="form-control" value=12 required="required">
+                                    <input type="number" id="filas" name="filas" class="form-control" value=4 required="required">
                                 </p>
                                 <p class="ms-2">
                                     <label for="columnas" class="">Columnas</label>
-                                    <input type="number" id="columnas" name="columnas" class="form-control" value=4 required="required">
+                                    <input type="number" id="columnas" name="columnas" class="form-control" value=12 required="required">
                                 </p>
+                            </div>
+                            <div class="modal-footer modfooter">
+                                <button type="submit" class="btn btn-dark">Validar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                             </div>   
                         </form>
-                    </div>
-                    <div class="modal-footer modfooter">
-                        <button type="submit" class="btn btn-dark">Validar</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                   </div>
                 </div>
@@ -477,21 +477,21 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modbody">
-                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/sesion/-1}">
+                        <form class=" d-flex flex-column align-items-center" method="post" th:action="@{/sesiones/-1}">
                             <div class="d-flex justify-content-center mt-3">
-                                <select class="form-select" aria-label="Seleccion de Cine" name="pelicula">
+                                <select class="form-select" aria-label="Seleccion de Cine" name="pelicula" required="required">
                                     <option value="" selected disabled hidden>Seleccione una pelicula</option>
                                     <option th:each="pelicula : ${peliculas}" th:text="${pelicula.titulo}"
                                         th:attr="value=${pelicula.id}">El buen patron</option>
                                 </select>
                             </div>
                             <div class="d-flex justify-content-between mt-4">
-                                <select class="form-select w-50" aria-label="Seleccion de Cine" name="cine">
+                                <select class="form-select w-50" aria-label="Seleccion de Cine" name="cine" required="required">
                                     <option value="" selected disabled hidden>Selecciona un cine</option>
                                     <option th:each="cine : ${cines}" th:text="${cine.ciudad + ' - ' + cine.nombre}"
                                     th:attr="value=${cine.id}">Madrid - La Gavia</option>
                                 </select>
-                                <select class="form-select w-50 ms-3" aria-label="Seleccion de Sala" name="sala" disabled>
+                                <select class="form-select w-50 ms-3" aria-label="Seleccion de Sala" name="sala"  required="required" disabled>
                                     <option value="seleccion" selected disabled hidden>Seleccione una sala</option>
                                     <option th:each="sala : ${salas}" th:text="${sala.cine.nombre + ' - ' + sala.nombre}"
                                         th:attr="value=${sala.id}, cine=${sala.cine.id}">Sala 1</option>
@@ -508,11 +508,11 @@
                                     <input type="time" id="hora" class="form-control" name="hora" min="09:00" max="23:00" required>
                                 </p>
                             </div>
+                            <div class="modal-footer modfooter">
+                                <button type="submit" class="btn btn-dark">Validar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer modfooter">
-                        <button type="submit" class="btn btn-dark">Validar</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                   </div>
                 </div>
@@ -537,6 +537,8 @@
         $('#crearusuario').click(crearUsuario);
         $('#crearcine').click(crearCine);
         $('#crearpelicula').click(crearPelicula);
+        $('#crearsala').click(crearSala);
+        $('#crearsesion').click(crearSesion);
 
         $('.editarusuario').click(editarUsuario);
         $('.editarpelicula').click({peliculas}, editarPelicula);

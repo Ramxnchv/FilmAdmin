@@ -171,6 +171,82 @@ function crearCine() {
     $modal.modal('show');  
 }
 
+function crearSala() {
+    let $modal = $('#modalSala').clone().removeAttr("id");
+
+    const action = $modal.find('form').attr('action');
+
+    $modal.find('form').submit(function(event) {
+        event.preventDefault();
+        
+        const $form = $(this);
+
+        const nombre = $modal.find('input[id="nombre-sala"]').val();
+        const filas = $modal.find('input[id="filas"]').val();
+        const columnas = $modal.find('input[id="columnas"]').val();
+        const cine_id = $modal.find('select[id="seleccion-cine"]').val();
+        
+        const data = {nombre, filas, columnas, cine_id};
+
+        go(action, "POST", data).then(() => {
+            location.reload();
+        }).catch((error) => {
+            if (error.text) {
+                const errMsg = JSON.parse(error.text);
+                alert(errMsg.message);
+            }
+        });
+    });
+    
+    $modal.modal('show');  
+}
+
+function crearSesion() {
+    let $modal = $('#modalSesion').clone().removeAttr("id");
+
+    $modal.find(`select[name="cine"]`).change(() => {
+        const nuevo_cine = $modal.find(`select[name="cine"]`).val();
+
+        $modal.find(`select[name="sala"]`).find('option').hide();
+        $modal.find(`select[name="sala"]`).find(`option[cine="${nuevo_cine}"]`).show();
+        $modal.find(`select[name="sala"]`).val("seleccion");
+        $modal.find(`select[name="sala"]`).prop('disabled', false);
+    });
+
+    const action = $modal.find('form').attr('action');
+
+    $modal.find('form').submit(function(event) {
+        event.preventDefault();
+        
+        const $form = $(this);
+
+        if (!$modal.find(`select[name="sala"]`).val())
+            alert("Selecciona una sala.");
+        else {
+            const pelicula_id = $modal.find('select[name="pelicula"]').val();
+            const cine_id = $modal.find('select[name="cine"]').val();
+            const sala_id = $modal.find('select[name="sala"]').val();
+            const dia = $modal.find('input[id="fecha"]').val();
+            const hora = $modal.find('input[id="hora"]').val();
+            
+            const dia_hora = dia + 'T' + hora;
+            
+            const data = {pelicula_id, cine_id, sala_id, dia_hora};
+    
+            go(action, "POST", data).then(() => {
+                location.reload();
+            }).catch((error) => {
+                if (error.text) {
+                    const errMsg = JSON.parse(error.text);
+                    alert(errMsg.message);
+                }
+            });  
+        }
+    });
+
+    $modal.modal('show');  
+}
+
 function editarUsuario() {
     const $btn = $(this);
     const id = $btn.attr('data-id');
@@ -408,7 +484,30 @@ function editarSala(event) {
     $modal.find('input[id="columnas"]').val(sala.columnas);
     $modal.find(`option[value=${cine_id}]`).attr('selected','selected'); 
 
-    console.log($modal.find(`option`));
+    const action = $modal.find('form').attr('action').replace('-1', id);
+    $modal.find('form').attr('action', action);
+
+    $modal.find('form').submit(function(event) {
+        event.preventDefault();
+        
+        const $form = $(this);
+
+        const nombre = $modal.find('input[id="nombre-sala"]').val();
+        const filas = $modal.find('input[id="filas"]').val();
+        const columnas = $modal.find('input[id="columnas"]').val();
+        const cine_id = $modal.find('select[id="seleccion-cine"]').val();
+        
+        const data = {nombre, filas, columnas, cine_id};
+
+        go(action, "POST", data).then(() => {
+            location.reload();
+        }).catch((error) => {
+            if (error.text) {
+                const errMsg = JSON.parse(error.text);
+                alert(errMsg.message);
+            }
+        });
+    });
     
     $modal.modal('show');  
 }
@@ -426,6 +525,14 @@ function editarSesion(event) {
 
     let $modal = $('#modalSesion').clone().removeAttr("id");
 
+    $modal.find(`select[name="cine"]`).change(() => {
+        const nuevo_cine = $modal.find(`select[name="cine"]`).val();
+
+        $modal.find(`select[name="sala"]`).find('option').hide();
+        $modal.find(`select[name="sala"]`).find(`option[cine="${nuevo_cine}"]`).show();
+        $modal.find(`select[name="sala"]`).val("seleccion");
+    });
+
     $modal.find(`select[name="pelicula"]`).val(pelicula_id);
     $modal.find('input[id="fecha"]').val(dia);
     $modal.find('input[id="hora"]').val(hora);
@@ -436,13 +543,32 @@ function editarSesion(event) {
     $modal.find(`select[name="sala"]`).val(sala_id);
     $modal.find(`select[name="sala"]`).prop('disabled', false);
 
+    const action = $modal.find('form').attr('action').replace('-1', id);
+    $modal.find('form').attr('action', action);
 
-    $modal.find(`select[name="cine"]`).change(() => {
-        const nuevo_cine = $modal.find(`select[name="cine"]`).val();
+    $modal.find('form').submit(function(event) {
+        event.preventDefault();
+        
+        const $form = $(this);
 
-        $modal.find(`select[name="sala"]`).find('option').hide();
-        $modal.find(`select[name="sala"]`).find(`option[cine="${nuevo_cine}"]`).show();
-        $modal.find(`select[name="sala"]`).val("seleccion");
+        const pelicula_id = $modal.find('select[name="pelicula"]').val();
+        const cine_id = $modal.find('select[name="cine"]').val();
+        const sala_id = $modal.find('select[name="sala"]').val();
+        const dia = $modal.find('input[id="fecha"]').val();
+        const hora = $modal.find('input[id="hora"]').val();
+        
+        const dia_hora = dia + 'T' + hora;
+        
+        const data = {pelicula_id, cine_id, sala_id, dia_hora};
+
+        go(action, "POST", data).then(() => {
+            location.reload();
+        }).catch((error) => {
+            if (error.text) {
+                const errMsg = JSON.parse(error.text);
+                alert(errMsg.message);
+            }
+        });
     });
 
     $modal.modal('show');  
