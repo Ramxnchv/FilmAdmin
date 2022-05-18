@@ -91,6 +91,8 @@ public class SesionController {
 			entityManager.persist(target);
 			entityManager.flush();
 			id = target.getId(); // retrieve assigned id from DB
+
+            sala.getSesiones().add(target);
 		}
         else {
             // retrieve requested user
@@ -111,9 +113,11 @@ public class SesionController {
             if(o.get("sala_id")!=null){
                 long sala_id = o.get("sala_id").asLong(); 
                 if (sala_id != 0 && sala_id != target.getSala().getId()) {
+                    target.getSala().getSesiones().remove(target);
                     Sala sala = entityManager.find(Sala.class, sala_id);
                     target.setSala(sala);
                     target.setAsientosLibres(sala.getFilas() * sala.getColumnas());
+                    sala.getSesiones().add(target);
                 }
             }
             if(o.get("cine_id")!=null){
