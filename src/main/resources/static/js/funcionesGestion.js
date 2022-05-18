@@ -51,42 +51,10 @@ async function comprobarEntrada(event) {
 
     } else if(entrada.length > 0 && entrada[0].validate){
         let formcomprobar = document.getElementById('formcomprobar');
-        let alertdiv = document.createElement("div");
-        let textdiv = document.createElement('div');
-        let svgicon = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-        let use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-        svgicon.setAttribute('class', 'bi flex-shrink-0 me-2');
-        svgicon.setAttribute('width', 24);
-        svgicon.setAttribute('height', 24);
-        svgicon.setAttribute('role', 'img');
-        svgicon.setAttribute('aria-label', 'Danger:');
-        use.setAttribute('href', '#exclamation-triangle-fill');
-        alertdiv.setAttribute('class', 'alert alert-danger d-flex align-items-center mt-4');
-        alertdiv.setAttribute('role', 'alert');
-        textdiv.appendChild(document.createTextNode("ESTE CÓDIGO YA HA SIDO VALIDADO"));
-        svgicon.appendChild(use);
-        alertdiv.appendChild(svgicon);
-        alertdiv.appendChild(textdiv);
-        formcomprobar.appendChild(alertdiv);
+        avisoDanger(formcomprobar,'Danger:',"ESTE CÓDIGO YA HA SIDO VALIDADO");
     } else {
         let formcomprobar = document.getElementById('formcomprobar');
-        let alertdiv = document.createElement("div");
-        let textdiv = document.createElement('div');
-        let svgicon = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-        let use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-        svgicon.setAttribute('class', 'bi flex-shrink-0 me-2');
-        svgicon.setAttribute('width', 24);
-        svgicon.setAttribute('height', 24);
-        svgicon.setAttribute('role', 'img');
-        svgicon.setAttribute('aria-label', 'Danger:');
-        use.setAttribute('href', '#exclamation-triangle-fill');
-        alertdiv.setAttribute('class', 'alert alert-danger d-flex align-items-center mt-4');
-        alertdiv.setAttribute('role', 'alert');
-        textdiv.appendChild(document.createTextNode("ESTE CÓDIGO NO CORRESPONDE A NINGUNA ENTRADA"));
-        svgicon.appendChild(use);
-        alertdiv.appendChild(svgicon);
-        alertdiv.appendChild(textdiv);
-        formcomprobar.appendChild(alertdiv);
+        avisoDanger(formcomprobar,'Danger:',"ESTE CÓDIGO NO CORRESPONDE A NINGUNA ENTRADA");
     }
 }
 
@@ -95,23 +63,7 @@ async function validarEntrada() {
     let validate = await go(`${config.rootUrl}/entradas/validate/${code}`, "POST");
     if (validate[0].validate) {
         let formcomprobar = document.getElementById('formcomprobar');
-        let alertdiv = document.createElement("div");
-        let textdiv = document.createElement('div');
-        let svgicon = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-        let use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-        svgicon.setAttribute('class', 'bi flex-shrink-0 me-2');
-        svgicon.setAttribute('width', 24);
-        svgicon.setAttribute('height', 24);
-        svgicon.setAttribute('role', 'img');
-        svgicon.setAttribute('aria-label', 'Success:');
-        use.setAttribute('href', '#check-circle-fill');
-        alertdiv.setAttribute('class', 'alert alert-success d-flex align-items-center mt-4');
-        alertdiv.setAttribute('role', 'alert');
-        textdiv.appendChild(document.createTextNode("ENTRADA VALIDADA CORRECTAMENTE"));
-        svgicon.appendChild(use);
-        alertdiv.appendChild(svgicon);
-        alertdiv.appendChild(textdiv);
-        formcomprobar.appendChild(alertdiv);
+        avisoSuccess(formcomprobar,'Success:',"ENTRADA VALIDADA CORRECTAMENTE");
     }
 }
 
@@ -248,4 +200,26 @@ function filtroTitulo(event) {
             }
         }
     }
+}
+
+function avisoSuccess(selector, title, text) {
+    let element = `
+    <div class="alert alert-success d-flex align-items-center mt-4" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="${title}">
+            <use href="#check-circle-fill"></use>
+        </svg>
+        <div>${text}</div>
+    </div>`;
+    selector.insertAdjacentHTML("beforeend", element);
+}
+
+function avisoDanger(selector, title, text) {
+    let element = `
+    <div class="alert alert-danger d-flex align-items-center mt-4" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="${title}">
+            <use href="#exclamation-triangle-fill"></use>
+        </svg>
+        <div>${text}</div>
+    </div>`;
+    selector.insertAdjacentHTML("beforeend", element);
 }

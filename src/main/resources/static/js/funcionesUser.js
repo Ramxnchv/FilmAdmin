@@ -21,42 +21,10 @@ async function postUser() {
                 let uback = await go(`${config.rootUrl}/user/${id}`, "POST", u);
                 let formpass = document.getElementById('formpass');
                 formpass.reset();
-                let alertdiv = document.createElement("div");
-                let textdiv = document.createElement('div');
-                let svgicon = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-                let use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-                svgicon.setAttribute('class', 'bi flex-shrink-0 me-2');
-                svgicon.setAttribute('width', 24);
-                svgicon.setAttribute('height', 24);
-                svgicon.setAttribute('role', 'img');
-                svgicon.setAttribute('aria-label', 'Success:');
-                use.setAttribute('href', '#check-circle-fill');
-                alertdiv.setAttribute('class', 'alert alert-success d-flex align-items-center mt-4');
-                alertdiv.setAttribute('role', 'alert');
-                textdiv.appendChild(document.createTextNode("CONTRASEÑA CAMBIADA CORRECTAMENTE"));
-                svgicon.appendChild(use);
-                alertdiv.appendChild(svgicon);
-                alertdiv.appendChild(textdiv);
-                formpass.appendChild(alertdiv);
+                avisoSuccess(formpass,'Success:',"CONTRASEÑA CAMBIADA CORRECTAMENTE");
             } else {
                 let formpass = document.getElementById('formpass');
-                let alertdiv = document.createElement("div");
-                let textdiv = document.createElement('div');
-                let svgicon = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-                let use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-                svgicon.setAttribute('class', 'bi flex-shrink-0 me-2');
-                svgicon.setAttribute('width', 24);
-                svgicon.setAttribute('height', 24);
-                svgicon.setAttribute('role', 'img');
-                svgicon.setAttribute('aria-label', 'Danger:');
-                use.setAttribute('href', '#exclamation-triangle-fill');
-                alertdiv.setAttribute('class', 'alert alert-danger d-flex align-items-center mt-4');
-                alertdiv.setAttribute('role', 'alert');
-                textdiv.appendChild(document.createTextNode("LAS CONTRASEÑAS NO COINCIDEN"));
-                svgicon.appendChild(use);
-                alertdiv.appendChild(svgicon);
-                alertdiv.appendChild(textdiv);
-                formpass.appendChild(alertdiv);
+                avisoDanger(formpass,'Danger:',"LAS CONTRASEÑAS NO COINCIDEN");
             }
         } else {
             u =
@@ -68,27 +36,33 @@ async function postUser() {
             }
             let uback = await go(`${config.rootUrl}/user/${id}`, "POST", u);
             let formpass = document.getElementById('formpass');
-            let alertdiv = document.createElement("div");
-            let textdiv = document.createElement('div');
-            let svgicon = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-            let use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-            svgicon.setAttribute('class', 'bi flex-shrink-0 me-2');
-            svgicon.setAttribute('width', 24);
-            svgicon.setAttribute('height', 24);
-            svgicon.setAttribute('role', 'img');
-            svgicon.setAttribute('aria-label', 'Success:');
-            use.setAttribute('href', '#check-circle-fill');
-            alertdiv.setAttribute('class', 'alert alert-success d-flex align-items-center mt-4');
-            alertdiv.setAttribute('role', 'alert');
-            textdiv.appendChild(document.createTextNode("INFORMACIÓN DE USUARIO ACTUALIZADA"));
-            svgicon.appendChild(use);
-            alertdiv.appendChild(svgicon);
-            alertdiv.appendChild(textdiv);
-            formpass.appendChild(alertdiv);
+            avisoSuccess(formpass, 'Success:', "INFORMACIÓN DE USUARIO ACTUALIZADA");
         }
 
     } catch (e) {
         console.log(e);
     }
 
+}
+
+function avisoSuccess(selector, title, text) {
+    let element = `
+    <div class="alert alert-success d-flex align-items-center mt-4" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="${title}">
+            <use href="#check-circle-fill"></use>
+        </svg>
+        <div>${text}</div>
+    </div>`;
+    selector.insertAdjacentHTML("beforeend", element);
+}
+
+function avisoDanger(selector, title, text) {
+    let element = `
+    <div class="alert alert-danger d-flex align-items-center mt-4" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="${title}">
+            <use href="#exclamation-triangle-fill"></use>
+        </svg>
+        <div>${text}</div>
+    </div>`;
+    selector.insertAdjacentHTML("beforeend", element);
 }
