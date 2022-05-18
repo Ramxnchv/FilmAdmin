@@ -1,9 +1,12 @@
 # Changelog
 
 ## [3.0] - 2022-05-19
+- Añadida gestión (añadir y editar) de películas, cines, salas y sesiones en el panel de administración.
 - Correciones post-feedback:
   - Solucionado un error que no capturaba la excepción al no encontrar el código de una entrada y no mostraba el error de "no encontrada"
   - Añadida la fecha de la sesión al abrir el modal de comprobar código
+  - Refactorizado el código javascript para añadir mensajes de feedback al usuario en funciones parametrizadas en funcionesGestion.js y funcionesUser.js
+  - Refactorizado el código javascript para comprobar el estado de un asiento en funcionesAsientos.js. Ahora se comprueba con un atributo del listado de asientos llamado "estado" (que puede valer "libre", "ocupado" o "seleccionado") en vez de con el estilo (y el color asignado al svg circle en ese momento).
  
 ## [2.3] - 2022-04-27
 - Página de [Gestión de Entradas](http://localhost:8080/admin/gestion-entradas/) funcionando. Permite consultar los asientos de cada sesión al administrador del cine, validar una entrada (al acceder al cine) y comprobar los asientos de la misma.
