@@ -263,6 +263,8 @@ function editarPelicula(event) {
     $modal.find('input[id="titulo"]').val(pelicula.titulo);
     $modal.find('input[id="duracion"]').val(pelicula.duraccion);
     $modal.find('input[id="genero"]').val(pelicula.genero);
+   
+    $modal.find('input[id="peliculaimg"]').prop('required', false);
 
     const action = $modal.find('form').attr('action').replace('-1', id);
     $modal.find('form').attr('action', action);

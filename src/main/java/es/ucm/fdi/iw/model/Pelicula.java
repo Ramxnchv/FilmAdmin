@@ -19,7 +19,8 @@ import lombok.AllArgsConstructor;
 public class Pelicula implements Transferable<Pelicula.Transfer> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pelicula_id_seq")
+    @SequenceGenerator(name = "pelicula_id_seq", sequenceName = "pelicula_id_seq", allocationSize = 1, initialValue = 6)    
     private long id;
 
     @OneToMany(targetEntity = Sesion.class)

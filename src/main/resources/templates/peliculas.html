@@ -38,8 +38,8 @@
                         <tbody id="peliculas">
                             <tr th:each="sesion : ${sesiones}" th:id="${sesion.id}">
                                 <td class="d-flex align-items-center"><a
-                                        th:href="@{/peliculas/{id}(id=${sesion.pelicula.id})}"><img
-                                            th:src="@{/peliculas/{id}/pic(id=${sesion.pelicula.id})}" src="/img/img1.jpg"
+                                        th:href="@{/peliculas/{id}(id=${sesion.id})}"><img
+                                            th:src="@{/peliculas/{id}/pic(id=${sesion.id})}" src="/img/img1.jpg"
                                             alt="imagen pelicula" height="120px" width="84px"
                                             class="d-inline-block"></a></td>
                                 <td><a th:href="@{/peliculas/{id}(id=${sesion.id})}" th:text="${sesion.titulo}"

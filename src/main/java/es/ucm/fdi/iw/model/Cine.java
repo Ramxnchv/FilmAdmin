@@ -28,7 +28,8 @@ public class Cine implements Transferable<Cine.Transfer> {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cine_id_seq")
+    @SequenceGenerator(name = "cine_id_seq", sequenceName = "cine_id_seq", allocationSize = 1, initialValue = 6)
     private long id;
 
     @OneToMany(targetEntity = Sala.class)
