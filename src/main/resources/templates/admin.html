@@ -56,7 +56,7 @@
                                             <td th:text="${usuario.roles}">admin</td>
                                             <td><button type="button" class="btn btn-dark btn-sm editarusuario" th:attr="data-id=${usuario.id},data-username=${usuario.username},
                                                 data-email=${usuario.email},data-firstname=${usuario.firstName},data-lastname=${usuario.lastName},data-birthdate=${usuario.birthDate}">Editar</button></td>
-                                            <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                                            <td><button type="button" class="btn btn-danger btn-sm eliminarUsuario" th:attr="data-id=${usuario.id}" >Eliminar</button> 
                                             </td>
                                         </tr>
                                     </tbody>
@@ -539,12 +539,14 @@
         $('#crearpelicula').click(crearPelicula);
         $('#crearsala').click(crearSala);
         $('#crearsesion').click(crearSesion);
+        
 
         $('.editarusuario').click(editarUsuario);
         $('.editarpelicula').click({peliculas}, editarPelicula);
         $('.editarcine').click({cines}, editarCine);
         $('.editarsala').click({salas}, editarSala);
         $('.editarsesion').click({sesiones, salas}, editarSesion);
+        $('.eliminarUsuario').click(eliminarUsuario)
     });
 
      /*]]>*/

@@ -30,7 +30,9 @@ import java.util.List;
         @NamedQuery(name = "User.getAll", query = "SELECT u FROM User u")
 })
 @Table(name="IWUser")
+
 public class User implements Transferable<User.Transfer> {
+ 
 
     public enum Role {
         USER,			// normal users 
@@ -52,12 +54,11 @@ public class User implements Transferable<User.Transfer> {
     private String email;
     private LocalDate birthDate;
 
-    @OneToMany(targetEntity = Entrada.class)
+    @OneToMany(targetEntity = Entrada.class, orphanRemoval = true)
     private List<Entrada> entradas = new ArrayList<>();
    
     private boolean enabled;
     private String roles; // split by ',' to separate roles
-
 	@OneToMany
 	@JoinColumn(name = "sender_id")
 	private List<Message> sent = new ArrayList<>();

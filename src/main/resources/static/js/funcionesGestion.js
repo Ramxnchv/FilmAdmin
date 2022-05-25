@@ -51,7 +51,14 @@ async function comprobarEntrada(event) {
 
     } else if(entrada.length > 0 && entrada[0].validate){
         let formcomprobar = document.getElementById('formcomprobar');
-        avisoDanger(formcomprobar,'Danger:',"ESTE CÓDIGO YA HA SIDO VALIDADO");
+        let hVal = entrada[0].horaValidacion + "\n";
+        let entradas = " ";
+        console.log(entrada);
+        for(a of entrada[0].asientos)
+            entradas += "F:" + a.fila + "  C:" + a.columna;
+
+        avisoDanger(formcomprobar,'Danger:',"ESTE CÓDIGO YA HA SIDO VALIDADO \n HORA DE VALIDACION:  "  
+        + hVal + "Butacas: " + entradas);
     } else {
         let formcomprobar = document.getElementById('formcomprobar');
         avisoDanger(formcomprobar,'Danger:',"ESTE CÓDIGO NO CORRESPONDE A NINGUNA ENTRADA");
@@ -62,6 +69,7 @@ async function validarEntrada() {
     let code = document.getElementById("codigoentrada").value;
     let validate = await go(`${config.rootUrl}/entradas/validate/${code}`, "POST");
     if (validate[0].validate) {
+        
         let formcomprobar = document.getElementById('formcomprobar');
         avisoSuccess(formcomprobar,'Success:',"ENTRADA VALIDADA CORRECTAMENTE");
     }

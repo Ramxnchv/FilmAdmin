@@ -39,7 +39,7 @@ public class Sesion implements Transferable<Sesion.Transfer>{
     @JoinColumn(name="sala_id")
     private Sala sala;
 
-    @OneToMany(targetEntity = Entrada.class)
+    @OneToMany(targetEntity = Entrada.class, orphanRemoval = true)
     @JsonIgnore
     private List<Entrada> entradas = new ArrayList<>();
 

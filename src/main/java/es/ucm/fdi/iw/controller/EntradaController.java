@@ -1,5 +1,6 @@
 package es.ucm.fdi.iw.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -92,6 +93,7 @@ public class EntradaController {
     public List<Entrada.Transfer> validateEntrada(@PathVariable String codigo, Model model) {
         Entrada e = entityManager.createNamedQuery("Entrada.findByCode",Entrada.class).setParameter("codigo", codigo).getSingleResult();
         e.setValidate(true);
+        e.setHoraValidacion(LocalDateTime.now());
         List<Entrada> entradas =  new ArrayList<>();
         entradas.add(e);
         return entradas.stream().map(Transferable::toTransfer).collect(Collectors.toList());
@@ -119,7 +121,7 @@ public class EntradaController {
         List<Entrada> entradas = (List<Entrada>) entityManager.createNamedQuery("Entrada.getAll",Entrada.class).getResultList();
         Entrada ultima = entradas.get(entradas.size()-1);
         long idnueva = ultima.getId()+1;
-        Entrada e = new Entrada(idnueva,s,u,asientos,codigo, preciofinal, false);
+        Entrada e = new Entrada(idnueva,s,u,asientos,codigo, preciofinal, null, false);
 
         entityManager.persist(e);
         entityManager.flush();

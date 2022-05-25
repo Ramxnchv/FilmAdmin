@@ -87,6 +87,10 @@ public class UserController {
 	public static class PasswordsNoCoincidenException extends RuntimeException {
 	}
 
+	@ResponseStatus(value = HttpStatus.FORBIDDEN, reason = "No puedes borrar el perfil admin")
+	public static class NoPuedesEliminarAdmin extends RuntimeException {
+	}
+
 	/**
 	 * Encodes a password, so that it can be saved for future checking. Notice
 	 * that encoding the same password multiple times will yield different
@@ -373,4 +377,24 @@ public class UserController {
 		return "{\"result\": \"message sent.\"}";
 	}
 
+	@PostMapping("/{id}/delete")
+	@ResponseBody
+	@Transactional
+	public String postDelete(@PathVariable long id,
+			@RequestBody JsonNode o, Model model, HttpSession session)
+			throws JsonProcessingException {
+		
+				User target = entityManager.find(User.class, id);
+				if (target.hasRole(Role.ADMIN)){
+						throw new NoPuedesEliminarAdmin();
+					} else {
+						for(Entrada e: target.getEntradas()){
+							e.getSesion().getEntradas().remove(e);
+							entityManager.remove(e);
+						}
+						entityManager.remove(target);
+					}
+					
+		return "{\"result\": \"usuario eliminado\"}";
+	}
 }

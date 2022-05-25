@@ -574,3 +574,16 @@ function editarSesion(event) {
     $modal.modal('show');  
 }
 
+function eliminarUsuario(event){
+    const $btn = $(this);
+    const id = $btn.attr('data-id');
+    go(`${config.rootUrl}/user/${id}/delete`, "POST").then((response) => {
+        location.reload();
+    }).catch((error) => {
+        if (error.text) {
+            const errMsg = JSON.parse(error.text);
+            alert(errMsg.message);
+        }
+    });
+}
+

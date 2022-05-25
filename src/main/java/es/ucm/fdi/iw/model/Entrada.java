@@ -43,6 +43,8 @@ public class Entrada implements Transferable<Entrada.Transfer>{
 
     private double preciofinal;
 
+    private LocalDateTime horaValidacion;
+    
     private boolean validate;
     
     @Getter
@@ -54,12 +56,14 @@ public class Entrada implements Transferable<Entrada.Transfer>{
         private String cine;
         private String pelicula;
         private LocalDateTime hora;
+        private LocalDateTime horaValidacion;
+
         private boolean validate;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id,	asientos, sesion, sesion.getCine().getNombre(), sesion.getPelicula().getTitulo(), sesion.getDia_hora(),validate);
+		return new Transfer(id,	asientos, sesion, sesion.getCine().getNombre(), sesion.getPelicula().getTitulo(), sesion.getDia_hora(),horaValidacion, validate);
 	}
 	
 	@Override
