@@ -228,10 +228,12 @@ function crearSesion() {
             const sala_id = $modal.find('select[name="sala"]').val();
             const dia = $modal.find('input[id="fecha"]').val();
             const hora = $modal.find('input[id="hora"]').val();
-            
+
             const dia_hora = dia + 'T' + hora;
+
+            const precio = $modal.find('input[id="precio"]').val();
             
-            const data = {pelicula_id, cine_id, sala_id, dia_hora};
+            const data = {pelicula_id, cine_id, sala_id, dia_hora, precio};
     
             go(action, "POST", data).then(() => {
                 location.reload();
@@ -523,6 +525,8 @@ function editarSesion(event) {
     const dia = dia_hora.substring(0,10);
     const hora = dia_hora.substring(11) + ':00';
 
+    const precio = $btn.attr('data-precio');
+
     let $modal = $('#modalSesion').clone().removeAttr("id");
 
     $modal.find(`select[name="cine"]`).change(() => {
@@ -537,6 +541,7 @@ function editarSesion(event) {
     $modal.find('input[id="fecha"]').val(dia);
     $modal.find('input[id="hora"]').val(hora);
     $modal.find(`select[name="cine"]`).val(cine_id);
+    $modal.find('input[id="precio"]').val(precio);
 
     $modal.find(`select[name="sala"]`).find('option').hide();
     $modal.find(`select[name="sala"]`).find(`option[cine="${cine_id}"]`).show();
@@ -556,10 +561,11 @@ function editarSesion(event) {
         const sala_id = $modal.find('select[name="sala"]').val();
         const dia = $modal.find('input[id="fecha"]').val();
         const hora = $modal.find('input[id="hora"]').val();
+        const precio = $modal.find('input[id="precio"]').val();
         
         const dia_hora = dia + 'T' + hora;
         
-        const data = {pelicula_id, cine_id, sala_id, dia_hora};
+        const data = {pelicula_id, cine_id, sala_id, dia_hora, precio};
 
         go(action, "POST", data).then(() => {
             location.reload();

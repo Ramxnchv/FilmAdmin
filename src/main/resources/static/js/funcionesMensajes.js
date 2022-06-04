@@ -2,6 +2,26 @@ function loadMessages() {
     cargarMensajes();
 }
 
+function createTabForAdmin(id,nombre){
+    document.getElementById("v-pills-tab").insertAdjacentHTML("beforeend", `<button class="nav-link chat-selector" id="v-pills-${id}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-${id}", aria-controls="v-pills-${id}" type="button" role="tab" aria-selected="false">Cliente ${nombre}</button>`)
+    document.getElementById("v-pills-tabContent").insertAdjacentHTML("beforeend", `<div class="tab-pane fade" id="v-pills-${user.id}" role="tabpanel" aria-labelledby="v-pills-${user.id}-tab">
+    <div class="d-flex align-items-center top-chat">
+      <span class="p-1 bold ms-auto">Chat con ${nombre}</span>
+      <button type="button" class="btn-close btn-close-white ms-auto me-2" aria-label="Close"></button>
+    </div>
+    <div class="mensajes mb-3" id="mensajes-${id}">
+      <!-- <div class="d-flex justify-content-center mt-4"><div>user está escribiendo...</div></div> -->
+    </div>
+    <form class="d-flex flex-column" method="POST" id="messageform" onsubmit="enviarMensajeUser(event)">
+      <textarea id="message" class="message" onkeypress="enviarMensajeUser(event)"></textarea>
+      <button class="btn btn-dark mt-3" type="submit" id="sendmsg">Enviar</button>
+      <input type="hidden" id="userid" value="${id}"></input>
+      <input type="hidden" class="usernameclient" value="${nombre}"></input>
+    </form>
+    </div>`);
+    
+}
+
 async function cargarMensajes() {
     // pinta mensajes viejos al cargarse, via AJAX
     let messageDiv = document.getElementById("mensajes");

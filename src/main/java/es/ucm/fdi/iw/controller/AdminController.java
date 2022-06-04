@@ -48,6 +48,7 @@ public class AdminController {
 
         List<User> usuarios = (List<User>) entityManager.createNamedQuery("User.getAll",User.class).getResultList();
 
+
         model.addAttribute("peliculas", peliculas);
         model.addAttribute("cines", cines);
         model.addAttribute("salas", salas);

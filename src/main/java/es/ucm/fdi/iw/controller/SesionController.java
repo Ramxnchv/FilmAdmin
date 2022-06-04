@@ -69,7 +69,7 @@ public class SesionController {
 			target = new Sesion();
 
             if (o.get("pelicula_id") == null || o.get("sala_id") == null ||
-                o.get("cine_id") == null || o.get("dia_hora") == null)
+                o.get("cine_id") == null || o.get("dia_hora") == null || o.get("precio") == null)
                 throw new FaltanDatosException();
             
             long pelicula_id = o.get("pelicula_id").asLong(); 
@@ -87,6 +87,9 @@ public class SesionController {
 
             String dia_hora = o.get("dia_hora").asText();
             target.setDia_hora(LocalDateTime.parse(dia_hora));
+
+            double precio = o.get("precio").asDouble();
+            target.setPrecioEntrada(precio);
 
 			entityManager.persist(target);
 			entityManager.flush();
@@ -130,6 +133,10 @@ public class SesionController {
             if(o.get("dia_hora")!=null){
                 String dia_hora = o.get("dia_hora").asText();
                 if (dia_hora != null) {target.setDia_hora(LocalDateTime.parse(dia_hora));}
+            }
+            if(o.get("precio")!=null){
+                double precio = o.get("precio").asDouble();
+                if (precio != target.getPrecioEntrada()) {target.setPrecioEntrada(precio);}
             }
         }
 		

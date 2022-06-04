@@ -56,7 +56,7 @@
                                             <td th:text="${usuario.roles}">admin</td>
                                             <td><button type="button" class="btn btn-dark btn-sm editarusuario" th:attr="data-id=${usuario.id},data-username=${usuario.username},
                                                 data-email=${usuario.email},data-firstname=${usuario.firstName},data-lastname=${usuario.lastName},data-birthdate=${usuario.birthDate}">Editar</button></td>
-                                            <td><button type="button" class="btn btn-danger btn-sm eliminarUsuario" th:attr="data-id=${usuario.id}" >Eliminar</button> 
+                                            <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -106,6 +106,8 @@
                                                         alt="imagen cine" height="120px" width="84px"
                                                         class="d-inline-block"></a></td>
                                             <td><a th:href="@{/cines/{id}(id=${cine.id})}" th:text="${cine.nombre}" class="text-dark bold">La Gavia</a></td>
+                                            <td th:text="${cine.salas.size + ' salas'}">12 salas</td>
+                                            <td th:text="${cine.sesiones.size + ' sesiones'}">8 sesiones</td>
                                             <td><button type="button" class="btn btn-dark btn-sm editarcine" th:attr="data-id=${cine.id}">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
@@ -182,7 +184,7 @@
                                             <td th:text="${sesion.sala.nombre}">Sala 2</td>
                                             <td><button type="button" class="btn btn-dark btn-sm editarsesion" th:attr="data-id=${sesion.id}, 
                                                 data-cineid=${sesion.cine.id}, data-peliculaid=${sesion.pelicula.id}, 
-                                                data-salaid=${sesion.sala.id}, data-diahora=${sesion.dia_hora}">Editar</button></td>
+                                                data-salaid=${sesion.sala.id}, data-diahora=${sesion.dia_hora}, data-precio=${sesion.precioEntrada}">Editar</button></td>
                                             <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                                             </td>
                                         </tr>
@@ -508,6 +510,12 @@
                                     <input type="time" id="hora" class="form-control" name="hora" min="09:00" max="23:00" required>
                                 </p>
                             </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <p>
+                                    <label for="precio" class="visually-hidden">Precio entrada</label>
+                                    <input type="text" id="precio" name="precio" class="form-control" placeholder="Precio entrada (€)" required="required">
+                                </p>
+                            </div>
                             <div class="modal-footer modfooter">
                                 <button type="submit" class="btn btn-dark">Validar</button>
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -539,7 +547,6 @@
         $('#crearpelicula').click(crearPelicula);
         $('#crearsala').click(crearSala);
         $('#crearsesion').click(crearSesion);
-        
 
         $('.editarusuario').click(editarUsuario);
         $('.editarpelicula').click({peliculas}, editarPelicula);
@@ -547,6 +554,7 @@
         $('.editarsala').click({salas}, editarSala);
         $('.editarsesion').click({sesiones, salas}, editarSesion);
         $('.eliminarUsuario').click(eliminarUsuario)
+
     });
 
      /*]]>*/

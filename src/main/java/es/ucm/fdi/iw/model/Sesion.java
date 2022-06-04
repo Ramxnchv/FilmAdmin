@@ -47,6 +47,8 @@ public class Sesion implements Transferable<Sesion.Transfer>{
     private LocalDateTime dia_hora;
     
     private int asientosLibres;
+
+    private double precioEntrada;
     
     @Getter
     @AllArgsConstructor
@@ -54,11 +56,12 @@ public class Sesion implements Transferable<Sesion.Transfer>{
         private long id;
         private Sala sala;
         private int asientosLibres;
+        private double precioEntrada;
     }
 
     @Override
     public Transfer toTransfer() {
-		return new Transfer(id, sala, asientosLibres);
+		return new Transfer(id, sala, asientosLibres, precioEntrada);
 	}
 	
 	@Override

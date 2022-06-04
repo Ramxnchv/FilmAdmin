@@ -27,23 +27,23 @@ async function crearAsientos(){
         for (let i = 0; i < respuesta.length;i++){
             asientosOcupados = respuesta[i].asientos.length!== 0 ? respuesta[i].asientos.map(a => a.id).concat(...asientosOcupados) : [];   
         }
-        asientos = respuesta[0].sesion.sala.asientos.map(function(a){
-            if(asientosOcupados.includes(a.id)){
-                return {
-                    id: a.id,
-                    columna: a.columna,
-                    fila: a.fila,
-                    estado: "ocupado"
-                }
-            }else{
-                return {
-                    id: a.id,
-                    columna: a.columna,
-                    fila: a.fila,
-                    estado: "libre"
-                }
-            }   
-        })
+        // asientos = respuesta[0].sesion.sala.asientos.map(function(a){
+        //     if(asientosOcupados.includes(a.id)){
+        //         return {
+        //             id: a.id,
+        //             columna: a.columna,
+        //             fila: a.fila,
+        //             estado: "ocupado"
+        //         }
+        //     }else{
+        //         return {
+        //             id: a.id,
+        //             columna: a.columna,
+        //             fila: a.fila,
+        //             estado: "libre"
+        //         }
+        //     }   
+        // })
     
         console.log(asientos)
     }
@@ -126,7 +126,8 @@ function botonmenoss(){
 }
 
 function actualizarPrecio(valor){
-    let precioentrada = +(document.getElementById("precioentrada").innerHTML);
+    console.log(document.getElementById("precioentrada").innerHTML.replaceAll(',', '.'));
+    let precioentrada = +(document.getElementById("precioentrada").innerHTML.replaceAll(',', '.'));
     let subtotal = precioentrada *  valor;
     document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
     document.getElementById("preciofinal").innerHTML = subtotal.toFixed(2);
