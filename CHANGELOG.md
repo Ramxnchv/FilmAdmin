@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.1] 2022-06-05 (RAMÓN ROSA PÉREZ)
+- Arreglado registro (modificando las reglas de SecurityConfig y cambiando algunos detalles de funcionesUser.js, registro.html y UserController.java)
+- Añadidas mejoras hechas en el examen (Actualizado listado de cines en vista de administración y añadido precio entradas variable y editable por sesión)
+
 ## [3.0] - 2022-05-19
 - Añadida gestión (añadir y editar) de películas, cines, salas y sesiones en el panel de administración.
 - Correciones post-feedback:
