@@ -147,23 +147,37 @@ public class UserController {
 
 		User requester = (User) session.getAttribute("u");
 		User target = null;
-		if (id == -1 && requester.hasRole(Role.ADMIN)) {
+		if (id == -1 )
+		//&& requester.hasRole(Role.ADMIN)
+		 {
 			// create new user with random password
 			target = new User();
 			target.setUsername(o.get("username").asText());
 			target.setPassword(encodePassword(generateRandomBase64Token(12)));
+			target.setFirstName(o.get("firstName").asText());
+			target.setLastName(o.get("lastName").asText());
+			target.setEmail(o.get("email").asText());
+			String[] birthDateString = o.get("birthDate").asText().split("-");
+			LocalDate birthDate = LocalDate.of(Integer.parseInt(birthDateString[0]), Integer.parseInt(birthDateString[1]),Integer.parseInt(birthDateString[2]));
+			target.setBirthDate(birthDate);
 			target.setEnabled(true);
 			entityManager.persist(target);
 			entityManager.flush();
 			id = target.getId(); // retrieve assigned id from DB
+			ObjectMapper mapper = new ObjectMapper();
+			ObjectNode n = mapper.createObjectNode();
+			n.put("id", target.getId());
+			String json = mapper.writeValueAsString(n);
+			return json;
 		}
 
 		// retrieve requested user
 		target = entityManager.find(User.class, id);
 		model.addAttribute("user", target);
 
-		if (requester.getId() != target.getId() &&
-				!requester.hasRole(Role.ADMIN)) {
+		if (requester.getId() != target.getId() 
+			//&& !requester.hasRole(Role.ADMIN)
+		) {
 			throw new NoEsTuPerfilException();
 		}
 

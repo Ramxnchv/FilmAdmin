@@ -2,6 +2,11 @@
 
 Aplicación web para gestión completa de un cine. ¿Necesitas mostrar las sesiones disponibles con filtros de todo tipo? ¿Vender entradas con un mapa de asientos personalizable? ¿Validar entradas en el acceso al cine? ¿Mostrar información de películas? FilmAdmin es tu aplicación.
 
+## Mejoras Realizadas (RAMÓN ROSA PÉREZ)
+
+- Arreglado registro (modificando las reglas de SecurityConfig y cambiando algunos detalles de funcionesUser.js, registro.html y UserController.java)
+- Añadidas mejoras hechas en el examen (Actualizado listado de cines en vista de administración y añadido precio entradas variable y editable por sesión)
+
 ## Usuarios
 - Username: a | Contraseña: aa (Administrador)
 - Username: b | Contraseña: aa (Usuario)

@@ -5,6 +5,11 @@ function enviarUser(event) {
     postUser();
 }
 
+function enviarNewUser(event){
+    event.preventDefault();
+    postNewUser();
+}
+
 async function postUser() {
     try {
         const params = window.location.href;
@@ -43,6 +48,35 @@ async function postUser() {
         console.log(e);
     }
 
+}
+
+async function postNewUser(){
+    try {
+        let id = -1;
+        let u = {};
+        if (document.getElementById("password").value !== '' && document.getElementById("username").value !== '') {
+            if (document.getElementById("password").value === document.getElementById("pass2").value) {
+                u = {
+                        firstName: document.getElementById("firstName").value,
+                        lastName: document.getElementById("lastName").value,
+                        email: document.getElementById("email").value,
+                        birthDate: document.getElementById("birthDate").value,
+                        password: document.getElementById("password").value,
+                        pass2: document.getElementById("pass2").value,
+                        username: document.getElementById("username").value
+                    }
+                let uback = await go(`${config.rootUrl}/user/-1`, "POST", u);
+                let formregistro = document.getElementById('formregistro');
+                formregistro.reset();
+                avisoSuccess(formregistro,'Success:',"USUARIO REGISTRADO CORRECTAMENTE");
+            } else {
+                let formregistro = document.getElementById('formregistro');
+                avisoDanger(formregistro,'Danger:',"LAS CONTRASEÑAS NO COINCIDEN");
+            }
+        }
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 function avisoSuccess(selector, title, text) {

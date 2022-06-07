@@ -3,6 +3,7 @@ package es.ucm.fdi.iw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -51,10 +52,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 	        .authorizeRequests()
 	            .antMatchers("/css/**", "/js/**", "/img/**", "/", "/registro", "/error").permitAll()
+				.antMatchers("user/-1").anonymous() 
 				.antMatchers("/api/**").permitAll()            // <-- public api access
 				.antMatchers("/admin/**").hasRole("ADMIN")	   // <-- administration
-	            .antMatchers("/user/**").hasRole("USER")	   // <-- logged-in users
-	            .anyRequest().authenticated()
+	            .antMatchers(HttpMethod.GET, "/user/**").hasRole("USER")	   // <-- logged-in users
+				.antMatchers("/peliculas/**").authenticated()
+				.antMatchers("/cines/**").authenticated()
+				.antMatchers("/admin/**").authenticated()
+				.antMatchers("/entradas/**").authenticated()
+				.antMatchers("/salas/**").authenticated()
+				.antMatchers("/sesiones/**").authenticated()
+	            // .anyRequest().authenticated()
 	            .and()
 			.formLogin()
 				.loginPage("/login")
