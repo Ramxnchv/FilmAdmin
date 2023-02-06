@@ -12,7 +12,7 @@
         <link rel="icon" th:href="@{/img/favicon.ico}" href="/img/favicon.ico" type="image/x-icon">
         <script type="text/javascript">
             const config = {
-                 socketUrl: "[[${session.ws}?:'']]", // empty is false, will result in no WS being opened
+                 socketUrl: "[[${session.ws}?:'']]".replace("/ws/","wss"), // empty is false, will result in no WS being opened
                 rootUrl: "[[${session.url}?:'']]".replace("http","https"),
                 csrf: {
                     name: "[[${_csrf.parameterName}]]",
