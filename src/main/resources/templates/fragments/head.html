@@ -12,8 +12,8 @@
         <link rel="icon" th:href="@{/img/favicon.ico}" href="/img/favicon.ico" type="image/x-icon">
         <script type="text/javascript">
             const config = {
-                socketUrl: "[[${session.ws}?:'']]", // empty is false, will result in no WS being opened
-                rootUrl: "[[${session.url}?:'']]",
+                socketUrl: "wss://filmadmin.up.railway.app/ws", // empty is false, will result in no WS being opened
+                rootUrl: "https://filmadmin.up.railway.app",
                 csrf: {
                     name: "[[${_csrf.parameterName}]]",
                     value: "[[${_csrf.token}]]"
